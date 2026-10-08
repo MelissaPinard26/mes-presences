@@ -523,7 +523,171 @@ footer{
   padding:25px;
 }
 
+
+/* =========================
+   POINTAGE
+========================= */
+
+.pointage-date-box{
+  text-align:center;
+  background:var(--green-light);
+  border-radius:15px;
+  padding:16px;
+  margin-bottom:20px;
+}
+
+.pointage-date-label{
+  color:var(--khaki);
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+#pointageTodayDate{
+  color:var(--brown-dark);
+  font-size:20px;
+  font-weight:bold;
+  text-transform:capitalize;
+}
+
+.pointage-list{
+  display:grid;
+  gap:15px;
+}
+
+.pointage-card{
+  background:white;
+  border:1px solid var(--beige-dark);
+  border-radius:16px;
+  padding:18px;
+}
+
+.pointage-card.absent{
+  border-color:var(--danger);
+  background:#fffaf9;
+}
+
+.pointage-child-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+  margin-bottom:12px;
+}
+
+.pointage-child-name{
+  color:var(--brown-dark);
+  font-size:20px;
+  font-weight:bold;
+}
+
+.pointage-schedule{
+  margin-top:5px;
+  color:var(--khaki);
+  font-size:14px;
+}
+
+.pointage-status{
+  display:inline-block;
+  padding:7px 11px;
+  border-radius:20px;
+  background:var(--beige);
+  color:var(--brown);
+  font-size:13px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.pointage-status.present{
+  background:var(--green-light);
+  color:var(--brown-dark);
+}
+
+.pointage-status.absent{
+  background:#f3deda;
+  color:var(--danger);
+}
+
+.pointage-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:16px;
+}
+
+.pointage-btn{
+  border:0;
+  border-radius:12px;
+  padding:13px 10px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.pointage-btn.arrival{
+  background:var(--green-light);
+  color:var(--brown-dark);
+}
+
+.pointage-btn.departure{
+  background:#e7e1d8;
+  color:var(--brown-dark);
+}
+
+.pointage-btn.absent{
+  background:#f3deda;
+  color:var(--danger);
+}
+
+.pointage-btn:hover{
+  opacity:.85;
+}
+
+.pointage-time-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+
+.pointage-time-field{
+  background:#faf8f3;
+  border-radius:12px;
+  padding:12px;
+}
+
+.pointage-time-field label{
+  font-size:13px;
+}
+
+.pointage-time-field input{
+  font-size:18px;
+  text-align:center;
+}
+
+.pointage-help{
+  margin-top:12px;
+  color:var(--khaki);
+  font-size:12px;
+  text-align:center;
+}
+
+.pointage-manual{
+  margin-top:12px;
+  text-align:center;
+}
+
+.pointage-reset{
+  border:0;
+  background:transparent;
+  color:var(--brown);
+  cursor:pointer;
+  text-decoration:underline;
+  font-size:12px;
+  padding:6px;
+}
+
 @media(max-width:750px){
+
   .grid,
   .grid-3,
   .month-summary{
@@ -547,9 +711,37 @@ footer{
     min-height:65px;
     padding:4px;
   }
+
+  .pointage-child-header{
+    flex-direction:column;
+  }
+
+  .pointage-actions{
+    grid-template-columns:1fr;
+  }
+
+  .pointage-time-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:450px){
+
+  .pointage-time-grid{
+    grid-template-columns:1fr;
+  }
+
+  .pointage-card{
+    padding:14px;
+  }
+
+  .pointage-child-name{
+    font-size:18px;
+  }
 }
 
 @media print{
+
   body{
     background:white;
   }
@@ -620,6 +812,7 @@ footer{
   <button onclick="showPage('enfants',this)">👶 Enfants</button>
   <button onclick="showPage('calendrier',this)">📅 Calendrier</button>
   <button onclick="showPage('presences',this)">📝 Présences</button>
+  <button onclick="showPage('pointage',this)">📲 Pointage</button>
   <button onclick="showPage('recap',this)">📊 Récap mensuel</button>
 </nav>
 
@@ -742,6 +935,28 @@ footer{
   </div>
 
   <div id="presenceDocument"></div>
+
+</section>
+
+
+<!-- POINTAGE -->
+<section id="pointage" class="page">
+
+  <div class="page-title no-print">
+    <h2>📲 Pointage du jour</h2>
+    <p>Enregistre rapidement l’arrivée, le départ ou l’absence de chaque enfant.</p>
+  </div>
+
+  <div class="card">
+
+    <div class="pointage-date-box">
+      <div class="pointage-date-label">Aujourd’hui</div>
+      <div id="pointageTodayDate"></div>
+    </div>
+
+    <div id="pointageList" class="pointage-list"></div>
+
+  </div>
 
 </section>
 
@@ -1179,7 +1394,8 @@ const STORAGE = {
   events: "afa_events",
   sheets: "afa_sheets",
   profile: "afa_profile",
-  salaries: "afa_salaries"
+  salaries: "afa_salaries",
+  pointages: "afa_pointages"
 };
 
 let children = JSON.parse(localStorage.getItem(STORAGE.children) || "[]");
@@ -1187,6 +1403,7 @@ let events = JSON.parse(localStorage.getItem(STORAGE.events) || "[]");
 let sheets = JSON.parse(localStorage.getItem(STORAGE.sheets) || "{}");
 let profile = JSON.parse(localStorage.getItem(STORAGE.profile) || "{}");
 let salaries = JSON.parse(localStorage.getItem(STORAGE.salaries) || "[]");
+let pointages = JSON.parse(localStorage.getItem(STORAGE.pointages) || "{}");
 
 let calendarDate = new Date();
 
@@ -1222,6 +1439,10 @@ function showPage(pageId, button){
   if(pageId === "presences"){
     populatePresenceSelectors();
     generatePresence();
+  }
+
+  if(pageId === "pointage"){
+    renderPointage();
   }
 
   if(pageId === "recap"){
@@ -1558,6 +1779,7 @@ function saveChild(){
   closeModal("childModal");
   renderChildren();
   populatePresenceSelectors();
+  renderPointage();
 
   alert("Enfant enregistré 🌿");
 }
@@ -1656,6 +1878,7 @@ function deleteChild(id){
 
   renderChildren();
   populatePresenceSelectors();
+  renderPointage();
 }
 
 
@@ -1741,7 +1964,7 @@ function openEventModal(date=""){
 
   document.getElementById("eventDate").value =
     date ||
-    new Date().toISOString().slice(0,10);
+    localDateISO();
 
   document.getElementById("eventDescription").value = "";
 
@@ -1795,6 +2018,355 @@ function saveEvent(){
 
   closeModal("eventModal");
   renderCalendar();
+}
+
+
+/* =========================
+   POINTAGE
+========================= */
+
+function localDateISO(date = new Date()){
+
+  return date.getFullYear() + "-" +
+    String(date.getMonth()+1).padStart(2,"0") + "-" +
+    String(date.getDate()).padStart(2,"0");
+}
+
+function currentTimeHHMM(date = new Date()){
+
+  return String(date.getHours()).padStart(2,"0") +
+    ":" +
+    String(date.getMinutes()).padStart(2,"0");
+}
+
+function formatFrenchDate(date = new Date()){
+
+  return date.toLocaleDateString("fr-FR",{
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
+}
+
+function savePointages(){
+
+  localStorage.setItem(
+    STORAGE.pointages,
+    JSON.stringify(pointages)
+  );
+}
+
+function renderPointage(){
+
+  const date = new Date();
+
+  const today =
+    localDateISO(date);
+
+  const dateElement =
+    document.getElementById("pointageTodayDate");
+
+  const listElement =
+    document.getElementById("pointageList");
+
+  if(!dateElement || !listElement){
+    return;
+  }
+
+  dateElement.textContent =
+    formatFrenchDate(date);
+
+  if(!pointages[today]){
+    pointages[today] = {};
+  }
+
+  if(children.length === 0){
+
+    listElement.innerHTML = `
+      <div class="empty">
+        <p>👶 Aucun enfant n’est encore enregistré.</p>
+
+        <button class="btn"
+          onclick="showPage('enfants',document.querySelector('nav button:nth-child(2)'))">
+          ＋ Ajouter un enfant
+        </button>
+      </div>
+    `;
+
+    return;
+  }
+
+  const weekday =
+    date.getDay();
+
+  listElement.innerHTML =
+    children.map(child => {
+
+      const contract =
+        child.contract || {};
+
+      const saved =
+        pointages[today][child.id] || {};
+
+      const workdays =
+        contract.workdays || [];
+
+      const isPlanned =
+        workdays.includes(weekday);
+
+      const plannedSchedule =
+        isPlanned
+          ? (contract.usualHours || "Horaires non renseignés")
+          : "Pas prévu au contrat";
+
+      let statusText =
+        "En attente de pointage";
+
+      let statusClass = "";
+
+      if(saved.status === "absent"){
+
+        statusText =
+          "🔴 Absent aujourd’hui";
+
+        statusClass =
+          "absent";
+
+      }else if(saved.arrival && saved.departure){
+
+        statusText =
+          "🟢 Présent — arrivée " +
+          saved.arrival +
+          " · départ " +
+          saved.departure;
+
+        statusClass =
+          "present";
+
+      }else if(saved.arrival){
+
+        statusText =
+          "🟢 Arrivée à " +
+          saved.arrival;
+
+        statusClass =
+          "present";
+
+      }else if(saved.departure){
+
+        statusText =
+          "🔵 Départ à " +
+          saved.departure;
+
+        statusClass =
+          "present";
+      }
+
+      const cardClass =
+        saved.status === "absent"
+          ? "pointage-card absent"
+          : "pointage-card";
+
+      const disabled =
+        saved.status === "absent"
+          ? "disabled"
+          : "";
+
+      return `
+        <div class="${cardClass}">
+
+          <div class="pointage-child-header">
+
+            <div>
+
+              <div class="pointage-child-name">
+                👶 ${escapeHtml(child.firstName)}
+                ${escapeHtml(child.lastName)}
+              </div>
+
+              <div class="pointage-schedule">
+                🕐 Horaires prévus :
+                <strong>${escapeHtml(plannedSchedule)}</strong>
+              </div>
+
+            </div>
+
+            <div class="pointage-status ${statusClass}">
+              ${statusText}
+            </div>
+
+          </div>
+
+
+          <div class="pointage-actions">
+
+            <button
+              class="pointage-btn arrival"
+              onclick="recordPointage('${child.id}','arrival')">
+              🟢 Arrivée
+            </button>
+
+            <button
+              class="pointage-btn departure"
+              onclick="recordPointage('${child.id}','departure')">
+              🔵 Départ
+            </button>
+
+            <button
+              class="pointage-btn absent"
+              onclick="recordPointage('${child.id}','absent')">
+              🔴 Absent
+            </button>
+
+          </div>
+
+
+          <div class="pointage-time-grid">
+
+            <div class="pointage-time-field">
+
+              <label>Heure d’arrivée</label>
+
+              <input
+                type="time"
+                value="${escapeAttribute(saved.arrival || "")}"
+                ${disabled}
+                onchange="manualPointageTime('${child.id}','arrival',this.value)"
+              >
+
+            </div>
+
+
+            <div class="pointage-time-field">
+
+              <label>Heure de départ</label>
+
+              <input
+                type="time"
+                value="${escapeAttribute(saved.departure || "")}"
+                ${disabled}
+                onchange="manualPointageTime('${child.id}','departure',this.value)"
+              >
+
+            </div>
+
+          </div>
+
+          <div class="pointage-help">
+            Les horaires peuvent être corrigés manuellement si besoin.
+          </div>
+
+          <div class="pointage-manual">
+
+            <button
+              class="pointage-reset"
+              onclick="resetPointage('${child.id}')">
+              ↺ Réinitialiser le pointage
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+function recordPointage(childId,action){
+
+  const today =
+    localDateISO();
+
+  if(!pointages[today]){
+    pointages[today] = {};
+  }
+
+  if(!pointages[today][childId]){
+    pointages[today][childId] = {};
+  }
+
+  const entry =
+    pointages[today][childId];
+
+  if(action === "arrival"){
+
+    entry.status = "present";
+    entry.arrival = currentTimeHHMM();
+
+  }
+
+  if(action === "departure"){
+
+    entry.status = "present";
+    entry.departure = currentTimeHHMM();
+
+  }
+
+  if(action === "absent"){
+
+    entry.status = "absent";
+    entry.arrival = "";
+    entry.departure = "";
+
+  }
+
+  savePointages();
+  renderPointage();
+}
+
+function manualPointageTime(childId,field,value){
+
+  const today =
+    localDateISO();
+
+  if(!pointages[today]){
+    pointages[today] = {};
+  }
+
+  if(!pointages[today][childId]){
+    pointages[today][childId] = {};
+  }
+
+  const entry =
+    pointages[today][childId];
+
+  if(value){
+
+    entry.status = "present";
+    entry[field] = value;
+
+  }else{
+
+    entry[field] = "";
+
+    if(!entry.arrival && !entry.departure){
+      entry.status = "";
+    }
+
+  }
+
+  savePointages();
+  renderPointage();
+}
+
+function resetPointage(childId){
+
+  if(!confirm(
+    "Réinitialiser le pointage de cet enfant pour aujourd’hui ?"
+  )){
+    return;
+  }
+
+  const today =
+    localDateISO();
+
+  if(pointages[today]){
+    delete pointages[today][childId];
+  }
+
+  savePointages();
+  renderPointage();
 }
 
 
@@ -2649,6 +3221,7 @@ function initialize(){
   renderChildren();
   renderCalendar();
   renderSalaryList();
+  renderPointage();
 
   const now = new Date();
 
