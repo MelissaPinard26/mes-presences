@@ -7,93 +7,120 @@
 
 <style>
 :root{
-  --beige:#f5efe5;
-  --beige-clair:#fbf8f2;
-  --marron:#735844;
-  --marron-fonce:#4f3d30;
-  --vert:#a8b89a;
-  --kaki:#78866b;
-  --blanc:#ffffff;
-  --texte:#4d4a45;
-  --ombre:0 4px 18px rgba(80,65,50,.10);
+  --beige:#f5f0e7;
+  --beige-dark:#e6ddce;
+  --cream:#fffdf9;
+  --green:#8fa58b;
+  --green-light:#dfe8dc;
+  --khaki:#7c8464;
+  --brown:#735b47;
+  --brown-dark:#594536;
+  --text:#493f36;
+  --white:#ffffff;
+  --border:#ded5c7;
+  --shadow:0 4px 16px rgba(80,60,40,.08);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:var(--beige-clair);
-  color:var(--texte);
+  font-family:Arial, Helvetica, sans-serif;
+  background:var(--beige);
+  color:var(--text);
 }
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  min-height:100vh;
+}
+
+/* HEADER */
 
 header{
-  background:var(--beige);
-  padding:28px 20px 22px;
-  text-align:center;
-  border-bottom:1px solid #e6dccd;
+  background:var(--cream);
+  border-bottom:1px solid var(--border);
+  padding:18px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
-.logo-placeholder{
-  width:82px;
-  height:82px;
-  margin:0 auto 12px;
+.logo{
+  width:58px;
+  height:58px;
   border-radius:50%;
-  background:var(--vert);
+  background:var(--green-light);
+  color:var(--brown);
   display:flex;
   align-items:center;
   justify-content:center;
-  color:white;
-  font-size:30px;
   font-weight:bold;
+  font-size:18px;
+  border:2px solid var(--green);
+  flex-shrink:0;
 }
 
-h1{
+.header-title h1{
   margin:0;
-  color:var(--marron-fonce);
   font-family:Georgia,serif;
-  font-size:30px;
+  color:var(--brown-dark);
+  font-size:25px;
 }
 
-.subtitle{
-  margin-top:7px;
-  color:var(--kaki);
-  font-size:14px;
+.header-title p{
+  margin:4px 0 0;
+  font-size:13px;
+  color:#827568;
 }
+
+/* NAVIGATION */
 
 nav{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:white;
+  background:var(--cream);
+  border-bottom:1px solid var(--border);
   display:flex;
-  justify-content:center;
-  gap:5px;
-  flex-wrap:wrap;
-  padding:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  overflow-x:auto;
+  padding:0 14px;
 }
 
 nav button{
   border:0;
   background:transparent;
-  color:var(--marron);
-  padding:10px 13px;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:14px;
+  color:var(--brown);
+  padding:14px 15px;
+  white-space:nowrap;
+  border-bottom:3px solid transparent;
 }
 
 nav button:hover,
 nav button.active{
-  background:var(--vert);
-  color:white;
+  color:var(--brown-dark);
+  border-bottom-color:var(--green);
+  background:#faf7f1;
 }
 
+/* MAIN */
+
 main{
-  max-width:1100px;
+  max-width:1250px;
   margin:auto;
-  padding:25px 18px 80px;
+  padding:25px 18px 50px;
 }
 
 .page{
@@ -104,200 +131,225 @@ main{
   display:block;
 }
 
-.card{
-  background:white;
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:var(--ombre);
-  border:1px solid #eee6da;
-}
-
-.hero{
-  text-align:center;
-  padding:35px 20px;
-  background:linear-gradient(135deg,#f5efe5,#edf2e9);
-}
-
-.hero h2{
-  color:var(--marron-fonce);
-  font-family:Georgia,serif;
-  font-size:27px;
-}
-
-h2,h3{
-  color:var(--marron-fonce);
-}
-
-.button{
-  border:0;
-  border-radius:10px;
-  padding:11px 16px;
-  cursor:pointer;
-  background:var(--kaki);
-  color:white;
-  font-weight:bold;
-}
-
-.button.secondary{
-  background:var(--beige);
-  color:var(--marron);
-}
-
-.button.danger{
-  background:#b77b70;
-}
-
-.button.small{
-  padding:7px 10px;
-  font-size:12px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:15px;
-}
-
-.stat{
-  background:var(--beige-clair);
-  border-radius:15px;
-  padding:18px;
-  text-align:center;
-  border:1px solid #eee4d7;
-}
-
-.stat strong{
-  display:block;
-  font-size:28px;
-  color:var(--marron);
-  margin-bottom:5px;
-}
-
-.child-card{
+.page-title{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:15px;
+  margin-bottom:20px;
 }
 
-.child-name{
-  font-size:19px;
-  color:var(--marron-fonce);
-  font-weight:bold;
+.page-title h2{
+  margin:0;
+  font-family:Georgia,serif;
+  color:var(--brown-dark);
+  font-size:26px;
 }
 
-input,select,textarea{
-  width:100%;
-  padding:11px;
-  border:1px solid #dcd2c4;
-  border-radius:9px;
-  background:#fffdf9;
+.page-title p{
+  margin:5px 0 0;
+  color:#81766a;
   font-size:14px;
 }
 
-label{
-  display:block;
-  margin:12px 0 6px;
-  font-weight:bold;
-  color:var(--marron);
+/* CARDS */
+
+.card{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
 }
+
+.card h3{
+  margin-top:0;
+  color:var(--brown-dark);
+  font-family:Georgia,serif;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+}
+
+.stat{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.stat .number{
+  font-size:30px;
+  font-weight:bold;
+  color:var(--khaki);
+}
+
+.stat .label{
+  margin-top:5px;
+  color:#7d7267;
+}
+
+/* BUTTONS */
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:10px 15px;
+  transition:.15s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:var(--green);
+  color:white;
+}
+
+.btn-secondary{
+  background:var(--beige-dark);
+  color:var(--brown-dark);
+}
+
+.btn-danger{
+  background:#ead8d2;
+  color:#7b4539;
+}
+
+.btn-small{
+  padding:7px 10px;
+  font-size:13px;
+}
+
+/* FORMS */
 
 .form-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
 }
 
-.actions{
+.form-group{
   display:flex;
-  gap:8px;
+  flex-direction:column;
+  gap:6px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+.form-group label{
+  font-size:13px;
+  font-weight:bold;
+  color:var(--brown);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:10px 11px;
+  background:white;
+  color:var(--text);
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.checkbox-row{
+  display:flex;
   flex-wrap:wrap;
+  gap:10px;
+}
+
+.checkbox{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  background:var(--beige);
+  padding:8px 10px;
+  border-radius:8px;
+}
+
+/* HOME */
+
+.welcome{
+  background:linear-gradient(135deg,#f9f5ed,#e5eddf);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:28px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.welcome:after{
+  content:"🌿  🌱  🍃";
+  position:absolute;
+  right:25px;
+  bottom:18px;
+  font-size:25px;
+  opacity:.45;
+}
+
+.welcome h2{
+  margin:0 0 8px;
+  font-family:Georgia,serif;
+  color:var(--brown-dark);
+}
+
+.welcome p{
+  max-width:700px;
+  line-height:1.6;
+}
+
+/* CHILDREN */
+
+.child-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;
+}
+
+.child-card{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.child-card h3{
+  margin:0 0 6px;
+  color:var(--brown-dark);
+  font-family:Georgia,serif;
+}
+
+.child-card p{
+  margin:6px 0;
+  font-size:14px;
+  color:#776c62;
+}
+
+.child-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
   margin-top:15px;
 }
 
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(50,40,30,.45);
-  z-index:100;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-content{
-  background:white;
-  max-width:600px;
-  width:100%;
-  max-height:90vh;
-  overflow:auto;
-  border-radius:20px;
-  padding:25px;
-}
-
-.calendar-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:15px;
-}
-
-.calendar{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:5px;
-}
-
-.day-name{
-  text-align:center;
-  font-weight:bold;
-  color:var(--marron);
-  padding:8px 2px;
-  font-size:12px;
-}
-
-.day{
-  min-height:70px;
-  background:#faf7f1;
-  border:1px solid #eee5d9;
-  border-radius:8px;
-  padding:6px;
-  font-size:12px;
-}
-
-.day strong{
-  color:var(--marron);
-}
-
-.day.today{
-  border:2px solid var(--kaki);
-}
-
-.month-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px;
-}
-
-.month{
-  padding:18px;
-  background:var(--beige-clair);
-  border:1px solid #e8dfd2;
-  border-radius:13px;
-  cursor:pointer;
-  text-align:center;
-}
-
-.month:hover{
-  background:#edf2e9;
-}
+/* TABLE */
 
 .table-wrap{
   overflow-x:auto;
@@ -306,809 +358,1760 @@ label{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:700px;
+  background:white;
 }
 
-th,td{
-  border:1px solid #ddd3c5;
-  padding:9px;
-  text-align:left;
-}
-
-th{
-  background:var(--beige);
-  color:var(--marron);
-}
-
-.notice{
-  background:#edf2e9;
-  border-left:4px solid var(--kaki);
-  padding:13px;
-  border-radius:8px;
-  margin:15px 0;
-}
-
-.empty{
+th,
+td{
+  border:1px solid var(--border);
+  padding:7px;
   text-align:center;
-  padding:30px;
-  color:#887e73;
-}
-
-footer{
-  text-align:center;
-  color:#8b8176;
-  padding:20px;
   font-size:12px;
 }
 
-@media(max-width:600px){
-  h1{font-size:25px}
-  nav button{font-size:12px;padding:8px}
-  main{padding:15px 10px 60px}
-  .card{padding:16px}
+th{
+  background:var(--green-light);
+  color:var(--brown-dark);
+  font-weight:bold;
+}
+
+.week-title td{
+  background:var(--beige-dark);
+  text-align:left;
+  font-weight:bold;
+  color:var(--brown-dark);
+}
+
+.total-row td{
+  background:#f5f1e9;
+  font-weight:bold;
+}
+
+/* CALENDAR */
+
+.year-controls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.year-controls strong{
+  min-width:90px;
+  text-align:center;
+  font-size:20px;
+  color:var(--brown-dark);
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.month{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+}
+
+.month h3{
+  margin:0 0 10px;
+  font-family:Georgia,serif;
+  color:var(--brown-dark);
+}
+
+.month-days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:3px;
+}
+
+.day-name{
+  font-size:10px;
+  text-align:center;
+  color:#877b70;
+  font-weight:bold;
+}
+
+.day{
+  min-height:32px;
+  border:1px solid #eee7dc;
+  border-radius:5px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:11px;
+  background:white;
+}
+
+.day.event-assistant{
+  background:#dce8d9;
+}
+
+.day.event-child{
+  background:#eee3c9;
+}
+
+.day.event-absence{
+  background:#ead9d4;
+}
+
+.day.event-holiday{
+  background:#dedbd0;
+}
+
+.day.event-other{
+  background:#e5dced;
+}
+
+/* SUMMARY */
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+}
+
+.summary-box{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:12px;
+  padding:15px;
+}
+
+.summary-box strong{
+  display:block;
+  font-size:22px;
+  color:var(--khaki);
+  margin-top:5px;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(60,45,35,.45);
+  z-index:100;
+  padding:20px;
+  overflow:auto;
+}
+
+.modal.show{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+}
+
+.modal-content{
+  width:min(900px,100%);
+  background:var(--cream);
+  border-radius:18px;
+  padding:24px;
+  margin-top:30px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.modal-header h2{
+  margin:0;
+  font-family:Georgia,serif;
+  color:var(--brown-dark);
+}
+
+.close{
+  border:0;
+  background:var(--beige-dark);
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  font-size:20px;
+  color:var(--brown);
+}
+
+.modal-footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+
+/* BADGES */
+
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  background:var(--green-light);
+  color:var(--brown-dark);
+  font-size:11px;
+  margin-top:5px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+  .calendar-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .page-title{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  main{
+    padding:18px 12px 40px;
+  }
+
+  header{
+    padding:14px;
+  }
+}
+
+/* PRINT */
+
+@media print{
+  body{
+    background:white;
+  }
+
+  header,
+  nav,
+  .no-print,
+  .page-title .btn{
+    display:none !important;
+  }
+
+  main{
+    padding:0;
+    max-width:none;
+  }
+
+  .card{
+    box-shadow:none;
+    border:0;
+  }
+
+  #page-presences{
+    display:block !important;
+  }
+
+  .presence-print{
+    display:block !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<div class="app">
+
 <header>
-  <div class="logo-placeholder">AF</div>
-  <h1>Au fil des accueils</h1>
-  <div class="subtitle">Gestion simple de votre activité d'assistante maternelle</div>
+  <div class="logo">AF</div>
+  <div class="header-title">
+    <h1>Au fil des accueils</h1>
+    <p>Assistante maternelle Mélissa</p>
+  </div>
 </header>
 
 <nav>
-  <button class="nav-btn active" onclick="showPage('accueil',this)">🏠 Accueil</button>
-  <button class="nav-btn" onclick="showPage('enfants',this)">👶 Enfants</button>
-  <button class="nav-btn" onclick="showPage('calendrier',this)">📅 Calendrier</button>
-  <button class="nav-btn" onclick="showPage('presences',this)">📝 Présences</button>
-  <button class="nav-btn" onclick="showPage('fiches',this)">📄 Fiches</button>
-  <button class="nav-btn" onclick="showPage('indemnites',this)">💶 Indemnités</button>
+  <button class="active" onclick="showPage('accueil',this)">🏠 Accueil</button>
+  <button onclick="showPage('enfants',this)">👶 Enfants</button>
+  <button onclick="showPage('calendrier',this)">📅 Calendrier</button>
+  <button onclick="showPage('presences',this)">📝 Présences</button>
+  <button onclick="showPage('recap',this)">📊 Récap mensuel</button>
 </nav>
 
 <main>
 
-<section id="accueil" class="page active">
+<!-- ACCUEIL -->
 
-  <div class="card hero">
-    <h2>Bienvenue sur Au fil des accueils 🌿</h2>
-    <p>Votre espace de gestion pour suivre simplement les accueils, contrats, présences et indemnités.</p>
-    <div class="actions" style="justify-content:center">
-      <button class="button" onclick="showPage('enfants')">👶 Gérer mes enfants</button>
-      <button class="button secondary" onclick="showPage('calendrier')">📅 Voir le calendrier</button>
-    </div>
+<section id="page-accueil" class="page active">
+
+  <div class="welcome">
+    <h2>Bienvenue dans votre espace 🌿</h2>
+    <p>
+      Retrouvez ici vos enfants accueillis, vos contrats,
+      votre calendrier, vos fiches de présence et vos récapitulatifs mensuels.
+    </p>
   </div>
 
-  <div class="grid">
+  <div class="cards">
     <div class="stat">
-      <strong id="stat-enfants">0</strong>
-      Enfants
+      <div class="number" id="statChildren">0</div>
+      <div class="label">Enfants enregistrés</div>
     </div>
+
     <div class="stat">
-      <strong id="stat-mois">2026</strong>
-      Année en cours
+      <div class="number" id="statContracts">0</div>
+      <div class="label">Contrats</div>
     </div>
+
     <div class="stat">
-      <strong>∞</strong>
-      Années disponibles
+      <div class="number" id="statEvents">0</div>
+      <div class="label">Événements calendrier</div>
+    </div>
+
+    <div class="stat">
+      <div class="number" id="statSheets">0</div>
+      <div class="label">Fiches enregistrées</div>
     </div>
   </div>
 
-  <div class="card">
-    <h3>👩‍🍼 Assistante maternelle</h3>
-    <p><strong>Prénom :</strong> Mélissa</p>
-    <p>Les informations professionnelles pourront être complétées plus tard dans votre profil.</p>
-  </div>
-
-</section>
-
-
-<section id="enfants" class="page">
-
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-      <div>
-        <h2>👶 Mes enfants accueillis</h2>
-        <p>Ajoutez autant d'enfants que nécessaire.</p>
-      </div>
-      <button class="button" onclick="openChildModal()">＋ Ajouter un enfant</button>
-    </div>
-  </div>
-
-  <div id="children-list"></div>
-
-</section>
-
-
-<section id="calendrier" class="page">
-
-  <div class="card">
-    <h2>📅 Calendrier</h2>
-    <p>Le calendrier commence en 2026 et pourra continuer avec les années suivantes.</p>
-
-    <div class="calendar-head">
-      <button class="button secondary small" onclick="changeYear(-1)">← Année précédente</button>
-      <h2 id="calendar-year" style="margin:0">2026</h2>
-      <button class="button secondary small" onclick="changeYear(1)">Année suivante →</button>
-    </div>
-
-    <div class="month-grid" id="month-grid"></div>
-  </div>
-
-  <div class="card">
-    <h3>🌿 Événements du calendrier</h3>
+  <div class="card" style="margin-top:20px">
+    <h3>Mon profil</h3>
 
     <div class="form-grid">
-      <div>
-        <label>Type</label>
-        <select id="event-type">
-          <option>Congé de l'assistante maternelle</option>
-          <option>Congé de l'enfant</option>
-          <option>Absence de l'enfant</option>
-          <option>Jour férié</option>
-          <option>Autre</option>
-        </select>
+      <div class="form-group">
+        <label>Nom</label>
+        <input id="profileLastName" value="Mélissa">
       </div>
 
-      <div>
-        <label>Date</label>
-        <input type="date" id="event-date">
+      <div class="form-group">
+        <label>Prénom</label>
+        <input id="profileFirstName" value="">
+      </div>
+
+      <div class="form-group full">
+        <label>Adresse</label>
+        <input id="profileAddress">
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input id="profilePhone">
+      </div>
+
+      <div class="form-group">
+        <label>N° Pajemploi</label>
+        <input id="profilePajemploi">
       </div>
     </div>
 
-    <div class="actions">
-      <button class="button" onclick="addEvent()">Ajouter au calendrier</button>
-    </div>
-
-    <div id="events-list"></div>
+    <button class="btn btn-primary" style="margin-top:15px" onclick="saveProfile()">
+      Enregistrer mon profil
+    </button>
   </div>
 
 </section>
 
 
-<section id="presences" class="page">
+<!-- ENFANTS -->
 
-  <div class="card">
-    <h2>📝 Présences</h2>
-    <p>Suivez les horaires prévus au contrat et les horaires réellement effectués.</p>
+<section id="page-enfants" class="page">
+
+  <div class="page-title">
+    <div>
+      <h2>Mes enfants accueillis 👶</h2>
+      <p>Chaque enfant possède sa fiche et son contrat.</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="openChildModal()">
+      + Ajouter un enfant
+    </button>
+  </div>
+
+  <div id="childrenList" class="child-list"></div>
+
+</section>
+
+
+<!-- CALENDRIER -->
+
+<section id="page-calendrier" class="page">
+
+  <div class="page-title">
+    <div>
+      <h2>Calendrier 📅</h2>
+      <p>Congés, absences et événements.</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="openEventModal()">
+      + Ajouter un événement
+    </button>
+  </div>
+
+  <div class="year-controls">
+    <button class="btn btn-secondary" onclick="changeYear(-1)">‹</button>
+    <strong id="calendarYear">2026</strong>
+    <button class="btn btn-secondary" onclick="changeYear(1)">›</button>
+  </div>
+
+  <div id="calendarGrid" class="calendar-grid"></div>
+
+</section>
+
+
+<!-- PRESENCES -->
+
+<section id="page-presences" class="page">
+
+  <div class="page-title no-print">
+    <div>
+      <h2>Fiche de présence mensuelle 📝</h2>
+      <p>Une fiche complète par enfant et par mois.</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="printPresence()">
+      📄 Imprimer / PDF
+    </button>
+  </div>
+
+  <div class="card no-print">
 
     <div class="form-grid">
-      <div>
+
+      <div class="form-group">
         <label>Enfant</label>
-        <select id="presence-child"></select>
+        <select id="presenceChild" onchange="generatePresence()"></select>
       </div>
 
-      <div>
+      <div class="form-group">
         <label>Mois</label>
-        <input type="month" id="presence-month" value="2026-10">
+        <input type="month" id="presenceMonth" onchange="generatePresence()">
       </div>
+
     </div>
 
-    <div class="actions">
-      <button class="button" onclick="createPresenceSheet()">Créer la fiche du mois</button>
-    </div>
   </div>
 
-  <div id="presence-area"></div>
+  <div id="presenceSheet" class="presence-print"></div>
 
 </section>
 
 
-<section id="fiches" class="page">
+<!-- RECAP -->
 
-  <div class="card">
-    <h2>📄 Fiches de présence</h2>
-    <p>Les fiches mensuelles seront préparées avec les informations de l'enfant, des parents et de l'assistante maternelle.</p>
+<section id="page-recap" class="page">
 
-    <div id="sheets-list"></div>
-  </div>
-
-</section>
-
-
-<section id="indemnites" class="page">
-
-  <div class="card">
-    <h2>💶 Indemnités et rémunération</h2>
-
-    <div class="grid">
-      <div class="stat">
-        <strong>IE</strong>
-        Indemnités d'entretien
-      </div>
-      <div class="stat">
-        <strong>🍽️</strong>
-        Repas
-      </div>
-      <div class="stat">
-        <strong>🍪</strong>
-        Goûters
-      </div>
-      <div class="stat">
-        <strong>＋</strong>
-        Divers
-      </div>
-      <div class="stat">
-        <strong>⏱️</strong>
-        Heures complémentaires
-      </div>
-      <div class="stat">
-        <strong>⏱️</strong>
-        Heures supplémentaires
-      </div>
+  <div class="page-title">
+    <div>
+      <h2>Récapitulatif mensuel 📊</h2>
+      <p>Votre espace personnel de suivi.</p>
     </div>
   </div>
 
   <div class="card">
-    <h3>Ajouter une ligne</h3>
 
     <div class="form-grid">
-      <div>
-        <label>Enfant</label>
-        <select id="fee-child"></select>
-      </div>
 
-      <div>
+      <div class="form-group">
         <label>Mois</label>
-        <input type="month" id="fee-month" value="2026-10">
+        <input type="month" id="recapMonth" onchange="generateRecap()">
       </div>
 
-      <div>
-        <label>Type</label>
-        <select id="fee-type">
-          <option>Indemnité d'entretien</option>
-          <option>Repas</option>
-          <option>Goûter</option>
-          <option>Divers</option>
-          <option>Heures complémentaires</option>
-          <option>Heures supplémentaires</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Montant (€)</label>
-        <input type="number" id="fee-amount" step="0.01" min="0">
-      </div>
     </div>
 
-    <div class="actions">
-      <button class="button" onclick="addFee()">Ajouter</button>
-    </div>
   </div>
 
+  <div id="recapContent"></div>
+
   <div class="card">
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Enfant</th>
-            <th>Mois</th>
-            <th>Type</th>
-            <th>Montant</th>
-          </tr>
-        </thead>
-        <tbody id="fees-table"></tbody>
-      </table>
+    <h3>Ma rémunération</h3>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Salaire reçu pour ce mois</label>
+        <input type="number" step="0.01" id="salaryAmount">
+      </div>
+
+      <div class="form-group">
+        <label>Bulletin de salaire</label>
+        <input type="file" id="salaryFile">
+      </div>
+
     </div>
+
+    <button class="btn btn-primary" style="margin-top:15px" onclick="saveSalary()">
+      Enregistrer
+    </button>
+
+    <div id="salaryInfo" style="margin-top:15px"></div>
+
   </div>
 
 </section>
 
 </main>
-
-<footer>
-  Au fil des accueils · Gestion d'activité pour assistantes maternelles
-</footer>
+</div>
 
 
-<!-- MODALE AJOUT ENFANT -->
+<!-- MODAL ENFANT -->
 
-<div class="modal" id="child-modal">
+<div id="childModal" class="modal">
 
-  <div class="modal-content">
+<div class="modal-content">
 
-    <h2>➕ Ajouter un enfant</h2>
+  <div class="modal-header">
+    <h2>Ajouter un enfant 👶</h2>
+    <button class="close" onclick="closeModal('childModal')">×</button>
+  </div>
 
-    <div class="form-grid">
+  <form id="childForm">
 
-      <div>
-        <label>Prénom de l'enfant *</label>
-        <input id="child-firstname" placeholder="Ex. Léa">
+    <div class="card">
+      <h3>Informations de l'enfant</h3>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Nom</label>
+          <input id="childLastName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Prénom</label>
+          <input id="childFirstName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Date de naissance</label>
+          <input type="date" id="childBirthDate">
+        </div>
+
+        <div class="form-group">
+          <label>Date d'embauche</label>
+          <input type="date" id="childStartDate">
+        </div>
+
       </div>
+    </div>
 
-      <div>
-        <label>Nom de l'enfant</label>
-        <input id="child-lastname" placeholder="Ex. Dupont">
-      </div>
 
-      <div>
-        <label>Prénom du parent</label>
-        <input id="parent-firstname" placeholder="Ex. Julie">
-      </div>
+    <div class="card">
+      <h3>Parent / employeur</h3>
 
-      <div>
-        <label>Nom du parent</label>
-        <input id="parent-lastname" placeholder="Ex. Dupont">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Nom du parent</label>
+          <input id="parentLastName">
+        </div>
+
+        <div class="form-group">
+          <label>Prénom du parent</label>
+          <input id="parentFirstName">
+        </div>
+
+        <div class="form-group full">
+          <label>Adresse</label>
+          <input id="parentAddress">
+        </div>
+
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input id="parentPhone">
+        </div>
+
+        <div class="form-group">
+          <label>N° Pajemploi</label>
+          <input id="parentPajemploi">
+        </div>
+
       </div>
+    </div>
+
+
+    <div class="card">
+      <h3>Contrat 📄</h3>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Type de contrat</label>
+          <select id="contractType">
+            <option value="CDI">CDI</option>
+            <option value="CDD">CDD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Date de début du contrat</label>
+          <input type="date" id="contractStart">
+        </div>
+
+        <div class="form-group">
+          <label>Date de fin du contrat (CDD uniquement)</label>
+          <input type="date" id="contractEnd">
+        </div>
+
+        <div class="form-group">
+          <label>Heures par semaine</label>
+          <input type="number" step="0.01" id="weeklyHours">
+        </div>
+
+        <div class="form-group">
+          <label>Semaines travaillées programmées</label>
+          <input type="number" step="1" id="workedWeeks">
+        </div>
+
+        <div class="form-group">
+          <label>Semaines d'absence programmées</label>
+          <input type="number" step="1" id="absentWeeks">
+        </div>
+
+        <div class="form-group">
+          <label>Heures mensuelles</label>
+          <input type="number" step="0.01" id="monthlyHours">
+        </div>
+
+        <div class="form-group">
+          <label>Jours mensuels</label>
+          <input type="number" step="0.01" id="monthlyDays">
+        </div>
+
+        <div class="form-group">
+          <label>Taux horaire (€)</label>
+          <input type="number" step="0.01" id="hourlyRate">
+        </div>
+
+        <div class="form-group">
+          <label>Indemnité d'entretien (€)</label>
+          <input type="number" step="0.01" id="maintenanceFee">
+        </div>
+
+        <div class="form-group">
+          <label>Indemnité repas (€)</label>
+          <input type="number" step="0.01" id="mealFee">
+        </div>
+
+        <div class="form-group">
+          <label>Indemnité goûter (€)</label>
+          <input type="number" step="0.01" id="snackFee">
+        </div>
+
+        <div class="form-group full">
+          <label>Horaires habituels</label>
+          <input id="usualHours" placeholder="Exemple : 8h30 - 16h30">
+        </div>
+
+        <div class="form-group full">
+          <label>Jours travaillés</label>
+
+          <div class="checkbox-row">
+
+            <label class="checkbox">
+              <input type="checkbox" value="Lundi" class="workday">
+              Lundi
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" value="Mardi" class="workday">
+              Mardi
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" value="Mercredi" class="workday">
+              Mercredi
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" value="Jeudi" class="workday">
+              Jeudi
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" value="Vendredi" class="workday">
+              Vendredi
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" value="Samedi" class="workday">
+              Samedi
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" value="Dimanche" class="workday">
+              Dimanche
+            </label>
+
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Notes du contrat</label>
+          <textarea id="contractNotes"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+
+      <button type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('childModal')">
+        Annuler
+      </button>
+
+      <button type="submit"
+              class="btn btn-primary">
+        Enregistrer l'enfant
+      </button>
 
     </div>
 
-    <div class="actions">
-      <button class="button" onclick="saveChild()">Enregistrer</button>
-      <button class="button secondary" onclick="closeChildModal()">Annuler</button>
+  </form>
+
+</div>
+</div>
+
+
+<!-- MODAL EVENEMENT -->
+
+<div id="eventModal" class="modal">
+
+<div class="modal-content">
+
+  <div class="modal-header">
+    <h2>Ajouter un événement 📅</h2>
+    <button class="close" onclick="closeModal('eventModal')">×</button>
+  </div>
+
+  <div class="form-grid">
+
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date" id="eventDate">
     </div>
+
+    <div class="form-group">
+      <label>Type</label>
+
+      <select id="eventType">
+
+        <option value="assistant">
+          Congé / absence Mélissa
+        </option>
+
+        <option value="child">
+          Vacances de l'enfant
+        </option>
+
+        <option value="absence">
+          Absence de l'enfant
+        </option>
+
+        <option value="holiday">
+          Jour férié
+        </option>
+
+        <option value="other">
+          Autre
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label>Enfant concerné</label>
+      <select id="eventChild"></select>
+    </div>
+
+    <div class="form-group full">
+      <label>Note</label>
+      <input id="eventNote">
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+
+    <button class="btn btn-secondary"
+            onclick="closeModal('eventModal')">
+      Annuler
+    </button>
+
+    <button class="btn btn-primary"
+            onclick="saveEvent()">
+      Enregistrer
+    </button>
 
   </div>
 
 </div>
-
-
-<!-- MODALE CONTRAT -->
-
-<div class="modal" id="contract-modal">
-
-  <div class="modal-content">
-
-    <h2>📄 Contrat de <span id="contract-child-name"></span></h2>
-
-    <input type="hidden" id="contract-child-id">
-
-    <label>Date de début du contrat</label>
-    <input type="date" id="contract-start">
-
-    <label>Date de fin du contrat</label>
-    <input type="date" id="contract-end">
-
-    <div class="form-grid">
-
-      <div>
-        <label>Heures prévues / semaine</label>
-        <input type="number" id="contract-week-hours" step="0.01">
-      </div>
-
-      <div>
-        <label>Semaines travaillées / an</label>
-        <input type="number" id="contract-weeks">
-      </div>
-
-      <div>
-        <label>Taux horaire (€)</label>
-        <input type="number" id="contract-rate" step="0.01">
-      </div>
-
-      <div>
-        <label>Jours d'accueil / semaine</label>
-        <input type="number" id="contract-days">
-      </div>
-
-    </div>
-
-    <label>Horaires habituels</label>
-    <textarea id="contract-hours" rows="3" placeholder="Ex. Lundi, mardi, jeudi et vendredi : 8h00 - 17h30"></textarea>
-
-    <label>Informations complémentaires</label>
-    <textarea id="contract-notes" rows="4"></textarea>
-
-    <div class="actions">
-      <button class="button" onclick="saveContract()">Enregistrer le contrat</button>
-      <button class="button secondary" onclick="closeContractModal()">Fermer</button>
-    </div>
-
-  </div>
-
 </div>
 
 
 <script>
 
-let children = JSON.parse(localStorage.getItem("afa_children") || "[]");
-let events = JSON.parse(localStorage.getItem("afa_events") || "[]");
-let fees = JSON.parse(localStorage.getItem("afa_fees") || "[]");
-let sheets = JSON.parse(localStorage.getItem("afa_sheets") || "[]");
+/* =========================
+   DONNÉES
+========================= */
 
-let currentYear = new Date().getFullYear();
-if(currentYear < 2026) currentYear = 2026;
+let children = JSON.parse(localStorage.getItem('afa_children') || '[]');
 
+let events = JSON.parse(localStorage.getItem('afa_events') || '[]');
+
+let sheets = JSON.parse(localStorage.getItem('afa_sheets') || '[]');
+
+let profile = JSON.parse(localStorage.getItem('afa_profile') || '{}');
+
+let salaries = JSON.parse(localStorage.getItem('afa_salaries') || '{}');
+
+let currentYear = Math.max(2026,new Date().getFullYear());
+
+let editingChildId = null;
+
+
+/* =========================
+   UTILITAIRES
+========================= */
 
 function saveAll(){
-  localStorage.setItem("afa_children",JSON.stringify(children));
-  localStorage.setItem("afa_events",JSON.stringify(events));
-  localStorage.setItem("afa_fees",JSON.stringify(fees));
-  localStorage.setItem("afa_sheets",JSON.stringify(sheets));
+
+  localStorage.setItem(
+    'afa_children',
+    JSON.stringify(children)
+  );
+
+  localStorage.setItem(
+    'afa_events',
+    JSON.stringify(events)
+  );
+
+  localStorage.setItem(
+    'afa_sheets',
+    JSON.stringify(sheets)
+  );
+
 }
 
+function escapeHtml(value){
 
-function showPage(id,button){
+  return String(value ?? '')
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
 
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+}
 
-  const page=document.getElementById(id);
-  if(page) page.classList.add("active");
+function formatDate(date){
 
-  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+  if(!date) return '';
 
-  if(button) button.classList.add("active");
+  const d = new Date(date + 'T00:00:00');
 
-  if(id==="enfants") renderChildren();
-  if(id==="calendrier") renderCalendar();
-  if(id==="presences") refreshChildSelects();
-  if(id==="fiches") renderSheets();
-  if(id==="indemnites"){
-    refreshChildSelects();
-    renderFees();
+  return d.toLocaleDateString(
+    'fr-FR'
+  );
+
+}
+
+function monthName(month){
+
+  return new Date(
+    2026,
+    month,
+    1
+  ).toLocaleDateString(
+    'fr-FR',
+    {month:'long'}
+  );
+
+}
+
+function hoursBetween(start,end){
+
+  if(!start || !end) return 0;
+
+  const [h1,m1] = start.split(':').map(Number);
+  const [h2,m2] = end.split(':').map(Number);
+
+  let a = h1*60+m1;
+  let b = h2*60+m2;
+
+  if(b<a) b += 24*60;
+
+  return (b-a)/60;
+
+}
+
+function formatHours(value){
+
+  if(!Number.isFinite(value)) return '0 h';
+
+  const h = Math.floor(value);
+  const minutes = Math.round(
+    (value-h)*60
+  );
+
+  if(minutes===0){
+    return h + ' h';
   }
+
+  return h + ' h ' + minutes + ' min';
+
 }
 
 
-function openChildModal(){
-  document.getElementById("child-modal").classList.add("show");
-}
+/* =========================
+   NAVIGATION
+========================= */
 
+function showPage(name,button){
 
-function closeChildModal(){
-  document.getElementById("child-modal").classList.remove("show");
-}
+  document.querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
 
+  document.getElementById(
+    'page-'+name
+  ).classList.add('active');
 
-function saveChild(){
+  document.querySelectorAll('nav button')
+    .forEach(b => b.classList.remove('active'));
 
-  const firstname=document.getElementById("child-firstname").value.trim();
-
-  if(!firstname){
-    alert("Merci d'indiquer au moins le prénom de l'enfant.");
-    return;
+  if(button){
+    button.classList.add('active');
   }
 
-  const child={
-    id:Date.now(),
-    firstname,
-    lastname:document.getElementById("child-lastname").value.trim(),
-    parentFirstname:document.getElementById("parent-firstname").value.trim(),
-    parentLastname:document.getElementById("parent-lastname").value.trim(),
-    contract:{}
+  if(name==='accueil'){
+    updateStats();
+  }
+
+  if(name==='enfants'){
+    renderChildren();
+  }
+
+  if(name==='calendrier'){
+    renderCalendar();
+  }
+
+  if(name==='presences'){
+    populatePresenceChildren();
+
+    if(!document.getElementById('presenceMonth').value){
+
+      document.getElementById('presenceMonth').value =
+        new Date().toISOString().slice(0,7);
+
+    }
+
+    generatePresence();
+  }
+
+  if(name==='recap'){
+
+    if(!document.getElementById('recapMonth').value){
+
+      document.getElementById('recapMonth').value =
+        new Date().toISOString().slice(0,7);
+
+    }
+
+    generateRecap();
+
+  }
+
+}
+
+
+/* =========================
+   ACCUEIL
+========================= */
+
+function updateStats(){
+
+  document.getElementById(
+    'statChildren'
+  ).textContent = children.length;
+
+  document.getElementById(
+    'statContracts'
+  ).textContent =
+    children.filter(c=>c.contract).length;
+
+  document.getElementById(
+    'statEvents'
+  ).textContent = events.length;
+
+  document.getElementById(
+    'statSheets'
+  ).textContent = sheets.length;
+
+}
+
+function saveProfile(){
+
+  profile = {
+
+    lastName:
+      document.getElementById('profileLastName').value,
+
+    firstName:
+      document.getElementById('profileFirstName').value,
+
+    address:
+      document.getElementById('profileAddress').value,
+
+    phone:
+      document.getElementById('profilePhone').value,
+
+    pajemploi:
+      document.getElementById('profilePajemploi').value
+
   };
 
-  children.push(child);
+  localStorage.setItem(
+    'afa_profile',
+    JSON.stringify(profile)
+  );
+
+  alert('Profil enregistré.');
+
+}
+
+function loadProfile(){
+
+  if(!profile) return;
+
+  document.getElementById('profileLastName').value =
+    profile.lastName || 'Mélissa';
+
+  document.getElementById('profileFirstName').value =
+    profile.firstName || '';
+
+  document.getElementById('profileAddress').value =
+    profile.address || '';
+
+  document.getElementById('profilePhone').value =
+    profile.phone || '';
+
+  document.getElementById('profilePajemploi').value =
+    profile.pajemploi || '';
+
+}
+
+
+/* =========================
+   ENFANTS
+========================= */
+
+function openChildModal(){
+
+  editingChildId = null;
+
+  document.getElementById('childForm').reset();
+
+  document.querySelectorAll('.workday')
+    .forEach(c=>c.checked=false);
+
+  document.getElementById('childModal')
+    .classList.add('show');
+
+}
+
+function editChild(id){
+
+  const child =
+    children.find(c=>c.id===id);
+
+  if(!child) return;
+
+  editingChildId=id;
+
+  document.getElementById('childLastName').value =
+    child.lastName || '';
+
+  document.getElementById('childFirstName').value =
+    child.firstName || '';
+
+  document.getElementById('childBirthDate').value =
+    child.birthDate || '';
+
+  document.getElementById('childStartDate').value =
+    child.startDate || '';
+
+  const parent=child.parent || {};
+
+  document.getElementById('parentLastName').value =
+    parent.lastName || '';
+
+  document.getElementById('parentFirstName').value =
+    parent.firstName || '';
+
+  document.getElementById('parentAddress').value =
+    parent.address || '';
+
+  document.getElementById('parentPhone').value =
+    parent.phone || '';
+
+  document.getElementById('parentPajemploi').value =
+    parent.pajemploi || '';
+
+  const c=child.contract || {};
+
+  document.getElementById('contractType').value =
+    c.type || 'CDI';
+
+  document.getElementById('contractStart').value =
+    c.start || '';
+
+  document.getElementById('contractEnd').value =
+    c.end || '';
+
+  document.getElementById('weeklyHours').value =
+    c.weeklyHours || '';
+
+  document.getElementById('workedWeeks').value =
+    c.workedWeeks || '';
+
+  document.getElementById('absentWeeks').value =
+    c.absentWeeks || '';
+
+  document.getElementById('monthlyHours').value =
+    c.monthlyHours || '';
+
+  document.getElementById('monthlyDays').value =
+    c.monthlyDays || '';
+
+  document.getElementById('hourlyRate').value =
+    c.hourlyRate || '';
+
+  document.getElementById('maintenanceFee').value =
+    c.maintenanceFee || '';
+
+  document.getElementById('mealFee').value =
+    c.mealFee || '';
+
+  document.getElementById('snackFee').value =
+    c.snackFee || '';
+
+  document.getElementById('usualHours').value =
+    c.usualHours || '';
+
+  document.getElementById('contractNotes').value =
+    c.notes || '';
+
+  document.querySelectorAll('.workday')
+    .forEach(box=>{
+      box.checked =
+        (c.workdays || []).includes(box.value);
+    });
+
+  document.getElementById('childModal')
+    .classList.add('show');
+
+}
+
+function saveChild(event){
+
+  event.preventDefault();
+
+  const workdays =
+    Array.from(
+      document.querySelectorAll('.workday:checked')
+    ).map(c=>c.value);
+
+  const child={
+
+    id:
+      editingChildId ||
+      Date.now().toString(),
+
+    lastName:
+      document.getElementById('childLastName').value.trim(),
+
+    firstName:
+      document.getElementById('childFirstName').value.trim(),
+
+    birthDate:
+      document.getElementById('childBirthDate').value,
+
+    startDate:
+      document.getElementById('childStartDate').value,
+
+    parent:{
+
+      lastName:
+        document.getElementById('parentLastName').value.trim(),
+
+      firstName:
+        document.getElementById('parentFirstName').value.trim(),
+
+      address:
+        document.getElementById('parentAddress').value.trim(),
+
+      phone:
+        document.getElementById('parentPhone').value.trim(),
+
+      pajemploi:
+        document.getElementById('parentPajemploi').value.trim()
+
+    },
+
+    contract:{
+
+      type:
+        document.getElementById('contractType').value,
+
+      start:
+        document.getElementById('contractStart').value,
+
+      end:
+        document.getElementById('contractEnd').value,
+
+      weeklyHours:
+        Number(document.getElementById('weeklyHours').value)||0,
+
+      workedWeeks:
+        Number(document.getElementById('workedWeeks').value)||0,
+
+      absentWeeks:
+        Number(document.getElementById('absentWeeks').value)||0,
+
+      monthlyHours:
+        Number(document.getElementById('monthlyHours').value)||0,
+
+      monthlyDays:
+        Number(document.getElementById('monthlyDays').value)||0,
+
+      hourlyRate:
+        Number(document.getElementById('hourlyRate').value)||0,
+
+      maintenanceFee:
+        Number(document.getElementById('maintenanceFee').value)||0,
+
+      mealFee:
+        Number(document.getElementById('mealFee').value)||0,
+
+      snackFee:
+        Number(document.getElementById('snackFee').value)||0,
+
+      usualHours:
+        document.getElementById('usualHours').value,
+
+      workdays,
+
+      notes:
+        document.getElementById('contractNotes').value
+
+    }
+
+  };
+
+  if(editingChildId){
+
+    const index =
+      children.findIndex(c=>c.id===editingChildId);
+
+    children[index]=child;
+
+  }else{
+
+    children.push(child);
+
+  }
+
   saveAll();
 
-  document.getElementById("child-firstname").value="";
-  document.getElementById("child-lastname").value="";
-  document.getElementById("parent-firstname").value="";
-  document.getElementById("parent-lastname").value="";
+  closeModal('childModal');
 
-  closeChildModal();
   renderChildren();
-  refreshChildSelects();
+
+  updateStats();
+
 }
+
+document.getElementById('childForm')
+  .addEventListener('submit',saveChild);
 
 
 function renderChildren(){
 
-  const area=document.getElementById("children-list");
-
-  document.getElementById("stat-enfants").textContent=children.length;
+  const container =
+    document.getElementById('childrenList');
 
   if(children.length===0){
-    area.innerHTML=`
-      <div class="card empty">
-        <div style="font-size:35px">👶</div>
-        <p>Aucun enfant n'est encore enregistré.</p>
-        <button class="button" onclick="openChildModal()">＋ Ajouter mon premier enfant</button>
-      </div>`;
+
+    container.innerHTML=`
+      <div class="card">
+        <h3>Aucun enfant enregistré</h3>
+        <p>
+          Cliquez sur « Ajouter un enfant » pour créer votre premier dossier.
+        </p>
+      </div>
+    `;
+
     return;
+
   }
 
-  area.innerHTML=children.map(child=>`
+  container.innerHTML =
+    children.map(child=>{
 
-    <div class="card child-card">
+      const c=child.contract || {};
 
-      <div>
-        <div class="child-name">${escapeHtml(child.firstname)} ${escapeHtml(child.lastname)}</div>
-        <div style="font-size:13px;color:#82786d;margin-top:5px">
-          Parent : ${escapeHtml(child.parentFirstname)} ${escapeHtml(child.parentLastname)}
+      return `
+
+      <div class="child-card">
+
+        <h3>
+          ${escapeHtml(child.firstName)}
+          ${escapeHtml(child.lastName)}
+        </h3>
+
+        <span class="badge">
+          ${escapeHtml(c.type || 'Contrat non renseigné')}
+        </span>
+
+        <p>
+          <strong>Date de naissance :</strong>
+          ${formatDate(child.birthDate) || '—'}
+        </p>
+
+        <p>
+          <strong>Embauche :</strong>
+          ${formatDate(child.startDate) || '—'}
+        </p>
+
+        <p>
+          <strong>Parent :</strong>
+          ${escapeHtml(
+            ((child.parent||{}).firstName || '') +
+            ' ' +
+            ((child.parent||{}).lastName || '')
+          ) || '—'}
+        </p>
+
+        <p>
+          <strong>Heures/semaine :</strong>
+          ${c.weeklyHours || 0} h
+        </p>
+
+        <p>
+          <strong>Taux horaire :</strong>
+          ${c.hourlyRate ? c.hourlyRate.toFixed(2)+' €' : '—'}
+        </p>
+
+        <div class="child-actions">
+
+          <button class="btn btn-secondary btn-small"
+                  onclick="editChild('${child.id}')">
+            ✏️ Modifier
+          </button>
+
+          <button class="btn btn-primary btn-small"
+                  onclick="openPresenceForChild('${child.id}')">
+            📝 Présence
+          </button>
+
+          <button class="btn btn-danger btn-small"
+                  onclick="deleteChild('${child.id}')">
+            Supprimer
+          </button>
+
         </div>
-      </div>
-
-      <div class="actions">
-
-        <button class="button small" onclick="openContract(${child.id})">
-          📄 Contrat
-        </button>
-
-        <button class="button secondary small" onclick="goToPresence(${child.id})">
-          📝 Présences
-        </button>
-
-        <button class="button danger small" onclick="deleteChild(${child.id})">
-          Supprimer
-        </button>
 
       </div>
 
-    </div>
+      `;
 
-  `).join("");
+    }).join('');
+
 }
-
 
 function deleteChild(id){
 
-  if(!confirm("Supprimer cet enfant ?")) return;
+  const child=
+    children.find(c=>c.id===id);
 
-  children=children.filter(c=>c.id!==id);
+  if(!child) return;
+
+  if(!confirm(
+    'Supprimer '+
+    child.firstName+
+    ' '+child.lastName+
+    ' et ses informations ?'
+  )) return;
+
+  children=
+    children.filter(c=>c.id!==id);
 
   saveAll();
+
   renderChildren();
-  refreshChildSelects();
+
+  updateStats();
+
 }
 
 
-function openContract(id){
-
-  const child=children.find(c=>c.id===id);
-  if(!child) return;
-
-  document.getElementById("contract-child-id").value=id;
-  document.getElementById("contract-child-name").textContent=child.firstname;
-
-  const c=child.contract || {};
-
-  document.getElementById("contract-start").value=c.start || "";
-  document.getElementById("contract-end").value=c.end || "";
-  document.getElementById("contract-week-hours").value=c.weekHours || "";
-  document.getElementById("contract-weeks").value=c.weeks || "";
-  document.getElementById("contract-rate").value=c.rate || "";
-  document.getElementById("contract-days").value=c.days || "";
-  document.getElementById("contract-hours").value=c.hours || "";
-  document.getElementById("contract-notes").value=c.notes || "";
-
-  document.getElementById("contract-modal").classList.add("show");
-}
-
-
-function closeContractModal(){
-  document.getElementById("contract-modal").classList.remove("show");
-}
-
-
-function saveContract(){
-
-  const id=Number(document.getElementById("contract-child-id").value);
-
-  const child=children.find(c=>c.id===id);
-
-  if(!child) return;
-
-  child.contract={
-    start:document.getElementById("contract-start").value,
-    end:document.getElementById("contract-end").value,
-    weekHours:document.getElementById("contract-week-hours").value,
-    weeks:document.getElementById("contract-weeks").value,
-    rate:document.getElementById("contract-rate").value,
-    days:document.getElementById("contract-days").value,
-    hours:document.getElementById("contract-hours").value,
-    notes:document.getElementById("contract-notes").value
-  };
-
-  saveAll();
-  closeContractModal();
-
-  alert("Contrat enregistré.");
-}
-
-
-function goToPresence(id){
-
-  showPage("presences");
-
-  setTimeout(()=>{
-    refreshChildSelects();
-    document.getElementById("presence-child").value=id;
-    createPresenceSheet();
-  },50);
-}
-
-
-function refreshChildSelects(){
-
-  const selects=[
-    document.getElementById("presence-child"),
-    document.getElementById("fee-child")
-  ];
-
-  selects.forEach(select=>{
-
-    if(!select) return;
-
-    select.innerHTML='<option value="">-- Choisir un enfant --</option>';
-
-    children.forEach(child=>{
-      const option=document.createElement("option");
-      option.value=child.id;
-      option.textContent=child.firstname+" "+child.lastname;
-      select.appendChild(option);
-    });
-
-  });
-}
-
+/* =========================
+   CALENDRIER
+========================= */
 
 function changeYear(amount){
 
-  currentYear+=amount;
+  currentYear += amount;
 
-  if(currentYear<2026) currentYear=2026;
+  if(currentYear<2026){
+    currentYear=2026;
+  }
 
   renderCalendar();
+
 }
 
+function openEventModal(){
 
-function renderCalendar(){
+  populateEventChildren();
 
-  document.getElementById("calendar-year").textContent=currentYear;
+  document.getElementById('eventDate').value =
+    new Date().toISOString().slice(0,10);
 
-  const months=[
-    "Janvier","Février","Mars","Avril","Mai","Juin",
-    "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
-  ];
+  document.getElementById('eventModal')
+    .classList.add('show');
 
-  const grid=document.getElementById("month-grid");
-
-  grid.innerHTML=months.map((month,index)=>`
-
-    <div class="month" onclick="openMonth(${index})">
-      <strong>${month}</strong>
-      <div style="font-size:12px;margin-top:5px;color:#85796d">
-        ${currentYear}
-      </div>
-    </div>
-
-  `).join("");
-
-  renderEvents();
 }
 
+function populateEventChildren(){
 
-function openMonth(monthIndex){
+  const select =
+    document.getElementById('eventChild');
 
-  const month=String(monthIndex+1).padStart(2,"0");
+  select.innerHTML =
+    '<option value="">Aucun / général</option>'+
 
-  document.getElementById("presence-month").value=
-    `${currentYear}-${month}`;
+    children.map(c=>
+      `<option value="${c.id}">
+        ${escapeHtml(c.firstName+' '+c.lastName)}
+      </option>`
+    ).join('');
 
-  showPage("presences");
-
-  refreshChildSelects();
 }
 
+function saveEvent(){
 
-function addEvent(){
-
-  const type=document.getElementById("event-type").value;
-  const date=document.getElementById("event-date").value;
+  const date =
+    document.getElementById('eventDate').value;
 
   if(!date){
-    alert("Choisissez une date.");
+
+    alert('Veuillez choisir une date.');
+
     return;
+
   }
 
   events.push({
-    id:Date.now(),
-    type,
-    date
+
+    id:Date.now().toString(),
+
+    date,
+
+    type:
+      document.getElementById('eventType').value,
+
+    childId:
+      document.getElementById('eventChild').value,
+
+    note:
+      document.getElementById('eventNote').value
+
   });
 
   saveAll();
-  renderEvents();
 
-  document.getElementById("event-date").value="";
+  closeModal('eventModal');
+
+  renderCalendar();
+
+  updateStats();
+
 }
 
+function renderCalendar(){
 
-function renderEvents(){
+  document.getElementById(
+    'calendarYear'
+  ).textContent=currentYear;
 
-  const area=document.getElementById("events-list");
+  const grid =
+    document.getElementById('calendarGrid');
 
-  const yearEvents=events
-    .filter(e=>e.date.startsWith(String(currentYear)))
-    .sort((a,b)=>a.date.localeCompare(b.date));
+  let html='';
 
-  if(yearEvents.length===0){
-    area.innerHTML='<div class="empty">Aucun événement enregistré pour cette année.</div>';
-    return;
+  for(let month=0;month<12;month++){
+
+    const first =
+      new Date(currentYear,month,1);
+
+    const last =
+      new Date(currentYear,month+1,0);
+
+    let startDay=first.getDay();
+
+    startDay =
+      startDay===0 ? 6 : startDay-1;
+
+    html+=`
+
+      <div class="month">
+
+        <h3>
+          ${monthName(month)}
+        </h3>
+
+        <div class="month-days">
+
+          <div class="day-name">L</div>
+          <div class="day-name">M</div>
+          <div class="day-name">M</div>
+          <div class="day-name">J</div>
+          <div class="day-name">V</div>
+          <div class="day-name">S</div>
+          <div class="day-name">D</div>
+
+    `;
+
+    for(let i=0;i<startDay;i++){
+
+      html+=`<div></div>`;
+
+    }
+
+    for(let d=1;d<=last.getDate();d++){
+
+      const date =
+        `${currentYear}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+
+      const dayEvents =
+        events.filter(e=>e.date===date);
+
+      let classes='day';
+
+      if(dayEvents.length){
+
+        const types =
+          dayEvents.map(e=>e.type);
+
+        if(types.includes('assistant'))
+          classes+=' event-assistant';
+
+        else if(types.includes('child'))
+          classes+=' event-child';
+
+        else if(types.includes('absence'))
+          classes+=' event-absence';
+
+        else if(types.includes('holiday'))
+          classes+=' event-holiday';
+
+        else
+          classes+=' event-other';
+
+      }
+
+      html+=`
+        <div class="${classes}"
+             title="${
+               dayEvents.map(e=>e.note||e.type).join(' | ')
+             }">
+          ${d}
+        </div>
+      `;
+
+    }
+
+    html+=`
+
+        </div>
+
+      </div>
+
+    `;
+
   }
 
-  area.innerHTML=yearEvents.map(e=>`
+  grid.innerHTML=html;
 
-    <div class="notice" style="display:flex;justify-content:space-between;gap:10px">
-      <span><strong>${formatDate(e.date)}</strong> — ${escapeHtml(e.type)}</span>
-      <button class="button danger small" onclick="deleteEvent(${e.id})">×</button>
-    </div>
-
-  `).join("");
 }
 
 
-function deleteEvent(id){
+/* =========================
+   PRESENCES
+========================= */
 
-  events=events.filter(e=>e.id!==id);
+function populatePresenceChildren(){
 
-  saveAll();
-  renderEvents();
-}
+  const select =
+    document.getElementById('presenceChild');
 
+  const current=select.value;
 
-function createPresenceSheet(){
+  select.innerHTML =
+    children.map(c=>
+      `<option value="${c.id}">
+        ${escapeHtml(c.firstName+' '+c.lastName)}
+      </option>`
+    ).join('');
 
-  const childId=Number(document.getElementById("presence-child").value);
-  const month=document.getElementById("presence-month").value;
-
-  if(!childId || !month){
-    alert("Choisissez un enfant et un mois.");
-    return;
+  if(current){
+    select.value=current;
   }
 
-  const child=children.find(c=>c.id===childId);
+}
+
+function openPresenceForChild(id){
+
+  showPage(
+    'presences',
+    document.querySelectorAll('nav button')[3]
+  );
+
+  populatePresenceChildren();
+
+  document.getElementById('presenceChild').value=id;
+
+  document.getElementById('presenceMonth').value =
+    new Date().toISOString().slice(0,7);
+
+  generatePresence();
+
+}
+
+function getDaysOfMonth(year,month){
+
+  const days=[];
+
+  const last =
+    new Date(year,month+1,0).getDate();
+
+  for(let d=1;d<=last;d++){
+
+    days.push(
+      new Date(year,month,d)
+    );
+
+  }
+
+  return days;
+
+}
+
+function dayName(date){
+
+  return date.toLocaleDateString(
+    'fr-FR',
+    {weekday:'long'}
+  );
+
+}
+
+function generatePresence(){
+
+  const childId =
+    document.getElementById('presenceChild').value;
+
+  const monthValue =
+    document.getElementById('presenceMonth').value;
+
+  const container =
+    document.getElementById('presenceSheet');
+
+  if(!childId || !monthValue){
+
+    container.innerHTML=`
+      <div class="card">
+        Sélectionnez un enfant et un mois.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  const child =
+    children.find(c=>c.id===childId);
 
   if(!child) return;
 
-  const [year,monthNumber]=month.split("-").map(Number);
+  const [year,monthNumber] =
+    monthValue.split('-').map(Number);
 
-  const daysInMonth=new Date(year,monthNumber,0).getDate();
+  const monthIndex=monthNumber-1;
 
-  let rows="";
+  const parent=child.parent||{};
 
-  for(let day=1;day<=daysInMonth;day++){
+  const contract=child.contract||{};
 
-    const date=new Date(year,monthNumber-1,day);
+  const days =
+    getDaysOfMonth(year,monthIndex);
 
-    const weekday=date.getDay();
-
-    if(weekday===0 || weekday===6) continue;
-
-    rows+=`
-
-      <tr>
-        <td>${String(day).padStart(2,"0")}/${String(monthNumber).padStart(2,"0")}/${year}</td>
-
-        <td>
-          <input type="time" class="contract-start">
-          -
-          <input type="time" class="contract-end">
-        </td>
-
-        <td>
-          <input type="time" class="real-start">
-          -
-          <input type="time" class="real-end">
-        </td>
-
-        <td>
-          <select class="absence">
-            <option>Présent</option>
-            <option>Absence enfant</option>
-            <option>Congé enfant</option>
-            <option>Congé assistante maternelle</option>
-            <option>Jour férié</option>
-          </select>
-        </td>
-
-      </tr>
-
-    `;
-  }
-
-  document.getElementById("presence-area").innerHTML=`
+  let html=`
 
     <div class="card">
 
-      <h2>Fiche de présence — ${escapeHtml(child.firstname)} ${escapeHtml(child.lastname)}</h2>
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:15px;
+        margin-bottom:20px;
+      ">
 
-      <div class="notice">
-        <strong>Assistante maternelle :</strong> Mélissa<br>
-        <strong>Parent :</strong> ${escapeHtml(child.parentFirstname)} ${escapeHtml(child.parentLastname)}<br>
-        <strong>Mois :</strong> ${formatMonth(month)}
+        <div>
+
+          <h2 style="
+            margin:0;
+            font-family:Georgia,serif;
+            color:var(--brown-dark);
+          ">
+            FEUILLE DE PRÉSENCE
+          </h2>
+
+          <p style="margin:5px 0">
+            <strong>
+              ${escapeHtml(child.firstName)}
+              ${escapeHtml(child.lastName)}
+            </strong>
+          </p>
+
+          <p style="margin:4px 0">
+            Parent :
+            ${escapeHtml(
+              (parent.firstName||'')+
+              ' '+
+              (parent.lastName||'')
+            )}
+          </p>
+
+          <p style="margin:4px 0">
+            ${monthName(monthIndex)}
+            ${year}
+          </p>
+
+        </div>
+
+        <div class="logo no-print">
+          AF
+        </div>
+
       </div>
 
       <div class="table-wrap">
@@ -1116,245 +2119,914 @@ function createPresenceSheet(){
         <table>
 
           <thead>
+
             <tr>
+
               <th>Jour</th>
-              <th>Heures prévues au contrat</th>
-              <th>Heures réellement effectuées</th>
-              <th>Situation</th>
+              <th>Date</th>
+              <th>Horaires prévus</th>
+              <th>Heures prévues</th>
+              <th>Horaires réels</th>
+              <th>Heures réelles</th>
+              <th>Heures supp.</th>
+              <th>IE</th>
+              <th>Repas</th>
+              <th>Goûter</th>
+              <th>Divers</th>
+
             </tr>
+
           </thead>
 
           <tbody>
-            ${rows}
+  `;
+
+  let totalPlanned=0;
+  let totalActual=0;
+  let totalOvertime=0;
+
+  let currentWeek=0;
+  let weekPlanned=0;
+  let weekActual=0;
+
+  days.forEach((date,index)=>{
+
+    const weekday =
+      date.toLocaleDateString(
+        'fr-FR',
+        {weekday:'long'}
+      );
+
+    const weekNumber =
+      Math.ceil(
+        (index + date.getDay()) / 7
+      );
+
+    if(weekNumber!==currentWeek){
+
+      if(currentWeek!==0){
+
+        html+=`
+
+          <tr class="total-row">
+
+            <td colspan="3">
+              Total semaine ${currentWeek}
+            </td>
+
+            <td>
+              ${formatHours(weekPlanned)}
+            </td>
+
+            <td></td>
+
+            <td>
+              ${formatHours(weekActual)}
+            </td>
+
+            <td colspan="4"></td>
+
+          </tr>
+
+        `;
+
+      }
+
+      currentWeek=weekNumber;
+
+      weekPlanned=0;
+      weekActual=0;
+
+    }
+
+    const dateStr =
+      date.toISOString().slice(0,10);
+
+    const isContractDay =
+      (contract.workdays||[]).includes(
+        weekday.charAt(0).toUpperCase()+
+        weekday.slice(1)
+      );
+
+    let plannedStart='';
+    let plannedEnd='';
+
+    if(isContractDay && contract.usualHours){
+
+      const match =
+        contract.usualHours.match(
+          /(\d{1,2})h?(\d{0,2})?\s*[-–]\s*(\d{1,2})h?(\d{0,2})?/
+        );
+
+      if(match){
+
+        plannedStart =
+          String(match[1]).padStart(2,'0')+
+          ':'+
+          String(match[2]||'00').padStart(2,'0');
+
+        plannedEnd =
+          String(match[3]).padStart(2,'0')+
+          ':'+
+          String(match[4]||'00').padStart(2,'0');
+
+      }
+
+    }
+
+    const plannedHours =
+      hoursBetween(
+        plannedStart,
+        plannedEnd
+      );
+
+    totalPlanned+=plannedHours;
+    weekPlanned+=plannedHours;
+
+    html+=`
+
+      <tr>
+
+        <td>
+          ${weekday}
+        </td>
+
+        <td>
+          ${date.toLocaleDateString('fr-FR')}
+        </td>
+
+        <td>
+          <input
+            type="time"
+            value="${plannedStart}"
+            data-planned-start="${dateStr}">
+          -
+          <input
+            type="time"
+            value="${plannedEnd}"
+            data-planned-end="${dateStr}">
+        </td>
+
+        <td>
+          <span id="planned-${dateStr}">
+            ${formatHours(plannedHours)}
+          </span>
+        </td>
+
+        <td>
+          <input
+            type="time"
+            data-actual-start="${dateStr}">
+          -
+          <input
+            type="time"
+            data-actual-end="${dateStr}">
+        </td>
+
+        <td>
+          <span id="actual-${dateStr}">
+            0 h
+          </span>
+        </td>
+
+        <td>
+          <span id="overtime-${dateStr}">
+            0 h
+          </span>
+        </td>
+
+        <td>
+          <input type="checkbox"
+                 data-ie="${dateStr}">
+        </td>
+
+        <td>
+          <input type="checkbox"
+                 data-meal="${dateStr}">
+        </td>
+
+        <td>
+          <input type="checkbox"
+                 data-snack="${dateStr}">
+        </td>
+
+        <td>
+          <input type="checkbox"
+                 data-other="${dateStr}">
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+  if(currentWeek!==0){
+
+    html+=`
+
+      <tr class="total-row">
+
+        <td colspan="3">
+          Total semaine ${currentWeek}
+        </td>
+
+        <td>
+          ${formatHours(weekPlanned)}
+        </td>
+
+        <td></td>
+
+        <td>
+          ${formatHours(weekActual)}
+        </td>
+
+        <td colspan="4"></td>
+
+      </tr>
+
+    `;
+
+  }
+
+  html+=`
+
           </tbody>
 
         </table>
 
       </div>
 
-      <div class="grid" style="margin-top:20px">
+      <div class="card" style="margin-top:20px">
 
-        <div class="stat">
-          <strong>0 h</strong>
-          Total prévu au contrat
-        </div>
+        <h3>Récapitulatif du mois</h3>
 
-        <div class="stat">
-          <strong>0 h</strong>
-          Total réellement effectué
-        </div>
+        <div class="summary-grid">
 
-        <div class="stat">
-          <strong>0 h</strong>
-          Heures complémentaires
-        </div>
+          <div class="summary-box">
+            Heures prévues
+            <strong id="totalPlanned">
+              ${formatHours(totalPlanned)}
+            </strong>
+          </div>
 
-        <div class="stat">
-          <strong>0 h</strong>
-          Heures supplémentaires
+          <div class="summary-box">
+            Heures réelles
+            <strong id="totalActual">
+              0 h
+            </strong>
+          </div>
+
+          <div class="summary-box">
+            Heures complémentaires
+            <strong id="totalComplementary">
+              0 h
+            </strong>
+          </div>
+
+          <div class="summary-box">
+            Heures supplémentaires
+            <strong id="totalOvertime">
+              0 h
+            </strong>
+          </div>
+
+          <div class="summary-box">
+            Indemnités d'entretien
+            <strong id="totalIE">
+              0
+            </strong>
+          </div>
+
+          <div class="summary-box">
+            Repas
+            <strong id="totalMeals">
+              0
+            </strong>
+          </div>
+
+          <div class="summary-box">
+            Goûters
+            <strong id="totalSnacks">
+              0
+            </strong>
+          </div>
+
+          <div class="summary-box">
+            Divers
+            <strong id="totalOther">
+              0
+            </strong>
+          </div>
+
         </div>
 
       </div>
 
-      <div class="card" style="background:#fbf8f2;margin-top:20px">
+      <div class="card">
 
-        <h3>✍️ Signatures</h3>
+        <h3>Observations</h3>
+
+        <textarea
+          id="presenceObservations"
+          placeholder="Observations du mois..."></textarea>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Signatures</h3>
 
         <div class="form-grid">
 
           <div>
-            <label>Signature de l'assistante maternelle</label>
-            <textarea rows="3" placeholder="Signature à prévoir"></textarea>
+            <p>
+              Signature de l'assistante maternelle
+            </p>
+
+            <div style="
+              height:80px;
+              border-bottom:1px solid #aaa;
+            "></div>
           </div>
 
           <div>
-            <label>Signature du parent</label>
-            <textarea rows="3" placeholder="Signature à prévoir"></textarea>
+            <p>
+              Signature du parent
+            </p>
+
+            <div style="
+              height:80px;
+              border-bottom:1px solid #aaa;
+            "></div>
           </div>
 
         </div>
 
       </div>
 
-      <div class="actions">
-        <button class="button" onclick="saveSheet('${child.id}','${month}')">
+      <div class="no-print"
+           style="
+             display:flex;
+             justify-content:flex-end;
+             gap:10px;
+             margin-top:15px;
+           ">
+
+        <button class="btn btn-primary"
+                onclick="savePresenceSheet()">
           💾 Enregistrer la fiche
         </button>
 
-        <button class="button secondary" onclick="window.print()">
-          🖨️ Imprimer
+        <button class="btn btn-secondary"
+                onclick="printPresence()">
+          📄 Imprimer / PDF
         </button>
+
       </div>
 
     </div>
 
   `;
+
+  container.innerHTML=html;
+
+  attachPresenceCalculations();
+
 }
 
 
-function saveSheet(childId,month){
+/* =========================
+   CALCULS PRÉSENCE
+========================= */
 
-  const child=children.find(c=>c.id===Number(childId));
+function attachPresenceCalculations(){
 
-  if(!child) return;
+  const starts =
+    document.querySelectorAll(
+      '[data-actual-start]'
+    );
 
-  sheets.push({
-    id:Date.now(),
-    childId:Number(childId),
-    month,
-    created:new Date().toISOString()
+  starts.forEach(input=>{
+
+    input.addEventListener(
+      'change',
+      recalculatePresence
+    );
+
   });
 
-  saveAll();
-  renderSheets();
+  document.querySelectorAll(
+    '[data-actual-end]'
+  ).forEach(input=>{
 
-  alert("Fiche enregistrée.");
+    input.addEventListener(
+      'change',
+      recalculatePresence
+    );
+
+  });
+
+  document.querySelectorAll(
+    '[data-planned-start]'
+  ).forEach(input=>{
+
+    input.addEventListener(
+      'change',
+      recalculatePresence
+    );
+
+  });
+
+  document.querySelectorAll(
+    '[data-planned-end]'
+  ).forEach(input=>{
+
+    input.addEventListener(
+      'change',
+      recalculatePresence
+    );
+
+  });
+
+  document.querySelectorAll(
+    'input[type="checkbox"]'
+  ).forEach(input=>{
+
+    input.addEventListener(
+      'change',
+      recalculatePresence
+    );
+
+  });
+
+}
+
+function recalculatePresence(){
+
+  let totalPlanned=0;
+  let totalActual=0;
+  let totalOvertime=0;
+
+  document.querySelectorAll(
+    '[data-planned-start]'
+  ).forEach(input=>{
+
+    const date=input.dataset.plannedStart;
+
+    const end=
+      document.querySelector(
+        `[data-planned-end="${date}"]`
+      );
+
+    const hours=
+      hoursBetween(
+        input.value,
+        end ? end.value : ''
+      );
+
+    totalPlanned+=hours;
+
+    const target=
+      document.getElementById(
+        'planned-'+date
+      );
+
+    if(target){
+      target.textContent=
+        formatHours(hours);
+    }
+
+  });
+
+  document.querySelectorAll(
+    '[data-actual-start]'
+  ).forEach(input=>{
+
+    const date=input.dataset.actualStart;
+
+    const end=
+      document.querySelector(
+        `[data-actual-end="${date}"]`
+      );
+
+    const hours=
+      hoursBetween(
+        input.value,
+        end ? end.value : ''
+      );
+
+    totalActual+=hours;
+
+    const plannedStart=
+      document.querySelector(
+        `[data-planned-start="${date}"]`
+      );
+
+    const plannedEnd=
+      document.querySelector(
+        `[data-planned-end="${date}"]`
+      );
+
+    const planned=
+      hoursBetween(
+        plannedStart ? plannedStart.value : '',
+        plannedEnd ? plannedEnd.value : ''
+      );
+
+    const overtime=
+      Math.max(0,hours-planned);
+
+    totalOvertime+=overtime;
+
+    const actualTarget=
+      document.getElementById(
+        'actual-'+date
+      );
+
+    const overtimeTarget=
+      document.getElementById(
+        'overtime-'+date
+      );
+
+    if(actualTarget){
+      actualTarget.textContent=
+        formatHours(hours);
+    }
+
+    if(overtimeTarget){
+      overtimeTarget.textContent=
+        formatHours(overtime);
+    }
+
+  });
+
+  const complementary=
+    Math.max(
+      0,
+      totalActual-totalPlanned-totalOvertime
+    );
+
+  document.getElementById(
+    'totalPlanned'
+  ).textContent=
+    formatHours(totalPlanned);
+
+  document.getElementById(
+    'totalActual'
+  ).textContent=
+    formatHours(totalActual);
+
+  document.getElementById(
+    'totalComplementary'
+  ).textContent=
+    formatHours(complementary);
+
+  document.getElementById(
+    'totalOvertime'
+  ).textContent=
+    formatHours(totalOvertime);
+
+  document.getElementById(
+    'totalIE'
+  ).textContent=
+    document.querySelectorAll(
+      '[data-ie]:checked'
+    ).length;
+
+  document.getElementById(
+    'totalMeals'
+  ).textContent=
+    document.querySelectorAll(
+      '[data-meal]:checked'
+    ).length;
+
+  document.getElementById(
+    'totalSnacks'
+  ).textContent=
+    document.querySelectorAll(
+      '[data-snack]:checked'
+    ).length;
+
+  document.getElementById(
+    'totalOther'
+  ).textContent=
+    document.querySelectorAll(
+      '[data-other]:checked'
+    ).length;
+
+}
+
+function savePresenceSheet(){
+
+  recalculatePresence();
+
+  const childId=
+    document.getElementById('presenceChild').value;
+
+  const month=
+    document.getElementById('presenceMonth').value;
+
+  const sheet={
+
+    id:Date.now().toString(),
+
+    childId,
+
+    month,
+
+    observations:
+      document.getElementById(
+        'presenceObservations'
+      ).value,
+
+    savedAt:
+      new Date().toISOString()
+
+  };
+
+  sheets.push(sheet);
+
+  saveAll();
+
+  updateStats();
+
+  alert(
+    'Fiche de présence enregistrée.'
+  );
+
+}
+
+function printPresence(){
+
+  recalculatePresence();
+
+  window.print();
+
 }
 
 
-function renderSheets(){
+/* =========================
+   RÉCAP MENSUEL
+========================= */
 
-  const area=document.getElementById("sheets-list");
+function generateRecap(){
 
-  if(sheets.length===0){
-    area.innerHTML='<div class="empty">Aucune fiche de présence enregistrée.</div>';
-    return;
-  }
+  const monthValue=
+    document.getElementById('recapMonth').value;
 
-  area.innerHTML=sheets.slice().reverse().map(sheet=>{
+  const container=
+    document.getElementById('recapContent');
 
-    const child=children.find(c=>c.id===sheet.childId);
+  if(!monthValue) return;
 
-    if(!child) return "";
+  let html='';
 
-    return `
+  if(children.length===0){
 
-      <div class="notice" style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+    html=`
+      <div class="card">
+        <h3>Aucun enfant enregistré</h3>
+        <p>
+          Ajoutez d'abord un enfant et son contrat.
+        </p>
+      </div>
+    `;
 
-        <div>
-          <strong>${escapeHtml(child.firstname)} ${escapeHtml(child.lastname)}</strong><br>
-          <span>${formatMonth(sheet.month)}</span>
+  }else{
+
+    html+=`
+
+      <div class="card">
+
+        <h3>
+          Récapitulatif des contrats -
+          ${monthValue}
+        </h3>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>Enfant</th>
+                <th>Heures/semaine</th>
+                <th>Heures mensuelles</th>
+                <th>Jours mensuels</th>
+                <th>Taux horaire</th>
+                <th>IE</th>
+                <th>Repas</th>
+                <th>Goûter</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+    children.forEach(child=>{
+
+      const c=child.contract||{};
+
+      html+=`
+
+        <tr>
+
+          <td>
+            <strong>
+              ${escapeHtml(
+                child.firstName+' '+child.lastName
+              )}
+            </strong>
+          </td>
+
+          <td>
+            ${c.weeklyHours || 0} h
+          </td>
+
+          <td>
+            ${c.monthlyHours || 0} h
+          </td>
+
+          <td>
+            ${c.monthlyDays || 0}
+          </td>
+
+          <td>
+            ${
+              c.hourlyRate
+              ? c.hourlyRate.toFixed(2)+' €'
+              : '—'
+            }
+          </td>
+
+          <td>
+            ${
+              c.maintenanceFee
+              ? c.maintenanceFee.toFixed(2)+' €'
+              : '—'
+            }
+          </td>
+
+          <td>
+            ${
+              c.mealFee
+              ? c.mealFee.toFixed(2)+' €'
+              : '—'
+            }
+          </td>
+
+          <td>
+            ${
+              c.snackFee
+              ? c.snackFee.toFixed(2)+' €'
+              : '—'
+            }
+          </td>
+
+        </tr>
+
+      `;
+
+    });
+
+    html+=`
+
+            </tbody>
+
+          </table>
+
         </div>
-
-        <button class="button small" onclick="reopenSheet(${sheet.childId},'${sheet.month}')">
-          Voir
-        </button>
 
       </div>
 
     `;
 
-  }).join("");
-}
-
-
-function reopenSheet(childId,month){
-
-  showPage("presences");
-
-  refreshChildSelects();
-
-  document.getElementById("presence-child").value=childId;
-  document.getElementById("presence-month").value=month;
-
-  createPresenceSheet();
-}
-
-
-function addFee(){
-
-  const childId=Number(document.getElementById("fee-child").value);
-  const month=document.getElementById("fee-month").value;
-  const type=document.getElementById("fee-type").value;
-  const amount=Number(document.getElementById("fee-amount").value);
-
-  if(!childId || !month || !amount){
-    alert("Merci de compléter les informations.");
-    return;
   }
 
-  fees.push({
-    id:Date.now(),
-    childId,
-    month,
-    type,
-    amount
-  });
+  container.innerHTML=html;
 
-  saveAll();
-  renderFees();
+  loadSalary(monthValue);
 
-  document.getElementById("fee-amount").value="";
 }
 
 
-function renderFees(){
+/* =========================
+   SALAIRE
+========================= */
 
-  const tbody=document.getElementById("fees-table");
+function saveSalary(){
 
-  if(!fees.length){
-    tbody.innerHTML=`
-      <tr>
-        <td colspan="4" style="text-align:center">Aucune indemnité enregistrée.</td>
-      </tr>
-    `;
+  const month=
+    document.getElementById('recapMonth').value;
+
+  if(!month) return;
+
+  salaries[month]={
+
+    amount:
+      Number(
+        document.getElementById(
+          'salaryAmount'
+        ).value
+      ) || 0,
+
+    fileName:
+      document.getElementById(
+        'salaryFile'
+      ).files[0]?.name || ''
+
+  };
+
+  localStorage.setItem(
+    'afa_salaries',
+    JSON.stringify(salaries)
+  );
+
+  loadSalary(month);
+
+  alert(
+    'Rémunération enregistrée.'
+  );
+
+}
+
+function loadSalary(month){
+
+  const data=salaries[month];
+
+  const info=
+    document.getElementById('salaryInfo');
+
+  if(!data){
+
+    document.getElementById(
+      'salaryAmount'
+    ).value='';
+
+    info.innerHTML=
+      '<p>Aucun salaire enregistré pour ce mois.</p>';
+
     return;
+
   }
 
-  tbody.innerHTML=fees.slice().reverse().map(f=>{
+  document.getElementById(
+    'salaryAmount'
+  ).value=data.amount || '';
 
-    const child=children.find(c=>c.id===f.childId);
+  info.innerHTML=`
 
-    return `
-      <tr>
-        <td>${child ? escapeHtml(child.firstname+" "+child.lastname) : ""}</td>
-        <td>${formatMonth(f.month)}</td>
-        <td>${escapeHtml(f.type)}</td>
-        <td>${Number(f.amount).toFixed(2)} €</td>
-      </tr>
-    `;
+    <div class="badge">
+      Salaire enregistré :
+      ${
+        Number(data.amount||0).toFixed(2)
+      } €
+    </div>
 
-  }).join("");
+    ${
+      data.fileName
+      ? `<p>Bulletin associé : ${escapeHtml(data.fileName)}</p>`
+      : ''
+    }
+
+  `;
+
 }
 
 
-function formatDate(date){
+/* =========================
+   MODALES
+========================= */
 
-  const parts=date.split("-");
+function closeModal(id){
 
-  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  document.getElementById(id)
+    .classList.remove('show');
+
 }
 
 
-function formatMonth(value){
+/* =========================
+   INITIALISATION
+========================= */
 
-  const parts=value.split("-");
+loadProfile();
 
-  const names=[
-    "Janvier","Février","Mars","Avril","Mai","Juin",
-    "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
-  ];
-
-  return names[Number(parts[1])-1]+" "+parts[0];
-}
-
-
-function escapeHtml(value){
-
-  return String(value || "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
+updateStats();
 
 renderChildren();
+
 renderCalendar();
-refreshChildSelects();
-renderFees();
-renderSheets();
+
+populatePresenceChildren();
+
+populateEventChildren();
 
 </script>
 
