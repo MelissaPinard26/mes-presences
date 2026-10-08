@@ -17,8 +17,8 @@
   --brown-dark:#594536;
   --text:#493f36;
   --white:#ffffff;
-  --border:#ded5c7;
-  --shadow:0 4px 16px rgba(80,60,40,.08);
+  --danger:#a45c52;
+  --shadow:0 4px 18px rgba(89,69,54,.10);
 }
 
 *{
@@ -27,100 +27,73 @@
 
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
   background:var(--beige);
   color:var(--text);
 }
 
-button,
-input,
-select,
-textarea{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.app{
-  min-height:100vh;
-}
-
-/* HEADER */
-
 header{
-  background:var(--cream);
-  border-bottom:1px solid var(--border);
-  padding:18px 24px;
-  display:flex;
-  align-items:center;
-  gap:16px;
-  position:sticky;
-  top:0;
-  z-index:20;
+  text-align:center;
+  padding:28px 20px 12px;
 }
 
 .logo{
-  width:58px;
-  height:58px;
+  width:78px;
+  height:78px;
+  margin:0 auto 10px;
   border-radius:50%;
   background:var(--green-light);
-  color:var(--brown);
+  border:2px solid var(--green);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:bold;
-  font-size:18px;
-  border:2px solid var(--green);
-  flex-shrink:0;
-}
-
-.header-title h1{
-  margin:0;
-  font-family:Georgia,serif;
-  color:var(--brown-dark);
+  color:var(--brown);
   font-size:25px;
+  font-weight:bold;
 }
 
-.header-title p{
-  margin:4px 0 0;
-  font-size:13px;
-  color:#827568;
+header h1{
+  margin:0;
+  color:var(--brown-dark);
+  font-size:31px;
 }
 
-/* NAVIGATION */
+header p{
+  margin:6px 0 0;
+  color:var(--khaki);
+  font-size:15px;
+}
 
 nav{
-  background:var(--cream);
-  border-bottom:1px solid var(--border);
   display:flex;
-  overflow-x:auto;
-  padding:0 14px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:15px 15px 22px;
 }
 
 nav button{
   border:0;
-  background:transparent;
-  color:var(--brown);
-  padding:14px 15px;
-  white-space:nowrap;
-  border-bottom:3px solid transparent;
+  background:var(--cream);
+  color:var(--brown-dark);
+  padding:11px 16px;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:14px;
+  box-shadow:0 2px 8px rgba(89,69,54,.08);
 }
 
 nav button:hover,
 nav button.active{
-  color:var(--brown-dark);
-  border-bottom-color:var(--green);
-  background:#faf7f1;
+  background:var(--green);
+  color:white;
 }
 
-/* MAIN */
-
 main{
-  max-width:1250px;
-  margin:auto;
-  padding:25px 18px 50px;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 18px 50px;
 }
 
 .page{
@@ -132,134 +105,136 @@ main{
 }
 
 .page-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin-bottom:20px;
+  text-align:center;
+  margin:10px 0 25px;
 }
 
 .page-title h2{
-  margin:0;
-  font-family:Georgia,serif;
   color:var(--brown-dark);
-  font-size:26px;
+  margin:0 0 6px;
 }
 
 .page-title p{
-  margin:5px 0 0;
-  color:#81766a;
-  font-size:14px;
+  margin:0;
+  color:var(--khaki);
 }
-
-/* CARDS */
 
 .card{
   background:var(--cream);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:20px;
   box-shadow:var(--shadow);
-  margin-bottom:18px;
 }
 
 .card h3{
   margin-top:0;
   color:var(--brown-dark);
-  font-family:Georgia,serif;
 }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:16px;
+.profile-card{
+  text-align:center;
+  max-width:650px;
+  margin:0 auto 22px;
 }
 
-.stat{
-  background:var(--cream);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
-  box-shadow:var(--shadow);
-}
-
-.stat .number{
-  font-size:30px;
+.profile-mini{
+  font-size:19px;
   font-weight:bold;
+  color:var(--brown-dark);
+}
+
+.profile-sub{
+  margin:7px 0 16px;
   color:var(--khaki);
 }
-
-.stat .label{
-  margin-top:5px;
-  color:#7d7267;
-}
-
-/* BUTTONS */
 
 .btn{
   border:0;
   border-radius:10px;
-  padding:10px 15px;
-  transition:.15s;
+  padding:11px 16px;
+  background:var(--green);
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 .btn:hover{
-  transform:translateY(-1px);
+  opacity:.9;
 }
 
-.btn-primary{
-  background:var(--green);
-  color:white;
+.btn.secondary{
+  background:var(--brown);
 }
 
-.btn-secondary{
-  background:var(--beige-dark);
+.btn.light{
+  background:var(--green-light);
   color:var(--brown-dark);
 }
 
-.btn-danger{
-  background:#ead8d2;
-  color:#7b4539;
+.btn.danger{
+  background:var(--danger);
 }
 
-.btn-small{
-  padding:7px 10px;
+.btn.small{
+  padding:8px 11px;
   font-size:13px;
 }
 
-/* FORMS */
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-.form-grid{
+.intro{
+  max-width:850px;
+  margin:auto;
+  line-height:1.65;
+}
+
+.intro h3{
+  color:var(--brown);
+  margin-top:25px;
+}
+
+.info-box{
+  background:var(--green-light);
+  border-radius:14px;
+  padding:16px;
+  margin-top:18px;
+}
+
+.grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
+  gap:15px;
 }
 
-.form-group{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
 }
 
-.form-group.full{
-  grid-column:1/-1;
-}
-
-.form-group label{
-  font-size:13px;
+label{
+  display:block;
   font-weight:bold;
-  color:var(--brown);
+  margin-bottom:6px;
+  color:var(--brown-dark);
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
+input,
+select,
+textarea{
   width:100%;
-  border:1px solid var(--border);
+  border:1px solid var(--beige-dark);
   border-radius:9px;
-  padding:10px 11px;
+  padding:10px;
   background:white;
   color:var(--text);
+  font:inherit;
 }
 
 textarea{
@@ -267,327 +242,312 @@ textarea{
   resize:vertical;
 }
 
-.checkbox-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
+.field{
+  margin-bottom:4px;
 }
 
-.checkbox{
+.checkbox-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.day-check{
   display:flex;
   align-items:center;
   gap:5px;
-  background:var(--beige);
-  padding:8px 10px;
-  border-radius:8px;
+  background:var(--green-light);
+  padding:7px 10px;
+  border-radius:9px;
+  font-weight:normal;
 }
 
-/* HOME */
-
-.welcome{
-  background:linear-gradient(135deg,#f9f5ed,#e5eddf);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:28px;
-  margin-bottom:20px;
-  position:relative;
-  overflow:hidden;
+.day-check input{
+  width:auto;
 }
 
-.welcome:after{
-  content:"🌿  🌱  🍃";
-  position:absolute;
-  right:25px;
-  bottom:18px;
-  font-size:25px;
-  opacity:.45;
-}
-
-.welcome h2{
-  margin:0 0 8px;
-  font-family:Georgia,serif;
-  color:var(--brown-dark);
-}
-
-.welcome p{
-  max-width:700px;
-  line-height:1.6;
-}
-
-/* CHILDREN */
-
-.child-list{
+.children-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
 }
 
 .child-card{
-  background:var(--cream);
-  border:1px solid var(--border);
-  border-radius:15px;
+  background:white;
+  border:1px solid var(--beige-dark);
+  border-radius:16px;
   padding:18px;
-  box-shadow:var(--shadow);
 }
 
 .child-card h3{
-  margin:0 0 6px;
-  color:var(--brown-dark);
-  font-family:Georgia,serif;
+  margin:0 0 5px;
 }
 
 .child-card p{
-  margin:6px 0;
-  font-size:14px;
-  color:#776c62;
+  margin:5px 0;
 }
 
-.child-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:15px;
-}
-
-/* TABLE */
-
-.table-wrap{
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  background:white;
-}
-
-th,
-td{
-  border:1px solid var(--border);
-  padding:7px;
+.empty{
   text-align:center;
-  font-size:12px;
-}
-
-th{
-  background:var(--green-light);
-  color:var(--brown-dark);
-  font-weight:bold;
-}
-
-.week-title td{
-  background:var(--beige-dark);
-  text-align:left;
-  font-weight:bold;
-  color:var(--brown-dark);
-}
-
-.total-row td{
-  background:#f5f1e9;
-  font-weight:bold;
-}
-
-/* CALENDAR */
-
-.year-controls{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.year-controls strong{
-  min-width:90px;
-  text-align:center;
-  font-size:20px;
-  color:var(--brown-dark);
-}
-
-.calendar-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.month{
-  background:var(--cream);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-}
-
-.month h3{
-  margin:0 0 10px;
-  font-family:Georgia,serif;
-  color:var(--brown-dark);
-}
-
-.month-days{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:3px;
-}
-
-.day-name{
-  font-size:10px;
-  text-align:center;
-  color:#877b70;
-  font-weight:bold;
-}
-
-.day{
-  min-height:32px;
-  border:1px solid #eee7dc;
-  border-radius:5px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:11px;
-  background:white;
-}
-
-.day.event-assistant{
-  background:#dce8d9;
-}
-
-.day.event-child{
-  background:#eee3c9;
-}
-
-.day.event-absence{
-  background:#ead9d4;
-}
-
-.day.event-holiday{
-  background:#dedbd0;
-}
-
-.day.event-other{
-  background:#e5dced;
-}
-
-/* SUMMARY */
-
-.summary-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;
-}
-
-.summary-box{
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:12px;
-  padding:15px;
-}
-
-.summary-box strong{
-  display:block;
-  font-size:22px;
+  padding:35px;
   color:var(--khaki);
-  margin-top:5px;
 }
-
-/* MODAL */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(60,45,35,.45);
-  z-index:100;
+  z-index:1000;
   padding:20px;
   overflow:auto;
 }
 
 .modal.show{
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
+  display:block;
 }
 
-.modal-content{
-  width:min(900px,100%);
+.modal-box{
+  max-width:900px;
+  margin:30px auto;
   background:var(--cream);
-  border-radius:18px;
-  padding:24px;
-  margin-top:30px;
-  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  border-radius:20px;
+  padding:25px;
 }
 
 .modal-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:20px;
-}
-
-.modal-header h2{
-  margin:0;
-  font-family:Georgia,serif;
-  color:var(--brown-dark);
+  gap:10px;
 }
 
 .close{
   border:0;
-  background:var(--beige-dark);
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  font-size:20px;
+  background:transparent;
+  font-size:28px;
+  cursor:pointer;
   color:var(--brown);
 }
 
-.modal-footer{
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-  margin-top:20px;
+.section-title{
+  color:var(--brown);
+  border-bottom:1px solid var(--beige-dark);
+  padding-bottom:7px;
+  margin-top:25px;
 }
 
-/* BADGES */
+.calendar-head{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  margin-bottom:15px;
+}
 
-.badge{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:20px;
+.calendar-head button{
+  border:0;
   background:var(--green-light);
   color:var(--brown-dark);
+  border-radius:9px;
+  padding:8px 13px;
+  cursor:pointer;
+}
+
+.calendar-title{
+  min-width:180px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.calendar-weekday{
+  text-align:center;
+  font-weight:bold;
+  padding:8px 2px;
+  color:var(--brown);
+}
+
+.calendar-day{
+  min-height:90px;
+  background:white;
+  border:1px solid var(--beige-dark);
+  border-radius:9px;
+  padding:7px;
+  cursor:pointer;
+}
+
+.calendar-day:hover{
+  background:var(--green-light);
+}
+
+.calendar-day.empty-day{
+  background:transparent;
+  border:0;
+  cursor:default;
+}
+
+.calendar-number{
+  font-weight:bold;
+}
+
+.event-dot{
+  display:block;
+  margin-top:5px;
+  background:var(--green-light);
+  border-radius:6px;
+  padding:3px 5px;
   font-size:11px;
+}
+
+.month-selector{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.month-selector select{
+  max-width:180px;
+}
+
+.presence-wrap{
+  overflow-x:auto;
+}
+
+.presence-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:1100px;
+  background:white;
+}
+
+.presence-table th,
+.presence-table td{
+  border:1px solid #d9d0c4;
+  padding:6px;
+  text-align:center;
+  font-size:12px;
+}
+
+.presence-table th{
+  background:var(--green-light);
+  color:var(--brown-dark);
+}
+
+.presence-table td:first-child{
+  font-weight:bold;
+}
+
+.presence-table input[type="text"],
+.presence-table input[type="number"]{
+  padding:6px;
+  min-width:80px;
+}
+
+.presence-table input[type="checkbox"]{
+  width:18px;
+  height:18px;
+}
+
+.week-total{
+  background:#f1eadf;
+  font-weight:bold;
+}
+
+.month-summary{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+
+.summary-box{
+  background:var(--green-light);
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+}
+
+.summary-box strong{
+  display:block;
+  font-size:20px;
+  color:var(--brown-dark);
   margin-top:5px;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:800px){
-  .calendar-grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-group.full{
-    grid-column:auto;
-  }
-
-  .page-title{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  main{
-    padding:18px 12px 40px;
-  }
-
-  header{
-    padding:14px;
-  }
+.signature-box{
+  border:1px dashed var(--brown);
+  min-height:90px;
+  padding:12px;
+  border-radius:10px;
+  background:white;
 }
 
-/* PRINT */
+.recap-table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+}
+
+.recap-table th,
+.recap-table td{
+  border:1px solid var(--beige-dark);
+  padding:9px;
+  text-align:center;
+  font-size:13px;
+}
+
+.recap-table th{
+  background:var(--green-light);
+}
+
+.notice{
+  padding:13px 15px;
+  background:#f4eadc;
+  border-left:4px solid var(--brown);
+  border-radius:8px;
+  margin-bottom:15px;
+}
+
+footer{
+  text-align:center;
+  color:var(--khaki);
+  font-size:13px;
+  padding:25px;
+}
+
+@media(max-width:750px){
+  .grid,
+  .grid-3,
+  .month-summary{
+    grid-template-columns:1fr;
+  }
+
+  header h1{
+    font-size:25px;
+  }
+
+  nav button{
+    font-size:13px;
+    padding:9px 12px;
+  }
+
+  .calendar-grid{
+    gap:2px;
+  }
+
+  .calendar-day{
+    min-height:65px;
+    padding:4px;
+  }
+}
 
 @media print{
   body{
@@ -596,27 +556,52 @@ th{
 
   header,
   nav,
+  footer,
   .no-print,
-  .page-title .btn{
+  .page-title,
+  .month-selector,
+  .actions,
+  .card.no-print{
     display:none !important;
   }
 
   main{
-    padding:0;
     max-width:none;
+    padding:0;
+  }
+
+  .page{
+    display:none !important;
+  }
+
+  #presences{
+    display:block !important;
   }
 
   .card{
     box-shadow:none;
+    padding:5px;
+    margin:0 0 10px;
+  }
+
+  .presence-wrap{
+    overflow:visible;
+  }
+
+  .presence-table{
+    min-width:0;
+    font-size:9px;
+  }
+
+  .presence-table th,
+  .presence-table td{
+    padding:3px;
+    font-size:9px;
+  }
+
+  .presence-table input{
     border:0;
-  }
-
-  #page-presences{
-    display:block !important;
-  }
-
-  .presence-print{
-    display:block !important;
+    background:transparent;
   }
 }
 </style>
@@ -624,14 +609,10 @@ th{
 
 <body>
 
-<div class="app">
-
 <header>
   <div class="logo">AF</div>
-  <div class="header-title">
-    <h1>Au fil des accueils</h1>
-    <p>Assistante maternelle Mélissa</p>
-  </div>
+  <h1>Au fil des accueils</h1>
+  <p>Assistante maternelle Mélissa</p>
 </header>
 
 <nav>
@@ -645,2358 +626,611 @@ th{
 <main>
 
 <!-- ACCUEIL -->
+<section id="accueil" class="page active">
 
-<section id="page-accueil" class="page active">
+  <div class="page-title">
+    <h2>Bienvenue 🌿</h2>
+    <p>Un espace simple pour organiser les accueils au quotidien.</p>
+  </div>
 
-  <div class="welcome">
-    <h2>Bienvenue dans votre espace 🌿</h2>
+  <div class="card profile-card">
+    <div class="logo" style="width:60px;height:60px;font-size:20px;">AF</div>
+    <div class="profile-mini" id="homeProfileName">Mélissa — Assistante maternelle</div>
+    <div class="profile-sub">Un accueil doux, familial et bienveillant 🌿</div>
+    <button class="btn" onclick="openProfile()">Voir / modifier mon profil</button>
+  </div>
+
+  <div class="card intro">
+    <h3>Bienvenue chez « Au fil des accueils » 🌿</h3>
     <p>
-      Retrouvez ici vos enfants accueillis, vos contrats,
-      votre calendrier, vos fiches de présence et vos récapitulatifs mensuels.
+      Cet espace a été pensé pour simplifier le quotidien de l'assistante
+      maternelle et permettre de suivre facilement les contrats,
+      les présences, les absences et les récapitulatifs mensuels.
     </p>
-  </div>
 
-  <div class="cards">
-    <div class="stat">
-      <div class="number" id="statChildren">0</div>
-      <div class="label">Enfants enregistrés</div>
+    <div class="info-box">
+      <strong>💡 Pour commencer</strong>
+      <p>
+        Commence par ajouter un enfant et son contrat.
+        Tu pourras ensuite créer sa feuille de présence mensuelle.
+      </p>
     </div>
-
-    <div class="stat">
-      <div class="number" id="statContracts">0</div>
-      <div class="label">Contrats</div>
-    </div>
-
-    <div class="stat">
-      <div class="number" id="statEvents">0</div>
-      <div class="label">Événements calendrier</div>
-    </div>
-
-    <div class="stat">
-      <div class="number" id="statSheets">0</div>
-      <div class="label">Fiches enregistrées</div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:20px">
-    <h3>Mon profil</h3>
-
-    <div class="form-grid">
-      <div class="form-group">
-        <label>Nom</label>
-        <input id="profileLastName" value="Mélissa">
-      </div>
-
-      <div class="form-group">
-        <label>Prénom</label>
-        <input id="profileFirstName" value="">
-      </div>
-
-      <div class="form-group full">
-        <label>Adresse</label>
-        <input id="profileAddress">
-      </div>
-
-      <div class="form-group">
-        <label>Téléphone</label>
-        <input id="profilePhone">
-      </div>
-
-      <div class="form-group">
-        <label>N° Pajemploi</label>
-        <input id="profilePajemploi">
-      </div>
-    </div>
-
-    <button class="btn btn-primary" style="margin-top:15px" onclick="saveProfile()">
-      Enregistrer mon profil
-    </button>
   </div>
 
 </section>
 
 
 <!-- ENFANTS -->
-
-<section id="page-enfants" class="page">
+<section id="enfants" class="page">
 
   <div class="page-title">
-    <div>
-      <h2>Mes enfants accueillis 👶</h2>
-      <p>Chaque enfant possède sa fiche et son contrat.</p>
-    </div>
-
-    <button class="btn btn-primary" onclick="openChildModal()">
-      + Ajouter un enfant
-    </button>
+    <h2>👶 Mes enfants accueillis</h2>
+    <p>Les enfants, leurs parents et leurs contrats.</p>
   </div>
 
-  <div id="childrenList" class="child-list"></div>
+  <div class="actions no-print" style="margin-bottom:20px;">
+    <button class="btn" onclick="openChildModal()">＋ Ajouter un enfant</button>
+  </div>
+
+  <div id="childrenList" class="children-grid"></div>
 
 </section>
 
 
 <!-- CALENDRIER -->
-
-<section id="page-calendrier" class="page">
+<section id="calendrier" class="page">
 
   <div class="page-title">
-    <div>
-      <h2>Calendrier 📅</h2>
-      <p>Congés, absences et événements.</p>
+    <h2>📅 Calendrier</h2>
+    <p>Vacances, absences, événements et journées particulières.</p>
+  </div>
+
+  <div class="card">
+
+    <div class="calendar-head">
+      <button onclick="changeCalendarMonth(-1)">‹</button>
+      <div class="calendar-title" id="calendarTitle"></div>
+      <button onclick="changeCalendarMonth(1)">›</button>
     </div>
 
-    <button class="btn btn-primary" onclick="openEventModal()">
-      + Ajouter un événement
-    </button>
-  </div>
+    <div class="actions no-print" style="margin-bottom:15px;">
+      <button class="btn" onclick="openEventModal()">＋ Ajouter un événement</button>
+    </div>
 
-  <div class="year-controls">
-    <button class="btn btn-secondary" onclick="changeYear(-1)">‹</button>
-    <strong id="calendarYear">2026</strong>
-    <button class="btn btn-secondary" onclick="changeYear(1)">›</button>
-  </div>
+    <div id="calendarGrid" class="calendar-grid"></div>
 
-  <div id="calendarGrid" class="calendar-grid"></div>
+  </div>
 
 </section>
 
 
 <!-- PRESENCES -->
-
-<section id="page-presences" class="page">
+<section id="presences" class="page">
 
   <div class="page-title no-print">
-    <div>
-      <h2>Fiche de présence mensuelle 📝</h2>
-      <p>Une fiche complète par enfant et par mois.</p>
-    </div>
-
-    <button class="btn btn-primary" onclick="printPresence()">
-      📄 Imprimer / PDF
-    </button>
+    <h2>📝 Feuille de présence</h2>
+    <p>Une feuille mensuelle pour chaque enfant.</p>
   </div>
 
   <div class="card no-print">
 
-    <div class="form-grid">
+    <div class="month-selector">
 
-      <div class="form-group">
+      <div>
         <label>Enfant</label>
-        <select id="presenceChild" onchange="generatePresence()"></select>
+        <select id="presenceChild" onchange="generatePresence()">
+          <option value="">Sélectionner un enfant</option>
+        </select>
       </div>
 
-      <div class="form-group">
+      <div>
         <label>Mois</label>
-        <input type="month" id="presenceMonth" onchange="generatePresence()">
+        <select id="presenceMonth" onchange="generatePresence()"></select>
+      </div>
+
+      <div>
+        <label>Année</label>
+        <select id="presenceYear" onchange="generatePresence()"></select>
       </div>
 
     </div>
 
+    <div id="presenceStatus" class="notice">
+      Sélectionne un enfant et un mois pour commencer.
+    </div>
+
   </div>
 
-  <div id="presenceSheet" class="presence-print"></div>
+  <div id="presenceDocument"></div>
 
 </section>
 
 
 <!-- RECAP -->
-
-<section id="page-recap" class="page">
+<section id="recap" class="page">
 
   <div class="page-title">
-    <div>
-      <h2>Récapitulatif mensuel 📊</h2>
-      <p>Votre espace personnel de suivi.</p>
-    </div>
+    <h2>📊 Récap mensuel</h2>
+    <p>Votre espace personnel de suivi.</p>
   </div>
 
   <div class="card">
+    <div class="notice">
+      🔒 Cet espace est personnel à l'assistante maternelle.
+      Dans la version finale avec connexion, les parents n'y auront pas accès.
+    </div>
 
-    <div class="form-grid">
-
-      <div class="form-group">
+    <div class="month-selector">
+      <div>
         <label>Mois</label>
-        <input type="month" id="recapMonth" onchange="generateRecap()">
+        <select id="recapMonth" onchange="renderRecap()"></select>
       </div>
 
+      <div>
+        <label>Année</label>
+        <select id="recapYear" onchange="renderRecap()"></select>
+      </div>
     </div>
 
+    <div id="recapContent"></div>
   </div>
 
-  <div id="recapContent"></div>
-
   <div class="card">
-    <h3>Ma rémunération</h3>
+    <h3>💰 Ma rémunération</h3>
 
-    <div class="form-grid">
-
-      <div class="form-group">
-        <label>Salaire reçu pour ce mois</label>
-        <input type="number" step="0.01" id="salaryAmount">
-      </div>
-
-      <div class="form-group">
-        <label>Bulletin de salaire</label>
-        <input type="file" id="salaryFile">
-      </div>
-
+    <div class="notice">
+      Cette partie est personnelle et ne sera pas visible par les parents.
     </div>
 
-    <button class="btn btn-primary" style="margin-top:15px" onclick="saveSalary()">
-      Enregistrer
-    </button>
+    <div class="grid">
+      <div class="field">
+        <label>Mois concerné</label>
+        <input type="month" id="salaryMonth">
+      </div>
 
-    <div id="salaryInfo" style="margin-top:15px"></div>
+      <div class="field">
+        <label>Salaire reçu (€)</label>
+        <input type="number" id="salaryAmount" step="0.01" min="0">
+      </div>
+    </div>
 
+    <div class="field">
+      <label>Bulletin de salaire</label>
+      <input type="file" id="payslipFile" accept=".pdf,.jpg,.jpeg,.png">
+    </div>
+
+    <div class="actions">
+      <button class="btn" onclick="saveSalary()">Enregistrer</button>
+    </div>
+
+    <div id="salaryList" style="margin-top:20px;"></div>
   </div>
 
 </section>
 
 </main>
+
+<footer>
+  Au fil des accueils 🌿 — Prototype en cours de création
+</footer>
+
+
+<!-- MODAL PROFIL -->
+<div id="profileModal" class="modal">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h2>👤 Mon profil</h2>
+      <button class="close" onclick="closeModal('profileModal')">×</button>
+    </div>
+
+    <div class="card intro" style="padding:0;box-shadow:none;">
+
+      <h3>Un peu de moi 🌿</h3>
+
+      <p>
+        Bonjour, moi c’est <strong>Mélissa</strong>.
+      </p>
+
+      <p>
+        Assistante maternelle depuis 2020, j’accueille les enfants dans
+        un environnement chaleureux, familial et bienveillant.
+      </p>
+
+      <p>
+        J’ai 36 ans et je suis maman de trois enfants.
+        Mon carburant ? Un bon chocolat chaud ☕🤎
+        Et j’aime surtout les projets sincères, ceux qui ont du sens
+        et qui rendent le quotidien un peu plus doux.
+      </p>
+
+      <h3>🌿 Grandir avec confiance</h3>
+
+      <p>
+        Chaque enfant est unique. Ici, chacun découvre l’accueil à son
+        propre rythme, dans le respect de ses besoins, de sa personnalité
+        et de ses émotions.
+      </p>
+
+      <p>
+        La période d’adaptation permet progressivement de créer un lien
+        de confiance et de trouver ses repères dans ce nouvel environnement.
+      </p>
+
+      <h3>🐔 Chez Nounou</h3>
+
+      <p>
+        Entre les rires des enfants et les petits chants de mes poules,
+        ma maison est un petit havre où l’on prend le temps de grandir,
+        de jouer, d’explorer et de s’épanouir.
+      </p>
+
+      <p>
+        Un accueil <strong>chaleureux et simple, naturel et authentique,
+        familial et convivial</strong>.
+      </p>
+
+      <p>
+        Ici, les enfants grandissent entourés d’attention,
+        de bienveillance et de petites attentions qui font les grandes journées.
+      </p>
+
+      <h3>🤎 Mon objectif</h3>
+
+      <p>
+        Que chaque enfant puisse se sentir
+        <strong>en sécurité, écouté, respecté et libre de grandir à son rythme</strong>.
+      </p>
+
+    </div>
+
+    <h3 class="section-title">Mes informations professionnelles</h3>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>Nom</label>
+        <input id="profileLastName" type="text">
+      </div>
+
+      <div class="field">
+        <label>Prénom</label>
+        <input id="profileFirstName" type="text" value="Mélissa">
+      </div>
+
+      <div class="field">
+        <label>Adresse</label>
+        <input id="profileAddress" type="text">
+      </div>
+
+      <div class="field">
+        <label>Téléphone</label>
+        <input id="profilePhone" type="tel">
+      </div>
+
+      <div class="field">
+        <label>N° Pajemploi</label>
+        <input id="profilePajemploi" type="text">
+      </div>
+
+    </div>
+
+    <div class="actions" style="margin-top:20px;">
+      <button class="btn" onclick="saveProfile()">Enregistrer mon profil</button>
+    </div>
+
+  </div>
 </div>
 
 
 <!-- MODAL ENFANT -->
-
 <div id="childModal" class="modal">
 
-<div class="modal-content">
+  <div class="modal-box">
 
-  <div class="modal-header">
-    <h2>Ajouter un enfant 👶</h2>
-    <button class="close" onclick="closeModal('childModal')">×</button>
+    <div class="modal-header">
+      <h2 id="childModalTitle">👶 Ajouter un enfant</h2>
+      <button class="close" onclick="closeModal('childModal')">×</button>
+    </div>
+
+    <input type="hidden" id="childId">
+
+    <h3 class="section-title">Informations de l’enfant</h3>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>Nom</label>
+        <input id="childLastName" type="text">
+      </div>
+
+      <div class="field">
+        <label>Prénom</label>
+        <input id="childFirstName" type="text">
+      </div>
+
+      <div class="field">
+        <label>Date de naissance</label>
+        <input id="childBirthDate" type="date">
+      </div>
+
+      <div class="field">
+        <label>Date d’embauche</label>
+        <input id="childHireDate" type="date">
+      </div>
+
+    </div>
+
+    <h3 class="section-title">Parent employeur</h3>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>Nom</label>
+        <input id="parentLastName" type="text">
+      </div>
+
+      <div class="field">
+        <label>Prénom</label>
+        <input id="parentFirstName" type="text">
+      </div>
+
+      <div class="field">
+        <label>Adresse</label>
+        <input id="parentAddress" type="text">
+      </div>
+
+      <div class="field">
+        <label>Téléphone</label>
+        <input id="parentPhone" type="tel">
+      </div>
+
+      <div class="field">
+        <label>N° Pajemploi</label>
+        <input id="parentPajemploi" type="text">
+      </div>
+
+    </div>
+
+    <h3 class="section-title">Contrat</h3>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>Type de contrat</label>
+        <select id="contractType">
+          <option value="CDI">CDI</option>
+          <option value="CDD">CDD</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Date de début</label>
+        <input id="contractStart" type="date">
+      </div>
+
+      <div class="field">
+        <label>Date de fin — CDD uniquement</label>
+        <input id="contractEnd" type="date">
+      </div>
+
+      <div class="field">
+        <label>Heures par semaine</label>
+        <input id="weeklyHours" type="number" step="0.01" min="0">
+      </div>
+
+      <div class="field">
+        <label>Semaines programmées travaillées</label>
+        <input id="workedWeeks" type="number" step="1" min="0">
+      </div>
+
+      <div class="field">
+        <label>Semaines programmées d’absence</label>
+        <input id="absentWeeks" type="number" step="1" min="0">
+      </div>
+
+      <div class="field">
+        <label>Heures mensualisées</label>
+        <input id="monthlyHours" type="number" step="0.01" min="0">
+      </div>
+
+      <div class="field">
+        <label>Jours mensualisés</label>
+        <input id="monthlyDays" type="number" step="0.01" min="0">
+      </div>
+
+      <div class="field">
+        <label>Taux horaire (€)</label>
+        <input id="hourlyRate" type="number" step="0.01" min="0">
+      </div>
+
+      <div class="field">
+        <label>Indemnité d’entretien (€)</label>
+        <input id="maintenanceFee" type="number" step="0.01" min="0">
+      </div>
+
+      <div class="field">
+        <label>Indemnité repas (€)</label>
+        <input id="mealFee" type="number" step="0.01" min="0">
+      </div>
+
+      <div class="field">
+        <label>Indemnité goûter (€)</label>
+        <input id="snackFee" type="number" step="0.01" min="0">
+      </div>
+
+    </div>
+
+    <div class="field">
+      <label>Horaires habituels / prévus</label>
+      <input id="usualHours" type="text" placeholder="Ex. 8h00 - 17h00">
+    </div>
+
+    <div class="field">
+      <label>Jours travaillés</label>
+
+      <div class="checkbox-group">
+
+        <label class="day-check">
+          <input type="checkbox" value="1" class="workday">
+          Lun.
+        </label>
+
+        <label class="day-check">
+          <input type="checkbox" value="2" class="workday">
+          Mar.
+        </label>
+
+        <label class="day-check">
+          <input type="checkbox" value="3" class="workday">
+          Mer.
+        </label>
+
+        <label class="day-check">
+          <input type="checkbox" value="4" class="workday">
+          Jeu.
+        </label>
+
+        <label class="day-check">
+          <input type="checkbox" value="5" class="workday">
+          Ven.
+        </label>
+
+        <label class="day-check">
+          <input type="checkbox" value="6" class="workday">
+          Sam.
+        </label>
+
+        <label class="day-check">
+          <input type="checkbox" value="0" class="workday">
+          Dim.
+        </label>
+
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Notes du contrat</label>
+      <textarea id="contractNotes"></textarea>
+    </div>
+
+    <div class="actions" style="margin-top:20px;">
+      <button class="btn" onclick="saveChild()">Enregistrer</button>
+      <button class="btn light" onclick="closeModal('childModal')">Annuler</button>
+    </div>
+
   </div>
-
-  <form id="childForm">
-
-    <div class="card">
-      <h3>Informations de l'enfant</h3>
-
-      <div class="form-grid">
-
-        <div class="form-group">
-          <label>Nom</label>
-          <input id="childLastName" required>
-        </div>
-
-        <div class="form-group">
-          <label>Prénom</label>
-          <input id="childFirstName" required>
-        </div>
-
-        <div class="form-group">
-          <label>Date de naissance</label>
-          <input type="date" id="childBirthDate">
-        </div>
-
-        <div class="form-group">
-          <label>Date d'embauche</label>
-          <input type="date" id="childStartDate">
-        </div>
-
-      </div>
-    </div>
-
-
-    <div class="card">
-      <h3>Parent / employeur</h3>
-
-      <div class="form-grid">
-
-        <div class="form-group">
-          <label>Nom du parent</label>
-          <input id="parentLastName">
-        </div>
-
-        <div class="form-group">
-          <label>Prénom du parent</label>
-          <input id="parentFirstName">
-        </div>
-
-        <div class="form-group full">
-          <label>Adresse</label>
-          <input id="parentAddress">
-        </div>
-
-        <div class="form-group">
-          <label>Téléphone</label>
-          <input id="parentPhone">
-        </div>
-
-        <div class="form-group">
-          <label>N° Pajemploi</label>
-          <input id="parentPajemploi">
-        </div>
-
-      </div>
-    </div>
-
-
-    <div class="card">
-      <h3>Contrat 📄</h3>
-
-      <div class="form-grid">
-
-        <div class="form-group">
-          <label>Type de contrat</label>
-          <select id="contractType">
-            <option value="CDI">CDI</option>
-            <option value="CDD">CDD</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Date de début du contrat</label>
-          <input type="date" id="contractStart">
-        </div>
-
-        <div class="form-group">
-          <label>Date de fin du contrat (CDD uniquement)</label>
-          <input type="date" id="contractEnd">
-        </div>
-
-        <div class="form-group">
-          <label>Heures par semaine</label>
-          <input type="number" step="0.01" id="weeklyHours">
-        </div>
-
-        <div class="form-group">
-          <label>Semaines travaillées programmées</label>
-          <input type="number" step="1" id="workedWeeks">
-        </div>
-
-        <div class="form-group">
-          <label>Semaines d'absence programmées</label>
-          <input type="number" step="1" id="absentWeeks">
-        </div>
-
-        <div class="form-group">
-          <label>Heures mensuelles</label>
-          <input type="number" step="0.01" id="monthlyHours">
-        </div>
-
-        <div class="form-group">
-          <label>Jours mensuels</label>
-          <input type="number" step="0.01" id="monthlyDays">
-        </div>
-
-        <div class="form-group">
-          <label>Taux horaire (€)</label>
-          <input type="number" step="0.01" id="hourlyRate">
-        </div>
-
-        <div class="form-group">
-          <label>Indemnité d'entretien (€)</label>
-          <input type="number" step="0.01" id="maintenanceFee">
-        </div>
-
-        <div class="form-group">
-          <label>Indemnité repas (€)</label>
-          <input type="number" step="0.01" id="mealFee">
-        </div>
-
-        <div class="form-group">
-          <label>Indemnité goûter (€)</label>
-          <input type="number" step="0.01" id="snackFee">
-        </div>
-
-        <div class="form-group full">
-          <label>Horaires habituels</label>
-          <input id="usualHours" placeholder="Exemple : 8h30 - 16h30">
-        </div>
-
-        <div class="form-group full">
-          <label>Jours travaillés</label>
-
-          <div class="checkbox-row">
-
-            <label class="checkbox">
-              <input type="checkbox" value="Lundi" class="workday">
-              Lundi
-            </label>
-
-            <label class="checkbox">
-              <input type="checkbox" value="Mardi" class="workday">
-              Mardi
-            </label>
-
-            <label class="checkbox">
-              <input type="checkbox" value="Mercredi" class="workday">
-              Mercredi
-            </label>
-
-            <label class="checkbox">
-              <input type="checkbox" value="Jeudi" class="workday">
-              Jeudi
-            </label>
-
-            <label class="checkbox">
-              <input type="checkbox" value="Vendredi" class="workday">
-              Vendredi
-            </label>
-
-            <label class="checkbox">
-              <input type="checkbox" value="Samedi" class="workday">
-              Samedi
-            </label>
-
-            <label class="checkbox">
-              <input type="checkbox" value="Dimanche" class="workday">
-              Dimanche
-            </label>
-
-          </div>
-        </div>
-
-        <div class="form-group full">
-          <label>Notes du contrat</label>
-          <textarea id="contractNotes"></textarea>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="modal-footer">
-
-      <button type="button"
-              class="btn btn-secondary"
-              onclick="closeModal('childModal')">
-        Annuler
-      </button>
-
-      <button type="submit"
-              class="btn btn-primary">
-        Enregistrer l'enfant
-      </button>
-
-    </div>
-
-  </form>
-
-</div>
 </div>
 
 
 <!-- MODAL EVENEMENT -->
-
 <div id="eventModal" class="modal">
 
-<div class="modal-content">
+  <div class="modal-box" style="max-width:550px;">
 
-  <div class="modal-header">
-    <h2>Ajouter un événement 📅</h2>
-    <button class="close" onclick="closeModal('eventModal')">×</button>
-  </div>
+    <div class="modal-header">
+      <h2>📅 Ajouter un événement</h2>
+      <button class="close" onclick="closeModal('eventModal')">×</button>
+    </div>
 
-  <div class="form-grid">
-
-    <div class="form-group">
+    <div class="field">
       <label>Date</label>
-      <input type="date" id="eventDate">
+      <input id="eventDate" type="date">
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <label>Type</label>
-
       <select id="eventType">
-
-        <option value="assistant">
-          Congé / absence Mélissa
-        </option>
-
-        <option value="child">
-          Vacances de l'enfant
-        </option>
-
-        <option value="absence">
-          Absence de l'enfant
-        </option>
-
-        <option value="holiday">
-          Jour férié
-        </option>
-
-        <option value="other">
-          Autre
-        </option>
-
+        <option value="Mes congés">Mes congés</option>
+        <option value="Congé enfant">Congé enfant</option>
+        <option value="Absence enfant">Absence enfant</option>
+        <option value="Jour férié">Jour férié</option>
+        <option value="Autre">Autre</option>
       </select>
-
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <label>Enfant concerné</label>
-      <select id="eventChild"></select>
+      <select id="eventChild">
+        <option value="">Tous / aucun enfant</option>
+      </select>
     </div>
 
-    <div class="form-group full">
-      <label>Note</label>
-      <input id="eventNote">
+    <div class="field">
+      <label>Description</label>
+      <input id="eventDescription" type="text">
+    </div>
+
+    <div class="actions" style="margin-top:20px;">
+      <button class="btn" onclick="saveEvent()">Enregistrer</button>
     </div>
 
   </div>
-
-  <div class="modal-footer">
-
-    <button class="btn btn-secondary"
-            onclick="closeModal('eventModal')">
-      Annuler
-    </button>
-
-    <button class="btn btn-primary"
-            onclick="saveEvent()">
-      Enregistrer
-    </button>
-
-  </div>
-
-</div>
 </div>
 
 
 <script>
-
 /* =========================
-   DONNÉES
+   STOCKAGE
 ========================= */
 
-let children = JSON.parse(localStorage.getItem('afa_children') || '[]');
+const STORAGE = {
+  children: "afa_children",
+  events: "afa_events",
+  sheets: "afa_sheets",
+  profile: "afa_profile",
+  salaries: "afa_salaries"
+};
 
-let events = JSON.parse(localStorage.getItem('afa_events') || '[]');
+let children = JSON.parse(localStorage.getItem(STORAGE.children) || "[]");
+let events = JSON.parse(localStorage.getItem(STORAGE.events) || "[]");
+let sheets = JSON.parse(localStorage.getItem(STORAGE.sheets) || "{}");
+let profile = JSON.parse(localStorage.getItem(STORAGE.profile) || "{}");
+let salaries = JSON.parse(localStorage.getItem(STORAGE.salaries) || "[]");
 
-let sheets = JSON.parse(localStorage.getItem('afa_sheets') || '[]');
-
-let profile = JSON.parse(localStorage.getItem('afa_profile') || '{}');
-
-let salaries = JSON.parse(localStorage.getItem('afa_salaries') || '{}');
-
-let currentYear = Math.max(2026,new Date().getFullYear());
-
-let editingChildId = null;
-
-
-/* =========================
-   UTILITAIRES
-========================= */
-
-function saveAll(){
-
-  localStorage.setItem(
-    'afa_children',
-    JSON.stringify(children)
-  );
-
-  localStorage.setItem(
-    'afa_events',
-    JSON.stringify(events)
-  );
-
-  localStorage.setItem(
-    'afa_sheets',
-    JSON.stringify(sheets)
-  );
-
-}
-
-function escapeHtml(value){
-
-  return String(value ?? '')
-    .replaceAll('&','&amp;')
-    .replaceAll('<','&lt;')
-    .replaceAll('>','&gt;')
-    .replaceAll('"','&quot;')
-    .replaceAll("'","&#039;");
-
-}
-
-function formatDate(date){
-
-  if(!date) return '';
-
-  const d = new Date(date + 'T00:00:00');
-
-  return d.toLocaleDateString(
-    'fr-FR'
-  );
-
-}
-
-function monthName(month){
-
-  return new Date(
-    2026,
-    month,
-    1
-  ).toLocaleDateString(
-    'fr-FR',
-    {month:'long'}
-  );
-
-}
-
-function hoursBetween(start,end){
-
-  if(!start || !end) return 0;
-
-  const [h1,m1] = start.split(':').map(Number);
-  const [h2,m2] = end.split(':').map(Number);
-
-  let a = h1*60+m1;
-  let b = h2*60+m2;
-
-  if(b<a) b += 24*60;
-
-  return (b-a)/60;
-
-}
-
-function formatHours(value){
-
-  if(!Number.isFinite(value)) return '0 h';
-
-  const h = Math.floor(value);
-  const minutes = Math.round(
-    (value-h)*60
-  );
-
-  if(minutes===0){
-    return h + ' h';
-  }
-
-  return h + ' h ' + minutes + ' min';
-
-}
+let calendarDate = new Date();
 
 
 /* =========================
    NAVIGATION
 ========================= */
 
-function showPage(name,button){
+function showPage(pageId, button){
 
-  document.querySelectorAll('.page')
-    .forEach(p => p.classList.remove('active'));
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
 
-  document.getElementById(
-    'page-'+name
-  ).classList.add('active');
+  document.getElementById(pageId).classList.add("active");
 
-  document.querySelectorAll('nav button')
-    .forEach(b => b.classList.remove('active'));
+  document.querySelectorAll("nav button").forEach(b => {
+    b.classList.remove("active");
+  });
 
   if(button){
-    button.classList.add('active');
+    button.classList.add("active");
   }
 
-  if(name==='accueil'){
-    updateStats();
-  }
-
-  if(name==='enfants'){
+  if(pageId === "enfants"){
     renderChildren();
   }
 
-  if(name==='calendrier'){
+  if(pageId === "calendrier"){
     renderCalendar();
   }
 
-  if(name==='presences'){
-    populatePresenceChildren();
-
-    if(!document.getElementById('presenceMonth').value){
-
-      document.getElementById('presenceMonth').value =
-        new Date().toISOString().slice(0,7);
-
-    }
-
+  if(pageId === "presences"){
+    populatePresenceSelectors();
     generatePresence();
   }
 
-  if(name==='recap'){
-
-    if(!document.getElementById('recapMonth').value){
-
-      document.getElementById('recapMonth').value =
-        new Date().toISOString().slice(0,7);
-
-    }
-
-    generateRecap();
-
+  if(pageId === "recap"){
+    populateRecapSelectors();
+    renderRecap();
+    renderSalaryList();
   }
 
-}
-
-
-/* =========================
-   ACCUEIL
-========================= */
-
-function updateStats(){
-
-  document.getElementById(
-    'statChildren'
-  ).textContent = children.length;
-
-  document.getElementById(
-    'statContracts'
-  ).textContent =
-    children.filter(c=>c.contract).length;
-
-  document.getElementById(
-    'statEvents'
-  ).textContent = events.length;
-
-  document.getElementById(
-    'statSheets'
-  ).textContent = sheets.length;
-
-}
-
-function saveProfile(){
-
-  profile = {
-
-    lastName:
-      document.getElementById('profileLastName').value,
-
-    firstName:
-      document.getElementById('profileFirstName').value,
-
-    address:
-      document.getElementById('profileAddress').value,
-
-    phone:
-      document.getElementById('profilePhone').value,
-
-    pajemploi:
-      document.getElementById('profilePajemploi').value
-
-  };
-
-  localStorage.setItem(
-    'afa_profile',
-    JSON.stringify(profile)
-  );
-
-  alert('Profil enregistré.');
-
-}
-
-function loadProfile(){
-
-  if(!profile) return;
-
-  document.getElementById('profileLastName').value =
-    profile.lastName || 'Mélissa';
-
-  document.getElementById('profileFirstName').value =
-    profile.firstName || '';
-
-  document.getElementById('profileAddress').value =
-    profile.address || '';
-
-  document.getElementById('profilePhone').value =
-    profile.phone || '';
-
-  document.getElementById('profilePajemploi').value =
-    profile.pajemploi || '';
-
-}
-
-
-/* =========================
-   ENFANTS
-========================= */
-
-function openChildModal(){
-
-  editingChildId = null;
-
-  document.getElementById('childForm').reset();
-
-  document.querySelectorAll('.workday')
-    .forEach(c=>c.checked=false);
-
-  document.getElementById('childModal')
-    .classList.add('show');
-
-}
-
-function editChild(id){
-
-  const child =
-    children.find(c=>c.id===id);
-
-  if(!child) return;
-
-  editingChildId=id;
-
-  document.getElementById('childLastName').value =
-    child.lastName || '';
-
-  document.getElementById('childFirstName').value =
-    child.firstName || '';
-
-  document.getElementById('childBirthDate').value =
-    child.birthDate || '';
-
-  document.getElementById('childStartDate').value =
-    child.startDate || '';
-
-  const parent=child.parent || {};
-
-  document.getElementById('parentLastName').value =
-    parent.lastName || '';
-
-  document.getElementById('parentFirstName').value =
-    parent.firstName || '';
-
-  document.getElementById('parentAddress').value =
-    parent.address || '';
-
-  document.getElementById('parentPhone').value =
-    parent.phone || '';
-
-  document.getElementById('parentPajemploi').value =
-    parent.pajemploi || '';
-
-  const c=child.contract || {};
-
-  document.getElementById('contractType').value =
-    c.type || 'CDI';
-
-  document.getElementById('contractStart').value =
-    c.start || '';
-
-  document.getElementById('contractEnd').value =
-    c.end || '';
-
-  document.getElementById('weeklyHours').value =
-    c.weeklyHours || '';
-
-  document.getElementById('workedWeeks').value =
-    c.workedWeeks || '';
-
-  document.getElementById('absentWeeks').value =
-    c.absentWeeks || '';
-
-  document.getElementById('monthlyHours').value =
-    c.monthlyHours || '';
-
-  document.getElementById('monthlyDays').value =
-    c.monthlyDays || '';
-
-  document.getElementById('hourlyRate').value =
-    c.hourlyRate || '';
-
-  document.getElementById('maintenanceFee').value =
-    c.maintenanceFee || '';
-
-  document.getElementById('mealFee').value =
-    c.mealFee || '';
-
-  document.getElementById('snackFee').value =
-    c.snackFee || '';
-
-  document.getElementById('usualHours').value =
-    c.usualHours || '';
-
-  document.getElementById('contractNotes').value =
-    c.notes || '';
-
-  document.querySelectorAll('.workday')
-    .forEach(box=>{
-      box.checked =
-        (c.workdays || []).includes(box.value);
-    });
-
-  document.getElementById('childModal')
-    .classList.add('show');
-
-}
-
-function saveChild(event){
-
-  event.preventDefault();
-
-  const workdays =
-    Array.from(
-      document.querySelectorAll('.workday:checked')
-    ).map(c=>c.value);
-
-  const child={
-
-    id:
-      editingChildId ||
-      Date.now().toString(),
-
-    lastName:
-      document.getElementById('childLastName').value.trim(),
-
-    firstName:
-      document.getElementById('childFirstName').value.trim(),
-
-    birthDate:
-      document.getElementById('childBirthDate').value,
-
-    startDate:
-      document.getElementById('childStartDate').value,
-
-    parent:{
-
-      lastName:
-        document.getElementById('parentLastName').value.trim(),
-
-      firstName:
-        document.getElementById('parentFirstName').value.trim(),
-
-      address:
-        document.getElementById('parentAddress').value.trim(),
-
-      phone:
-        document.getElementById('parentPhone').value.trim(),
-
-      pajemploi:
-        document.getElementById('parentPajemploi').value.trim()
-
-    },
-
-    contract:{
-
-      type:
-        document.getElementById('contractType').value,
-
-      start:
-        document.getElementById('contractStart').value,
-
-      end:
-        document.getElementById('contractEnd').value,
-
-      weeklyHours:
-        Number(document.getElementById('weeklyHours').value)||0,
-
-      workedWeeks:
-        Number(document.getElementById('workedWeeks').value)||0,
-
-      absentWeeks:
-        Number(document.getElementById('absentWeeks').value)||0,
-
-      monthlyHours:
-        Number(document.getElementById('monthlyHours').value)||0,
-
-      monthlyDays:
-        Number(document.getElementById('monthlyDays').value)||0,
-
-      hourlyRate:
-        Number(document.getElementById('hourlyRate').value)||0,
-
-      maintenanceFee:
-        Number(document.getElementById('maintenanceFee').value)||0,
-
-      mealFee:
-        Number(document.getElementById('mealFee').value)||0,
-
-      snackFee:
-        Number(document.getElementById('snackFee').value)||0,
-
-      usualHours:
-        document.getElementById('usualHours').value,
-
-      workdays,
-
-      notes:
-        document.getElementById('contractNotes').value
-
-    }
-
-  };
-
-  if(editingChildId){
-
-    const index =
-      children.findIndex(c=>c.id===editingChildId);
-
-    children[index]=child;
-
-  }else{
-
-    children.push(child);
-
-  }
-
-  saveAll();
-
-  closeModal('childModal');
-
-  renderChildren();
-
-  updateStats();
-
-}
-
-document.getElementById('childForm')
-  .addEventListener('submit',saveChild);
-
-
-function renderChildren(){
-
-  const container =
-    document.getElementById('childrenList');
-
-  if(children.length===0){
-
-    container.innerHTML=`
-      <div class="card">
-        <h3>Aucun enfant enregistré</h3>
-        <p>
-          Cliquez sur « Ajouter un enfant » pour créer votre premier dossier.
-        </p>
-      </div>
-    `;
-
-    return;
-
-  }
-
-  container.innerHTML =
-    children.map(child=>{
-
-      const c=child.contract || {};
-
-      return `
-
-      <div class="child-card">
-
-        <h3>
-          ${escapeHtml(child.firstName)}
-          ${escapeHtml(child.lastName)}
-        </h3>
-
-        <span class="badge">
-          ${escapeHtml(c.type || 'Contrat non renseigné')}
-        </span>
-
-        <p>
-          <strong>Date de naissance :</strong>
-          ${formatDate(child.birthDate) || '—'}
-        </p>
-
-        <p>
-          <strong>Embauche :</strong>
-          ${formatDate(child.startDate) || '—'}
-        </p>
-
-        <p>
-          <strong>Parent :</strong>
-          ${escapeHtml(
-            ((child.parent||{}).firstName || '') +
-            ' ' +
-            ((child.parent||{}).lastName || '')
-          ) || '—'}
-        </p>
-
-        <p>
-          <strong>Heures/semaine :</strong>
-          ${c.weeklyHours || 0} h
-        </p>
-
-        <p>
-          <strong>Taux horaire :</strong>
-          ${c.hourlyRate ? c.hourlyRate.toFixed(2)+' €' : '—'}
-        </p>
-
-        <div class="child-actions">
-
-          <button class="btn btn-secondary btn-small"
-                  onclick="editChild('${child.id}')">
-            ✏️ Modifier
-          </button>
-
-          <button class="btn btn-primary btn-small"
-                  onclick="openPresenceForChild('${child.id}')">
-            📝 Présence
-          </button>
-
-          <button class="btn btn-danger btn-small"
-                  onclick="deleteChild('${child.id}')">
-            Supprimer
-          </button>
-
-        </div>
-
-      </div>
-
-      `;
-
-    }).join('');
-
-}
-
-function deleteChild(id){
-
-  const child=
-    children.find(c=>c.id===id);
-
-  if(!child) return;
-
-  if(!confirm(
-    'Supprimer '+
-    child.firstName+
-    ' '+child.lastName+
-    ' et ses informations ?'
-  )) return;
-
-  children=
-    children.filter(c=>c.id!==id);
-
-  saveAll();
-
-  renderChildren();
-
-  updateStats();
-
-}
-
-
-/* =========================
-   CALENDRIER
-========================= */
-
-function changeYear(amount){
-
-  currentYear += amount;
-
-  if(currentYear<2026){
-    currentYear=2026;
-  }
-
-  renderCalendar();
-
-}
-
-function openEventModal(){
-
-  populateEventChildren();
-
-  document.getElementById('eventDate').value =
-    new Date().toISOString().slice(0,10);
-
-  document.getElementById('eventModal')
-    .classList.add('show');
-
-}
-
-function populateEventChildren(){
-
-  const select =
-    document.getElementById('eventChild');
-
-  select.innerHTML =
-    '<option value="">Aucun / général</option>'+
-
-    children.map(c=>
-      `<option value="${c.id}">
-        ${escapeHtml(c.firstName+' '+c.lastName)}
-      </option>`
-    ).join('');
-
-}
-
-function saveEvent(){
-
-  const date =
-    document.getElementById('eventDate').value;
-
-  if(!date){
-
-    alert('Veuillez choisir une date.');
-
-    return;
-
-  }
-
-  events.push({
-
-    id:Date.now().toString(),
-
-    date,
-
-    type:
-      document.getElementById('eventType').value,
-
-    childId:
-      document.getElementById('eventChild').value,
-
-    note:
-      document.getElementById('eventNote').value
-
-  });
-
-  saveAll();
-
-  closeModal('eventModal');
-
-  renderCalendar();
-
-  updateStats();
-
-}
-
-function renderCalendar(){
-
-  document.getElementById(
-    'calendarYear'
-  ).textContent=currentYear;
-
-  const grid =
-    document.getElementById('calendarGrid');
-
-  let html='';
-
-  for(let month=0;month<12;month++){
-
-    const first =
-      new Date(currentYear,month,1);
-
-    const last =
-      new Date(currentYear,month+1,0);
-
-    let startDay=first.getDay();
-
-    startDay =
-      startDay===0 ? 6 : startDay-1;
-
-    html+=`
-
-      <div class="month">
-
-        <h3>
-          ${monthName(month)}
-        </h3>
-
-        <div class="month-days">
-
-          <div class="day-name">L</div>
-          <div class="day-name">M</div>
-          <div class="day-name">M</div>
-          <div class="day-name">J</div>
-          <div class="day-name">V</div>
-          <div class="day-name">S</div>
-          <div class="day-name">D</div>
-
-    `;
-
-    for(let i=0;i<startDay;i++){
-
-      html+=`<div></div>`;
-
-    }
-
-    for(let d=1;d<=last.getDate();d++){
-
-      const date =
-        `${currentYear}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-
-      const dayEvents =
-        events.filter(e=>e.date===date);
-
-      let classes='day';
-
-      if(dayEvents.length){
-
-        const types =
-          dayEvents.map(e=>e.type);
-
-        if(types.includes('assistant'))
-          classes+=' event-assistant';
-
-        else if(types.includes('child'))
-          classes+=' event-child';
-
-        else if(types.includes('absence'))
-          classes+=' event-absence';
-
-        else if(types.includes('holiday'))
-          classes+=' event-holiday';
-
-        else
-          classes+=' event-other';
-
-      }
-
-      html+=`
-        <div class="${classes}"
-             title="${
-               dayEvents.map(e=>e.note||e.type).join(' | ')
-             }">
-          ${d}
-        </div>
-      `;
-
-    }
-
-    html+=`
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-  grid.innerHTML=html;
-
-}
-
-
-/* =========================
-   PRESENCES
-========================= */
-
-function populatePresenceChildren(){
-
-  const select =
-    document.getElementById('presenceChild');
-
-  const current=select.value;
-
-  select.innerHTML =
-    children.map(c=>
-      `<option value="${c.id}">
-        ${escapeHtml(c.firstName+' '+c.lastName)}
-      </option>`
-    ).join('');
-
-  if(current){
-    select.value=current;
-  }
-
-}
-
-function openPresenceForChild(id){
-
-  showPage(
-    'presences',
-    document.querySelectorAll('nav button')[3]
-  );
-
-  populatePresenceChildren();
-
-  document.getElementById('presenceChild').value=id;
-
-  document.getElementById('presenceMonth').value =
-    new Date().toISOString().slice(0,7);
-
-  generatePresence();
-
-}
-
-function getDaysOfMonth(year,month){
-
-  const days=[];
-
-  const last =
-    new Date(year,month+1,0).getDate();
-
-  for(let d=1;d<=last;d++){
-
-    days.push(
-      new Date(year,month,d)
-    );
-
-  }
-
-  return days;
-
-}
-
-function dayName(date){
-
-  return date.toLocaleDateString(
-    'fr-FR',
-    {weekday:'long'}
-  );
-
-}
-
-function generatePresence(){
-
-  const childId =
-    document.getElementById('presenceChild').value;
-
-  const monthValue =
-    document.getElementById('presenceMonth').value;
-
-  const container =
-    document.getElementById('presenceSheet');
-
-  if(!childId || !monthValue){
-
-    container.innerHTML=`
-      <div class="card">
-        Sélectionnez un enfant et un mois.
-      </div>
-    `;
-
-    return;
-
-  }
-
-  const child =
-    children.find(c=>c.id===childId);
-
-  if(!child) return;
-
-  const [year,monthNumber] =
-    monthValue.split('-').map(Number);
-
-  const monthIndex=monthNumber-1;
-
-  const parent=child.parent||{};
-
-  const contract=child.contract||{};
-
-  const days =
-    getDaysOfMonth(year,monthIndex);
-
-  let html=`
-
-    <div class="card">
-
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        gap:15px;
-        margin-bottom:20px;
-      ">
-
-        <div>
-
-          <h2 style="
-            margin:0;
-            font-family:Georgia,serif;
-            color:var(--brown-dark);
-          ">
-            FEUILLE DE PRÉSENCE
-          </h2>
-
-          <p style="margin:5px 0">
-            <strong>
-              ${escapeHtml(child.firstName)}
-              ${escapeHtml(child.lastName)}
-            </strong>
-          </p>
-
-          <p style="margin:4px 0">
-            Parent :
-            ${escapeHtml(
-              (parent.firstName||'')+
-              ' '+
-              (parent.lastName||'')
-            )}
-          </p>
-
-          <p style="margin:4px 0">
-            ${monthName(monthIndex)}
-            ${year}
-          </p>
-
-        </div>
-
-        <div class="logo no-print">
-          AF
-        </div>
-
-      </div>
-
-      <div class="table-wrap">
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>Jour</th>
-              <th>Date</th>
-              <th>Horaires prévus</th>
-              <th>Heures prévues</th>
-              <th>Horaires réels</th>
-              <th>Heures réelles</th>
-              <th>Heures supp.</th>
-              <th>IE</th>
-              <th>Repas</th>
-              <th>Goûter</th>
-              <th>Divers</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-  `;
-
-  let totalPlanned=0;
-  let totalActual=0;
-  let totalOvertime=0;
-
-  let currentWeek=0;
-  let weekPlanned=0;
-  let weekActual=0;
-
-  days.forEach((date,index)=>{
-
-    const weekday =
-      date.toLocaleDateString(
-        'fr-FR',
-        {weekday:'long'}
-      );
-
-    const weekNumber =
-      Math.ceil(
-        (index + date.getDay()) / 7
-      );
-
-    if(weekNumber!==currentWeek){
-
-      if(currentWeek!==0){
-
-        html+=`
-
-          <tr class="total-row">
-
-            <td colspan="3">
-              Total semaine ${currentWeek}
-            </td>
-
-            <td>
-              ${formatHours(weekPlanned)}
-            </td>
-
-            <td></td>
-
-            <td>
-              ${formatHours(weekActual)}
-            </td>
-
-            <td colspan="4"></td>
-
-          </tr>
-
-        `;
-
-      }
-
-      currentWeek=weekNumber;
-
-      weekPlanned=0;
-      weekActual=0;
-
-    }
-
-    const dateStr =
-      date.toISOString().slice(0,10);
-
-    const isContractDay =
-      (contract.workdays||[]).includes(
-        weekday.charAt(0).toUpperCase()+
-        weekday.slice(1)
-      );
-
-    let plannedStart='';
-    let plannedEnd='';
-
-    if(isContractDay && contract.usualHours){
-
-      const match =
-        contract.usualHours.match(
-          /(\d{1,2})h?(\d{0,2})?\s*[-–]\s*(\d{1,2})h?(\d{0,2})?/
-        );
-
-      if(match){
-
-        plannedStart =
-          String(match[1]).padStart(2,'0')+
-          ':'+
-          String(match[2]||'00').padStart(2,'0');
-
-        plannedEnd =
-          String(match[3]).padStart(2,'0')+
-          ':'+
-          String(match[4]||'00').padStart(2,'0');
-
-      }
-
-    }
-
-    const plannedHours =
-      hoursBetween(
-        plannedStart,
-        plannedEnd
-      );
-
-    totalPlanned+=plannedHours;
-    weekPlanned+=plannedHours;
-
-    html+=`
-
-      <tr>
-
-        <td>
-          ${weekday}
-        </td>
-
-        <td>
-          ${date.toLocaleDateString('fr-FR')}
-        </td>
-
-        <td>
-          <input
-            type="time"
-            value="${plannedStart}"
-            data-planned-start="${dateStr}">
-          -
-          <input
-            type="time"
-            value="${plannedEnd}"
-            data-planned-end="${dateStr}">
-        </td>
-
-        <td>
-          <span id="planned-${dateStr}">
-            ${formatHours(plannedHours)}
-          </span>
-        </td>
-
-        <td>
-          <input
-            type="time"
-            data-actual-start="${dateStr}">
-          -
-          <input
-            type="time"
-            data-actual-end="${dateStr}">
-        </td>
-
-        <td>
-          <span id="actual-${dateStr}">
-            0 h
-          </span>
-        </td>
-
-        <td>
-          <span id="overtime-${dateStr}">
-            0 h
-          </span>
-        </td>
-
-        <td>
-          <input type="checkbox"
-                 data-ie="${dateStr}">
-        </td>
-
-        <td>
-          <input type="checkbox"
-                 data-meal="${dateStr}">
-        </td>
-
-        <td>
-          <input type="checkbox"
-                 data-snack="${dateStr}">
-        </td>
-
-        <td>
-          <input type="checkbox"
-                 data-other="${dateStr}">
-        </td>
-
-      </tr>
-
-    `;
-
-  });
-
-  if(currentWeek!==0){
-
-    html+=`
-
-      <tr class="total-row">
-
-        <td colspan="3">
-          Total semaine ${currentWeek}
-        </td>
-
-        <td>
-          ${formatHours(weekPlanned)}
-        </td>
-
-        <td></td>
-
-        <td>
-          ${formatHours(weekActual)}
-        </td>
-
-        <td colspan="4"></td>
-
-      </tr>
-
-    `;
-
-  }
-
-  html+=`
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-      <div class="card" style="margin-top:20px">
-
-        <h3>Récapitulatif du mois</h3>
-
-        <div class="summary-grid">
-
-          <div class="summary-box">
-            Heures prévues
-            <strong id="totalPlanned">
-              ${formatHours(totalPlanned)}
-            </strong>
-          </div>
-
-          <div class="summary-box">
-            Heures réelles
-            <strong id="totalActual">
-              0 h
-            </strong>
-          </div>
-
-          <div class="summary-box">
-            Heures complémentaires
-            <strong id="totalComplementary">
-              0 h
-            </strong>
-          </div>
-
-          <div class="summary-box">
-            Heures supplémentaires
-            <strong id="totalOvertime">
-              0 h
-            </strong>
-          </div>
-
-          <div class="summary-box">
-            Indemnités d'entretien
-            <strong id="totalIE">
-              0
-            </strong>
-          </div>
-
-          <div class="summary-box">
-            Repas
-            <strong id="totalMeals">
-              0
-            </strong>
-          </div>
-
-          <div class="summary-box">
-            Goûters
-            <strong id="totalSnacks">
-              0
-            </strong>
-          </div>
-
-          <div class="summary-box">
-            Divers
-            <strong id="totalOther">
-              0
-            </strong>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="card">
-
-        <h3>Observations</h3>
-
-        <textarea
-          id="presenceObservations"
-          placeholder="Observations du mois..."></textarea>
-
-      </div>
-
-      <div class="card">
-
-        <h3>Signatures</h3>
-
-        <div class="form-grid">
-
-          <div>
-            <p>
-              Signature de l'assistante maternelle
-            </p>
-
-            <div style="
-              height:80px;
-              border-bottom:1px solid #aaa;
-            "></div>
-          </div>
-
-          <div>
-            <p>
-              Signature du parent
-            </p>
-
-            <div style="
-              height:80px;
-              border-bottom:1px solid #aaa;
-            "></div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="no-print"
-           style="
-             display:flex;
-             justify-content:flex-end;
-             gap:10px;
-             margin-top:15px;
-           ">
-
-        <button class="btn btn-primary"
-                onclick="savePresenceSheet()">
-          💾 Enregistrer la fiche
-        </button>
-
-        <button class="btn btn-secondary"
-                onclick="printPresence()">
-          📄 Imprimer / PDF
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-  container.innerHTML=html;
-
-  attachPresenceCalculations();
-
-}
-
-
-/* =========================
-   CALCULS PRÉSENCE
-========================= */
-
-function attachPresenceCalculations(){
-
-  const starts =
-    document.querySelectorAll(
-      '[data-actual-start]'
-    );
-
-  starts.forEach(input=>{
-
-    input.addEventListener(
-      'change',
-      recalculatePresence
-    );
-
-  });
-
-  document.querySelectorAll(
-    '[data-actual-end]'
-  ).forEach(input=>{
-
-    input.addEventListener(
-      'change',
-      recalculatePresence
-    );
-
-  });
-
-  document.querySelectorAll(
-    '[data-planned-start]'
-  ).forEach(input=>{
-
-    input.addEventListener(
-      'change',
-      recalculatePresence
-    );
-
-  });
-
-  document.querySelectorAll(
-    '[data-planned-end]'
-  ).forEach(input=>{
-
-    input.addEventListener(
-      'change',
-      recalculatePresence
-    );
-
-  });
-
-  document.querySelectorAll(
-    'input[type="checkbox"]'
-  ).forEach(input=>{
-
-    input.addEventListener(
-      'change',
-      recalculatePresence
-    );
-
-  });
-
-}
-
-function recalculatePresence(){
-
-  let totalPlanned=0;
-  let totalActual=0;
-  let totalOvertime=0;
-
-  document.querySelectorAll(
-    '[data-planned-start]'
-  ).forEach(input=>{
-
-    const date=input.dataset.plannedStart;
-
-    const end=
-      document.querySelector(
-        `[data-planned-end="${date}"]`
-      );
-
-    const hours=
-      hoursBetween(
-        input.value,
-        end ? end.value : ''
-      );
-
-    totalPlanned+=hours;
-
-    const target=
-      document.getElementById(
-        'planned-'+date
-      );
-
-    if(target){
-      target.textContent=
-        formatHours(hours);
-    }
-
-  });
-
-  document.querySelectorAll(
-    '[data-actual-start]'
-  ).forEach(input=>{
-
-    const date=input.dataset.actualStart;
-
-    const end=
-      document.querySelector(
-        `[data-actual-end="${date}"]`
-      );
-
-    const hours=
-      hoursBetween(
-        input.value,
-        end ? end.value : ''
-      );
-
-    totalActual+=hours;
-
-    const plannedStart=
-      document.querySelector(
-        `[data-planned-start="${date}"]`
-      );
-
-    const plannedEnd=
-      document.querySelector(
-        `[data-planned-end="${date}"]`
-      );
-
-    const planned=
-      hoursBetween(
-        plannedStart ? plannedStart.value : '',
-        plannedEnd ? plannedEnd.value : ''
-      );
-
-    const overtime=
-      Math.max(0,hours-planned);
-
-    totalOvertime+=overtime;
-
-    const actualTarget=
-      document.getElementById(
-        'actual-'+date
-      );
-
-    const overtimeTarget=
-      document.getElementById(
-        'overtime-'+date
-      );
-
-    if(actualTarget){
-      actualTarget.textContent=
-        formatHours(hours);
-    }
-
-    if(overtimeTarget){
-      overtimeTarget.textContent=
-        formatHours(overtime);
-    }
-
-  });
-
-  const complementary=
-    Math.max(
-      0,
-      totalActual-totalPlanned-totalOvertime
-    );
-
-  document.getElementById(
-    'totalPlanned'
-  ).textContent=
-    formatHours(totalPlanned);
-
-  document.getElementById(
-    'totalActual'
-  ).textContent=
-    formatHours(totalActual);
-
-  document.getElementById(
-    'totalComplementary'
-  ).textContent=
-    formatHours(complementary);
-
-  document.getElementById(
-    'totalOvertime'
-  ).textContent=
-    formatHours(totalOvertime);
-
-  document.getElementById(
-    'totalIE'
-  ).textContent=
-    document.querySelectorAll(
-      '[data-ie]:checked'
-    ).length;
-
-  document.getElementById(
-    'totalMeals'
-  ).textContent=
-    document.querySelectorAll(
-      '[data-meal]:checked'
-    ).length;
-
-  document.getElementById(
-    'totalSnacks'
-  ).textContent=
-    document.querySelectorAll(
-      '[data-snack]:checked'
-    ).length;
-
-  document.getElementById(
-    'totalOther'
-  ).textContent=
-    document.querySelectorAll(
-      '[data-other]:checked'
-    ).length;
-
-}
-
-function savePresenceSheet(){
-
-  recalculatePresence();
-
-  const childId=
-    document.getElementById('presenceChild').value;
-
-  const month=
-    document.getElementById('presenceMonth').value;
-
-  const sheet={
-
-    id:Date.now().toString(),
-
-    childId,
-
-    month,
-
-    observations:
-      document.getElementById(
-        'presenceObservations'
-      ).value,
-
-    savedAt:
-      new Date().toISOString()
-
-  };
-
-  sheets.push(sheet);
-
-  saveAll();
-
-  updateStats();
-
-  alert(
-    'Fiche de présence enregistrée.'
-  );
-
-}
-
-function printPresence(){
-
-  recalculatePresence();
-
-  window.print();
-
-}
-
-
-/* =========================
-   RÉCAP MENSUEL
-========================= */
-
-function generateRecap(){
-
-  const monthValue=
-    document.getElementById('recapMonth').value;
-
-  const container=
-    document.getElementById('recapContent');
-
-  if(!monthValue) return;
-
-  let html='';
-
-  if(children.length===0){
-
-    html=`
-      <div class="card">
-        <h3>Aucun enfant enregistré</h3>
-        <p>
-          Ajoutez d'abord un enfant et son contrat.
-        </p>
-      </div>
-    `;
-
-  }else{
-
-    html+=`
-
-      <div class="card">
-
-        <h3>
-          Récapitulatif des contrats -
-          ${monthValue}
-        </h3>
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>Enfant</th>
-                <th>Heures/semaine</th>
-                <th>Heures mensuelles</th>
-                <th>Jours mensuels</th>
-                <th>Taux horaire</th>
-                <th>IE</th>
-                <th>Repas</th>
-                <th>Goûter</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-    `;
-
-    children.forEach(child=>{
-
-      const c=child.contract||{};
-
-      html+=`
-
-        <tr>
-
-          <td>
-            <strong>
-              ${escapeHtml(
-                child.firstName+' '+child.lastName
-              )}
-            </strong>
-          </td>
-
-          <td>
-            ${c.weeklyHours || 0} h
-          </td>
-
-          <td>
-            ${c.monthlyHours || 0} h
-          </td>
-
-          <td>
-            ${c.monthlyDays || 0}
-          </td>
-
-          <td>
-            ${
-              c.hourlyRate
-              ? c.hourlyRate.toFixed(2)+' €'
-              : '—'
-            }
-          </td>
-
-          <td>
-            ${
-              c.maintenanceFee
-              ? c.maintenanceFee.toFixed(2)+' €'
-              : '—'
-            }
-          </td>
-
-          <td>
-            ${
-              c.mealFee
-              ? c.mealFee.toFixed(2)+' €'
-              : '—'
-            }
-          </td>
-
-          <td>
-            ${
-              c.snackFee
-              ? c.snackFee.toFixed(2)+' €'
-              : '—'
-            }
-          </td>
-
-        </tr>
-
-      `;
-
-    });
-
-    html+=`
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-  container.innerHTML=html;
-
-  loadSalary(monthValue);
-
-}
-
-
-/* =========================
-   SALAIRE
-========================= */
-
-function saveSalary(){
-
-  const month=
-    document.getElementById('recapMonth').value;
-
-  if(!month) return;
-
-  salaries[month]={
-
-    amount:
-      Number(
-        document.getElementById(
-          'salaryAmount'
-        ).value
-      ) || 0,
-
-    fileName:
-      document.getElementById(
-        'salaryFile'
-      ).files[0]?.name || ''
-
-  };
-
-  localStorage.setItem(
-    'afa_salaries',
-    JSON.stringify(salaries)
-  );
-
-  loadSalary(month);
-
-  alert(
-    'Rémunération enregistrée.'
-  );
-
-}
-
-function loadSalary(month){
-
-  const data=salaries[month];
-
-  const info=
-    document.getElementById('salaryInfo');
-
-  if(!data){
-
-    document.getElementById(
-      'salaryAmount'
-    ).value='';
-
-    info.innerHTML=
-      '<p>Aucun salaire enregistré pour ce mois.</p>';
-
-    return;
-
-  }
-
-  document.getElementById(
-    'salaryAmount'
-  ).value=data.amount || '';
-
-  info.innerHTML=`
-
-    <div class="badge">
-      Salaire enregistré :
-      ${
-        Number(data.amount||0).toFixed(2)
-      } €
-    </div>
-
-    ${
-      data.fileName
-      ? `<p>Bulletin associé : ${escapeHtml(data.fileName)}</p>`
-      : ''
-    }
-
-  `;
-
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 
@@ -3004,11 +1238,1393 @@ function loadSalary(month){
    MODALES
 ========================= */
 
+function openModal(id){
+  document.getElementById(id).classList.add("show");
+}
+
 function closeModal(id){
+  document.getElementById(id).classList.remove("show");
+}
 
-  document.getElementById(id)
-    .classList.remove('show');
+window.addEventListener("click", function(e){
+  document.querySelectorAll(".modal").forEach(modal => {
+    if(e.target === modal){
+      modal.classList.remove("show");
+    }
+  });
+});
 
+
+/* =========================
+   PROFIL
+========================= */
+
+function openProfile(){
+
+  document.getElementById("profileLastName").value =
+    profile.lastName || "";
+
+  document.getElementById("profileFirstName").value =
+    profile.firstName || "Mélissa";
+
+  document.getElementById("profileAddress").value =
+    profile.address || "";
+
+  document.getElementById("profilePhone").value =
+    profile.phone || "";
+
+  document.getElementById("profilePajemploi").value =
+    profile.pajemploi || "";
+
+  openModal("profileModal");
+}
+
+function saveProfile(){
+
+  profile = {
+    lastName: document.getElementById("profileLastName").value.trim(),
+    firstName: document.getElementById("profileFirstName").value.trim(),
+    address: document.getElementById("profileAddress").value.trim(),
+    phone: document.getElementById("profilePhone").value.trim(),
+    pajemploi: document.getElementById("profilePajemploi").value.trim()
+  };
+
+  localStorage.setItem(STORAGE.profile, JSON.stringify(profile));
+
+  const firstName = profile.firstName || "Mélissa";
+
+  document.getElementById("homeProfileName").textContent =
+    firstName + " — Assistante maternelle";
+
+  closeModal("profileModal");
+
+  alert("Profil enregistré 🌿");
+}
+
+
+/* =========================
+   ENFANTS
+========================= */
+
+function openChildModal(id = null){
+
+  clearChildForm();
+
+  if(id){
+    const child = children.find(c => c.id === id);
+
+    if(!child) return;
+
+    document.getElementById("childModalTitle").textContent =
+      "👶 Modifier l’enfant";
+
+    document.getElementById("childId").value = child.id;
+
+    document.getElementById("childLastName").value =
+      child.lastName || "";
+
+    document.getElementById("childFirstName").value =
+      child.firstName || "";
+
+    document.getElementById("childBirthDate").value =
+      child.birthDate || "";
+
+    document.getElementById("childHireDate").value =
+      child.hireDate || "";
+
+    document.getElementById("parentLastName").value =
+      child.parent?.lastName || "";
+
+    document.getElementById("parentFirstName").value =
+      child.parent?.firstName || "";
+
+    document.getElementById("parentAddress").value =
+      child.parent?.address || "";
+
+    document.getElementById("parentPhone").value =
+      child.parent?.phone || "";
+
+    document.getElementById("parentPajemploi").value =
+      child.parent?.pajemploi || "";
+
+    const c = child.contract || {};
+
+    document.getElementById("contractType").value =
+      c.type || "CDI";
+
+    document.getElementById("contractStart").value =
+      c.start || "";
+
+    document.getElementById("contractEnd").value =
+      c.end || "";
+
+    document.getElementById("weeklyHours").value =
+      c.weeklyHours || "";
+
+    document.getElementById("workedWeeks").value =
+      c.workedWeeks || "";
+
+    document.getElementById("absentWeeks").value =
+      c.absentWeeks || "";
+
+    document.getElementById("monthlyHours").value =
+      c.monthlyHours || "";
+
+    document.getElementById("monthlyDays").value =
+      c.monthlyDays || "";
+
+    document.getElementById("hourlyRate").value =
+      c.hourlyRate || "";
+
+    document.getElementById("maintenanceFee").value =
+      c.maintenanceFee || "";
+
+    document.getElementById("mealFee").value =
+      c.mealFee || "";
+
+    document.getElementById("snackFee").value =
+      c.snackFee || "";
+
+    document.getElementById("usualHours").value =
+      c.usualHours || "";
+
+    document.getElementById("contractNotes").value =
+      c.notes || "";
+
+    document.querySelectorAll(".workday").forEach(cb => {
+      cb.checked = (c.workdays || []).includes(Number(cb.value));
+    });
+
+  } else {
+
+    document.getElementById("childModalTitle").textContent =
+      "👶 Ajouter un enfant";
+
+  }
+
+  openModal("childModal");
+}
+
+function clearChildForm(){
+
+  document.getElementById("childId").value = "";
+  document.getElementById("childLastName").value = "";
+  document.getElementById("childFirstName").value = "";
+  document.getElementById("childBirthDate").value = "";
+  document.getElementById("childHireDate").value = "";
+
+  document.getElementById("parentLastName").value = "";
+  document.getElementById("parentFirstName").value = "";
+  document.getElementById("parentAddress").value = "";
+  document.getElementById("parentPhone").value = "";
+  document.getElementById("parentPajemploi").value = "";
+
+  document.getElementById("contractType").value = "CDI";
+  document.getElementById("contractStart").value = "";
+  document.getElementById("contractEnd").value = "";
+  document.getElementById("weeklyHours").value = "";
+  document.getElementById("workedWeeks").value = "";
+  document.getElementById("absentWeeks").value = "";
+  document.getElementById("monthlyHours").value = "";
+  document.getElementById("monthlyDays").value = "";
+  document.getElementById("hourlyRate").value = "";
+  document.getElementById("maintenanceFee").value = "";
+  document.getElementById("mealFee").value = "";
+  document.getElementById("snackFee").value = "";
+  document.getElementById("usualHours").value = "";
+  document.getElementById("contractNotes").value = "";
+
+  document.querySelectorAll(".workday").forEach(cb => {
+    cb.checked = false;
+  });
+}
+
+function saveChild(){
+
+  const firstName =
+    document.getElementById("childFirstName").value.trim();
+
+  const lastName =
+    document.getElementById("childLastName").value.trim();
+
+  if(!firstName || !lastName){
+    alert("Merci de renseigner au minimum le nom et le prénom de l’enfant.");
+    return;
+  }
+
+  const id =
+    document.getElementById("childId").value ||
+    "child_" + Date.now();
+
+  const workdays = [];
+
+  document.querySelectorAll(".workday:checked").forEach(cb => {
+    workdays.push(Number(cb.value));
+  });
+
+  const child = {
+
+    id,
+
+    lastName,
+    firstName,
+
+    birthDate:
+      document.getElementById("childBirthDate").value,
+
+    hireDate:
+      document.getElementById("childHireDate").value,
+
+    parent:{
+      lastName:
+        document.getElementById("parentLastName").value.trim(),
+
+      firstName:
+        document.getElementById("parentFirstName").value.trim(),
+
+      address:
+        document.getElementById("parentAddress").value.trim(),
+
+      phone:
+        document.getElementById("parentPhone").value.trim(),
+
+      pajemploi:
+        document.getElementById("parentPajemploi").value.trim()
+    },
+
+    contract:{
+
+      type:
+        document.getElementById("contractType").value,
+
+      start:
+        document.getElementById("contractStart").value,
+
+      end:
+        document.getElementById("contractEnd").value,
+
+      weeklyHours:
+        Number(document.getElementById("weeklyHours").value) || 0,
+
+      workedWeeks:
+        Number(document.getElementById("workedWeeks").value) || 0,
+
+      absentWeeks:
+        Number(document.getElementById("absentWeeks").value) || 0,
+
+      monthlyHours:
+        Number(document.getElementById("monthlyHours").value) || 0,
+
+      monthlyDays:
+        Number(document.getElementById("monthlyDays").value) || 0,
+
+      hourlyRate:
+        Number(document.getElementById("hourlyRate").value) || 0,
+
+      maintenanceFee:
+        Number(document.getElementById("maintenanceFee").value) || 0,
+
+      mealFee:
+        Number(document.getElementById("mealFee").value) || 0,
+
+      snackFee:
+        Number(document.getElementById("snackFee").value) || 0,
+
+      usualHours:
+        document.getElementById("usualHours").value.trim(),
+
+      workdays,
+
+      notes:
+        document.getElementById("contractNotes").value.trim()
+    }
+
+  };
+
+  const existingIndex =
+    children.findIndex(c => c.id === id);
+
+  if(existingIndex >= 0){
+    children[existingIndex] = child;
+  }else{
+    children.push(child);
+  }
+
+  localStorage.setItem(
+    STORAGE.children,
+    JSON.stringify(children)
+  );
+
+  closeModal("childModal");
+  renderChildren();
+  populatePresenceSelectors();
+
+  alert("Enfant enregistré 🌿");
+}
+
+function renderChildren(){
+
+  const container =
+    document.getElementById("childrenList");
+
+  if(children.length === 0){
+
+    container.innerHTML = `
+      <div class="card empty" style="grid-column:1/-1;">
+        <p>👶 Aucun enfant enregistré pour le moment.</p>
+        <button class="btn" onclick="openChildModal()">
+          ＋ Ajouter un enfant
+        </button>
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML = children.map(child => {
+
+    const c = child.contract || {};
+
+    return `
+      <div class="child-card">
+
+        <h3>👶 ${escapeHtml(child.firstName)} ${escapeHtml(child.lastName)}</h3>
+
+        <p>
+          <strong>Date de naissance :</strong>
+          ${formatDate(child.birthDate)}
+        </p>
+
+        <p>
+          <strong>Embauche :</strong>
+          ${formatDate(child.hireDate)}
+        </p>
+
+        <p>
+          <strong>Parent :</strong>
+          ${escapeHtml((child.parent?.firstName || "") + " " + (child.parent?.lastName || ""))}
+        </p>
+
+        <p>
+          <strong>Contrat :</strong>
+          ${escapeHtml(c.type || "—")}
+        </p>
+
+        <p>
+          <strong>Horaires :</strong>
+          ${escapeHtml(c.usualHours || "—")}
+        </p>
+
+        <div class="actions" style="margin-top:15px;">
+
+          <button class="btn small"
+            onclick="openChildModal('${child.id}')">
+            Modifier
+          </button>
+
+          <button class="btn light small"
+            onclick="openPresenceForChild('${child.id}')">
+            📝 Présence
+          </button>
+
+          <button class="btn danger small"
+            onclick="deleteChild('${child.id}')">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+function deleteChild(id){
+
+  if(!confirm("Supprimer cet enfant et ses données de test ?")){
+    return;
+  }
+
+  children =
+    children.filter(c => c.id !== id);
+
+  localStorage.setItem(
+    STORAGE.children,
+    JSON.stringify(children)
+  );
+
+  renderChildren();
+  populatePresenceSelectors();
+}
+
+
+/* =========================
+   CALENDRIER
+========================= */
+
+const monthNames = [
+  "Janvier","Février","Mars","Avril","Mai","Juin",
+  "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
+];
+
+function renderCalendar(){
+
+  const year = calendarDate.getFullYear();
+  const month = calendarDate.getMonth();
+
+  document.getElementById("calendarTitle").textContent =
+    monthNames[month] + " " + year;
+
+  const grid =
+    document.getElementById("calendarGrid");
+
+  const firstDay =
+    new Date(year,month,1).getDay();
+
+  const mondayFirst =
+    firstDay === 0 ? 6 : firstDay - 1;
+
+  const daysInMonth =
+    new Date(year,month+1,0).getDate();
+
+  let html = "";
+
+  ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"].forEach(day => {
+    html += `<div class="calendar-weekday">${day}</div>`;
+  });
+
+  for(let i=0;i<mondayFirst;i++){
+    html += `<div class="calendar-day empty-day"></div>`;
+  }
+
+  for(let day=1;day<=daysInMonth;day++){
+
+    const dateString =
+      year + "-" +
+      String(month+1).padStart(2,"0") + "-" +
+      String(day).padStart(2,"0");
+
+    const dayEvents =
+      events.filter(e => e.date === dateString);
+
+    html += `
+      <div class="calendar-day"
+        onclick="openEventModal('${dateString}')">
+
+        <div class="calendar-number">${day}</div>
+
+        ${dayEvents.map(e =>
+          `<span class="event-dot">
+            ${escapeHtml(e.type)}
+            ${e.description ? " — " + escapeHtml(e.description) : ""}
+          </span>`
+        ).join("")}
+
+      </div>
+    `;
+  }
+
+  grid.innerHTML = html;
+}
+
+function changeCalendarMonth(delta){
+
+  calendarDate.setMonth(
+    calendarDate.getMonth() + delta
+  );
+
+  renderCalendar();
+}
+
+function openEventModal(date=""){
+
+  document.getElementById("eventDate").value =
+    date ||
+    new Date().toISOString().slice(0,10);
+
+  document.getElementById("eventDescription").value = "";
+
+  const select =
+    document.getElementById("eventChild");
+
+  select.innerHTML =
+    `<option value="">Tous / aucun enfant</option>` +
+    children.map(c =>
+      `<option value="${c.id}">
+        ${escapeHtml(c.firstName)} ${escapeHtml(c.lastName)}
+      </option>`
+    ).join("");
+
+  openModal("eventModal");
+}
+
+function saveEvent(){
+
+  const date =
+    document.getElementById("eventDate").value;
+
+  if(!date){
+    alert("Merci de choisir une date.");
+    return;
+  }
+
+  const event = {
+
+    id:"event_" + Date.now(),
+
+    date,
+
+    type:
+      document.getElementById("eventType").value,
+
+    childId:
+      document.getElementById("eventChild").value,
+
+    description:
+      document.getElementById("eventDescription").value.trim()
+
+  };
+
+  events.push(event);
+
+  localStorage.setItem(
+    STORAGE.events,
+    JSON.stringify(events)
+  );
+
+  closeModal("eventModal");
+  renderCalendar();
+}
+
+
+/* =========================
+   PRESENCES
+========================= */
+
+function populatePresenceSelectors(){
+
+  const childSelect =
+    document.getElementById("presenceChild");
+
+  const currentChild =
+    childSelect.value;
+
+  childSelect.innerHTML =
+    `<option value="">Sélectionner un enfant</option>` +
+    children.map(c =>
+      `<option value="${c.id}">
+        ${escapeHtml(c.firstName)} ${escapeHtml(c.lastName)}
+      </option>`
+    ).join("");
+
+  if(currentChild){
+    childSelect.value = currentChild;
+  }
+
+  populateMonthYearSelectors(
+    "presenceMonth",
+    "presenceYear"
+  );
+}
+
+function populateMonthYearSelectors(monthId,yearId){
+
+  const monthSelect =
+    document.getElementById(monthId);
+
+  const yearSelect =
+    document.getElementById(yearId);
+
+  if(monthSelect.options.length === 0){
+
+    monthSelect.innerHTML =
+      monthNames.map((m,i) =>
+        `<option value="${i}">${m}</option>`
+      ).join("");
+
+    monthSelect.value =
+      new Date().getMonth();
+  }
+
+  const currentYear =
+    new Date().getFullYear();
+
+  if(yearSelect.options.length === 0){
+
+    let years = "";
+
+    for(let y=currentYear-1;y<=currentYear+5;y++){
+      years += `<option value="${y}">${y}</option>`;
+    }
+
+    yearSelect.innerHTML = years;
+    yearSelect.value = currentYear;
+  }
+}
+
+function openPresenceForChild(id){
+
+  showPage(
+    "presences",
+    document.querySelector('nav button:nth-child(4)')
+  );
+
+  document.getElementById("presenceChild").value = id;
+
+  generatePresence();
+}
+
+function generatePresence(){
+
+  const childId =
+    document.getElementById("presenceChild").value;
+
+  const month =
+    Number(document.getElementById("presenceMonth").value);
+
+  const year =
+    Number(document.getElementById("presenceYear").value);
+
+  const documentContainer =
+    document.getElementById("presenceDocument");
+
+  if(!childId){
+
+    document.getElementById("presenceStatus").textContent =
+      "Sélectionne un enfant et un mois pour commencer.";
+
+    documentContainer.innerHTML = "";
+
+    return;
+  }
+
+  const child =
+    children.find(c => c.id === childId);
+
+  if(!child) return;
+
+  document.getElementById("presenceStatus").textContent =
+    "Feuille de présence en cours d'édition. Les modifications sont enregistrées automatiquement.";
+
+  const key =
+    sheetKey(childId,year,month);
+
+  if(!sheets[key]){
+
+    sheets[key] = {
+      days:{},
+      observations:"",
+      assistantSignature:"",
+      parentSignature:"",
+      validated:false,
+      parentValidated:false
+    };
+
+    saveSheets();
+  }
+
+  const sheet =
+    sheets[key];
+
+  const daysInMonth =
+    new Date(year,month+1,0).getDate();
+
+  const contract =
+    child.contract || {};
+
+  let rows = "";
+
+  let totalPlanned = 0;
+  let totalActual = 0;
+  let totalIE = 0;
+  let totalMeals = 0;
+  let totalSnacks = 0;
+  let totalDivers = 0;
+  let totalOvertime = 0;
+
+  for(let day=1;day<=daysInMonth;day++){
+
+    const date =
+      new Date(year,month,day);
+
+    const weekday =
+      date.getDay();
+
+    const dateString =
+      year + "-" +
+      String(month+1).padStart(2,"0") + "-" +
+      String(day).padStart(2,"0");
+
+    const saved =
+      sheet.days[dateString] || {};
+
+    const isPlanned =
+      (contract.workdays || []).includes(weekday);
+
+    const plannedSchedule =
+      saved.plannedSchedule ??
+      (isPlanned ? (contract.usualHours || "") : "");
+
+    const actualSchedule =
+      saved.actualSchedule || "";
+
+    const plannedHours =
+      saved.plannedHours ??
+      (isPlanned ? inferHoursFromSchedule(plannedSchedule) : 0);
+
+    const actualHours =
+      saved.actualHours ?? 0;
+
+    const overtime =
+      Math.max(0, Number(actualHours) - Number(plannedHours));
+
+    totalPlanned += Number(plannedHours) || 0;
+    totalActual += Number(actualHours) || 0;
+    totalOvertime += overtime;
+
+    if(saved.ie) totalIE++;
+    if(saved.meal) totalMeals++;
+    if(saved.snack) totalSnacks++;
+    if(saved.divers) totalDivers++;
+
+    const dayLabel =
+      date.toLocaleDateString("fr-FR",{
+        weekday:"short"
+      });
+
+    rows += `
+      <tr>
+
+        <td>
+          ${dayLabel}<br>
+          ${String(day).padStart(2,"0")}/${String(month+1).padStart(2,"0")}
+        </td>
+
+        <td>
+          <input
+            type="text"
+            value="${escapeAttribute(plannedSchedule)}"
+            onchange="updatePresenceDay('${key}','${dateString}','plannedSchedule',this.value)"
+            placeholder="8h-17h">
+        </td>
+
+        <td>
+          <input
+            type="number"
+            step="0.25"
+            min="0"
+            value="${Number(plannedHours).toFixed(2)}"
+            onchange="updatePresenceDay('${key}','${dateString}','plannedHours',this.value)"
+          >
+        </td>
+
+        <td>
+          <input
+            type="text"
+            value="${escapeAttribute(actualSchedule)}"
+            onchange="updatePresenceDay('${key}','${dateString}','actualSchedule',this.value)"
+            placeholder="8h-17h">
+        </td>
+
+        <td>
+          <input
+            type="number"
+            step="0.25"
+            min="0"
+            value="${Number(actualHours).toFixed(2)}"
+            onchange="updatePresenceDay('${key}','${dateString}','actualHours',this.value)"
+          >
+        </td>
+
+        <td>
+          ${overtime.toFixed(2)}
+        </td>
+
+        <td>
+          <input
+            type="checkbox"
+            ${saved.ie ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','ie',this.checked)"
+          >
+        </td>
+
+        <td>
+          <input
+            type="checkbox"
+            ${saved.meal ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','meal',this.checked)"
+          >
+        </td>
+
+        <td>
+          <input
+            type="checkbox"
+            ${saved.snack ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','snack',this.checked)"
+          >
+        </td>
+
+        <td>
+          <input
+            type="checkbox"
+            ${saved.divers ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','divers',this.checked)"
+          >
+        </td>
+
+      </tr>
+    `;
+  }
+
+  documentContainer.innerHTML = `
+
+    <div class="card">
+
+      <div style="text-align:center;margin-bottom:20px;">
+
+        <div class="logo" style="width:60px;height:60px;font-size:20px;">AF</div>
+
+        <h2 style="margin:5px 0;color:var(--brown-dark);">
+          FEUILLE DE PRÉSENCE
+        </h2>
+
+        <h3 style="margin:5px 0;">
+          ${escapeHtml(child.firstName)} ${escapeHtml(child.lastName)}
+        </h3>
+
+        <p>
+          Parent :
+          <strong>
+            ${escapeHtml(child.parent?.firstName || "")}
+            ${escapeHtml(child.parent?.lastName || "")}
+          </strong>
+        </p>
+
+        <p>
+          ${monthNames[month]} ${year}
+        </p>
+
+        <p>
+          Assistante maternelle :
+          <strong>
+            ${escapeHtml(profile.firstName || "Mélissa")}
+            ${escapeHtml(profile.lastName || "")}
+          </strong>
+        </p>
+
+      </div>
+
+      <div class="notice no-print">
+        💡 Tu peux remplir les horaires au fur et à mesure.
+        Les données sont enregistrées automatiquement dans ce prototype.
+      </div>
+
+      <div class="presence-wrap">
+
+        <table class="presence-table">
+
+          <thead>
+
+            <tr>
+              <th rowspan="2">Jour</th>
+              <th colspan="2">Horaires prévus au contrat</th>
+              <th colspan="2">Horaires réels</th>
+              <th rowspan="2">Suppl.<br>heures</th>
+              <th rowspan="2">IE</th>
+              <th rowspan="2">Repas</th>
+              <th rowspan="2">Goûter</th>
+              <th rowspan="2">Divers</th>
+            </tr>
+
+            <tr>
+              <th>Horaires</th>
+              <th>Heures</th>
+              <th>Horaires</th>
+              <th>Heures</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${rows}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <h3 class="section-title">📊 Récapitulatif du mois</h3>
+
+      <div class="month-summary">
+
+        <div class="summary-box">
+          Heures prévues
+          <strong>${totalPlanned.toFixed(2)} h</strong>
+        </div>
+
+        <div class="summary-box">
+          Heures réelles
+          <strong>${totalActual.toFixed(2)} h</strong>
+        </div>
+
+        <div class="summary-box">
+          Heures supplémentaires
+          <strong>${totalOvertime.toFixed(2)} h</strong>
+        </div>
+
+        <div class="summary-box">
+          IE
+          <strong>${totalIE}</strong>
+        </div>
+
+        <div class="summary-box">
+          Repas
+          <strong>${totalMeals}</strong>
+        </div>
+
+        <div class="summary-box">
+          Goûters
+          <strong>${totalSnacks}</strong>
+        </div>
+
+        <div class="summary-box">
+          Divers
+          <strong>${totalDivers}</strong>
+        </div>
+
+        <div class="summary-box">
+          Jours prévus
+          <strong>${countPlannedDays(child,year,month)}</strong>
+        </div>
+
+      </div>
+
+      <h3 class="section-title">📝 Observations</h3>
+
+      <textarea
+        id="presenceObservations"
+        onchange="updateSheetText('${key}','observations',this.value)"
+        placeholder="Observations éventuelles..."
+      >${escapeHtml(sheet.observations || "")}</textarea>
+
+      <h3 class="section-title">✍️ Validation</h3>
+
+      <div class="grid">
+
+        <div>
+          <label>Signature de l'assistante maternelle</label>
+          <div class="signature-box">
+            ${escapeHtml(sheet.assistantSignature || "")}
+          </div>
+        </div>
+
+        <div>
+          <label>Signature du parent</label>
+          <div class="signature-box">
+            ${escapeHtml(sheet.parentSignature || "")}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="notice" style="margin-top:20px;">
+        Statut :
+        <strong>
+          ${sheet.parentValidated ? "Parent validé" : "En attente de validation"}
+        </strong>
+        ${sheet.validated ? " — Feuille finalisée par l'assistante maternelle." : ""}
+      </div>
+
+      <div class="actions no-print">
+
+        <button class="btn" onclick="printPresence()">
+          📄 Imprimer / Enregistrer en PDF
+        </button>
+
+        <button class="btn light" onclick="validatePresence('${key}')">
+          ✅ Valider la feuille
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function sheetKey(childId,year,month){
+  return childId + "_" + year + "_" + month;
+}
+
+function updatePresenceDay(key,dateString,field,value){
+
+  if(!sheets[key]){
+    sheets[key] = {days:{}};
+  }
+
+  if(!sheets[key].days){
+    sheets[key].days = {};
+  }
+
+  if(!sheets[key].days[dateString]){
+    sheets[key].days[dateString] = {};
+  }
+
+  if(field === "plannedHours" || field === "actualHours"){
+    value = Number(value) || 0;
+  }
+
+  sheets[key].days[dateString][field] = value;
+
+  saveSheets();
+
+  generatePresence();
+}
+
+function updateSheetText(key,field,value){
+
+  if(!sheets[key]){
+    sheets[key] = {days:{}};
+  }
+
+  sheets[key][field] = value;
+
+  saveSheets();
+}
+
+function validatePresence(key){
+
+  if(!sheets[key]) return;
+
+  sheets[key].validated = true;
+
+  saveSheets();
+
+  generatePresence();
+
+  alert("Feuille validée 🌿");
+}
+
+function saveSheets(){
+  localStorage.setItem(
+    STORAGE.sheets,
+    JSON.stringify(sheets)
+  );
+}
+
+function printPresence(){
+
+  window.print();
+}
+
+
+/* =========================
+   CALCULS PRESENCE
+========================= */
+
+function inferHoursFromSchedule(schedule){
+
+  if(!schedule) return 0;
+
+  const matches =
+    schedule.match(/(\d{1,2})\s*h?\s*(\d{0,2})?\s*[-–]\s*(\d{1,2})\s*h?\s*(\d{0,2})?/i);
+
+  if(!matches) return 0;
+
+  const h1 =
+    Number(matches[1]) +
+    ((Number(matches[2]) || 0) / 60);
+
+  const h2 =
+    Number(matches[3]) +
+    ((Number(matches[4]) || 0) / 60);
+
+  let result = h2 - h1;
+
+  if(result < 0){
+    result += 24;
+  }
+
+  return Math.round(result * 100) / 100;
+}
+
+function countPlannedDays(child,year,month){
+
+  const contract =
+    child.contract || {};
+
+  let count = 0;
+
+  const daysInMonth =
+    new Date(year,month+1,0).getDate();
+
+  for(let d=1;d<=daysInMonth;d++){
+
+    const weekday =
+      new Date(year,month,d).getDay();
+
+    if((contract.workdays || []).includes(weekday)){
+      count++;
+    }
+  }
+
+  return count;
+}
+
+
+/* =========================
+   RECAP
+========================= */
+
+function populateRecapSelectors(){
+
+  populateMonthYearSelectors(
+    "recapMonth",
+    "recapYear"
+  );
+}
+
+function renderRecap(){
+
+  const month =
+    Number(document.getElementById("recapMonth").value);
+
+  const year =
+    Number(document.getElementById("recapYear").value);
+
+  const container =
+    document.getElementById("recapContent");
+
+  if(children.length === 0){
+
+    container.innerHTML =
+      `<div class="empty">Aucun enfant enregistré.</div>`;
+
+    return;
+  }
+
+  let rows = "";
+
+  children.forEach(child => {
+
+    const key =
+      sheetKey(child.id,year,month);
+
+    const sheet =
+      sheets[key];
+
+    let planned = 0;
+    let actual = 0;
+    let overtime = 0;
+    let ie = 0;
+    let meals = 0;
+    let snacks = 0;
+    let divers = 0;
+
+    if(sheet?.days){
+
+      Object.values(sheet.days).forEach(day => {
+
+        const p =
+          Number(day.plannedHours) || 0;
+
+        const a =
+          Number(day.actualHours) || 0;
+
+        planned += p;
+        actual += a;
+        overtime += Math.max(0,a-p);
+
+        if(day.ie) ie++;
+        if(day.meal) meals++;
+        if(day.snack) snacks++;
+        if(day.divers) divers++;
+
+      });
+
+    }
+
+    const c =
+      child.contract || {};
+
+    rows += `
+      <tr>
+
+        <td>
+          ${escapeHtml(child.firstName)}
+          ${escapeHtml(child.lastName)}
+        </td>
+
+        <td>${planned.toFixed(2)} h</td>
+        <td>${actual.toFixed(2)} h</td>
+        <td>${overtime.toFixed(2)} h</td>
+
+        <td>
+          ${c.monthlyDays || 0}
+        </td>
+
+        <td>
+          ${(Number(c.hourlyRate)||0).toFixed(2)} €
+        </td>
+
+        <td>${ie}</td>
+        <td>${meals}</td>
+        <td>${snacks}</td>
+        <td>${divers}</td>
+
+      </tr>
+    `;
+
+  });
+
+  container.innerHTML = `
+
+    <div class="presence-wrap">
+
+      <table class="recap-table">
+
+        <thead>
+
+          <tr>
+            <th>Enfant</th>
+            <th>Heures prévues</th>
+            <th>Heures réelles</th>
+            <th>Supplémentaires</th>
+            <th>Jours</th>
+            <th>Taux horaire</th>
+            <th>IE</th>
+            <th>Repas</th>
+            <th>Goûters</th>
+            <th>Divers</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+          ${rows}
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+}
+
+
+/* =========================
+   REMUNERATION
+========================= */
+
+function saveSalary(){
+
+  const month =
+    document.getElementById("salaryMonth").value;
+
+  const amount =
+    Number(document.getElementById("salaryAmount").value) || 0;
+
+  const file =
+    document.getElementById("payslipFile").files[0];
+
+  if(!month){
+    alert("Choisis le mois concerné.");
+    return;
+  }
+
+  salaries.push({
+
+    id:"salary_" + Date.now(),
+
+    month,
+
+    amount,
+
+    fileName:file ? file.name : ""
+
+  });
+
+  localStorage.setItem(
+    STORAGE.salaries,
+    JSON.stringify(salaries)
+  );
+
+  document.getElementById("salaryAmount").value = "";
+  document.getElementById("payslipFile").value = "";
+
+  renderSalaryList();
+
+  alert("Rémunération enregistrée.");
+}
+
+function renderSalaryList(){
+
+  const container =
+    document.getElementById("salaryList");
+
+  if(!container) return;
+
+  if(salaries.length === 0){
+
+    container.innerHTML =
+      `<div class="empty">Aucun bulletin enregistré.</div>`;
+
+    return;
+  }
+
+  container.innerHTML = salaries
+    .slice()
+    .reverse()
+    .map(s => `
+
+      <div class="info-box" style="margin-bottom:8px;">
+
+        <strong>${escapeHtml(s.month)}</strong>
+
+        — ${Number(s.amount).toFixed(2)} €
+
+        ${s.fileName ?
+          `<br>📄 ${escapeHtml(s.fileName)}` :
+          ""
+        }
+
+      </div>
+
+    `).join("");
+}
+
+
+/* =========================
+   OUTILS
+========================= */
+
+function formatDate(value){
+
+  if(!value) return "—";
+
+  const parts =
+    value.split("-");
+
+  if(parts.length !== 3){
+    return value;
+  }
+
+  return parts[2] + "/" + parts[1] + "/" + parts[0];
+}
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function escapeAttribute(value){
+  return escapeHtml(value);
 }
 
 
@@ -3016,17 +2632,32 @@ function closeModal(id){
    INITIALISATION
 ========================= */
 
-loadProfile();
+function initialize(){
 
-updateStats();
+  const savedProfile =
+    JSON.parse(localStorage.getItem(STORAGE.profile) || "{}");
 
-renderChildren();
+  profile = savedProfile;
 
-renderCalendar();
+  document.getElementById("homeProfileName").textContent =
+    (profile.firstName || "Mélissa") +
+    " — Assistante maternelle";
 
-populatePresenceChildren();
+  populatePresenceSelectors();
+  populateRecapSelectors();
 
-populateEventChildren();
+  renderChildren();
+  renderCalendar();
+  renderSalaryList();
+
+  const now = new Date();
+
+  document.getElementById("salaryMonth").value =
+    now.getFullYear() + "-" +
+    String(now.getMonth()+1).padStart(2,"0");
+}
+
+initialize();
 
 </script>
 
