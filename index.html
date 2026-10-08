@@ -1,303 +1,1362 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mes Présences</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Au fil des accueils</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+:root{
+  --beige:#f5efe5;
+  --beige-clair:#fbf8f2;
+  --marron:#735844;
+  --marron-fonce:#4f3d30;
+  --vert:#a8b89a;
+  --kaki:#78866b;
+  --blanc:#ffffff;
+  --texte:#4d4a45;
+  --ombre:0 4px 18px rgba(80,65,50,.10);
+}
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f3ed;
-      color: #394238;
-    }
+*{box-sizing:border-box}
 
-    header {
-      background: #dfe8dc;
-      padding: 28px 20px 22px;
-      border-radius: 0 0 28px 28px;
-    }
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--beige-clair);
+  color:var(--texte);
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+header{
+  background:var(--beige);
+  padding:28px 20px 22px;
+  text-align:center;
+  border-bottom:1px solid #e6dccd;
+}
 
-    header p {
-      margin: 7px 0 0;
-      color: #657060;
-    }
+.logo-placeholder{
+  width:82px;
+  height:82px;
+  margin:0 auto 12px;
+  border-radius:50%;
+  background:var(--vert);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:30px;
+  font-weight:bold;
+}
 
-    main {
-      padding: 20px;
-      padding-bottom: 90px;
-      max-width: 700px;
-      margin: auto;
-    }
+h1{
+  margin:0;
+  color:var(--marron-fonce);
+  font-family:Georgia,serif;
+  font-size:30px;
+}
 
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 18px;
-      margin-bottom: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-    }
+.subtitle{
+  margin-top:7px;
+  color:var(--kaki);
+  font-size:14px;
+}
 
-    .child-name {
-      font-size: 20px;
-      font-weight: 700;
-    }
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:white;
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  flex-wrap:wrap;
+  padding:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+}
 
-    .schedule {
-      color: #70776d;
-      margin: 6px 0 15px;
-    }
+nav button{
+  border:0;
+  background:transparent;
+  color:var(--marron);
+  padding:10px 13px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+}
 
-    .buttons {
-      display: flex;
-      gap: 8px;
-    }
+nav button:hover,
+nav button.active{
+  background:var(--vert);
+  color:white;
+}
 
-    button {
-      border: none;
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:25px 18px 80px;
+}
 
-    .arrival {
-      background: #dcebd8;
-      color: #365337;
-    }
+.page{
+  display:none;
+}
 
-    .departure {
-      background: #eee9dc;
-      color: #62583d;
-    }
+.page.active{
+  display:block;
+}
 
-    .absent {
-      background: #f1dddd;
-      color: #793d3d;
-    }
+.card{
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:var(--ombre);
+  border:1px solid #eee6da;
+}
 
-    .status {
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 10px;
-      background: #f7f7f4;
-      font-size: 14px;
-    }
+.hero{
+  text-align:center;
+  padding:35px 20px;
+  background:linear-gradient(135deg,#f5efe5,#edf2e9);
+}
 
-    nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      border-top: 1px solid #e4e4df;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 5px;
-    }
+.hero h2{
+  color:var(--marron-fonce);
+  font-family:Georgia,serif;
+  font-size:27px;
+}
 
-    nav button {
-      background: none;
-      color: #697267;
-      padding: 8px;
-      font-size: 12px;
-    }
+h2,h3{
+  color:var(--marron-fonce);
+}
 
-    .title {
-      margin-top: 8px;
-      margin-bottom: 15px;
-      font-size: 22px;
-    }
+.button{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  cursor:pointer;
+  background:var(--kaki);
+  color:white;
+  font-weight:bold;
+}
 
-    .empty {
-      text-align: center;
-      padding: 30px 10px;
-      color: #777;
-    }
-  </style>
+.button.secondary{
+  background:var(--beige);
+  color:var(--marron);
+}
+
+.button.danger{
+  background:#b77b70;
+}
+
+.button.small{
+  padding:7px 10px;
+  font-size:12px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
+}
+
+.stat{
+  background:var(--beige-clair);
+  border-radius:15px;
+  padding:18px;
+  text-align:center;
+  border:1px solid #eee4d7;
+}
+
+.stat strong{
+  display:block;
+  font-size:28px;
+  color:var(--marron);
+  margin-bottom:5px;
+}
+
+.child-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.child-name{
+  font-size:19px;
+  color:var(--marron-fonce);
+  font-weight:bold;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:11px;
+  border:1px solid #dcd2c4;
+  border-radius:9px;
+  background:#fffdf9;
+  font-size:14px;
+}
+
+label{
+  display:block;
+  margin:12px 0 6px;
+  font-weight:bold;
+  color:var(--marron);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(50,40,30,.45);
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  background:white;
+  max-width:600px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:20px;
+  padding:25px;
+}
+
+.calendar-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.day-name{
+  text-align:center;
+  font-weight:bold;
+  color:var(--marron);
+  padding:8px 2px;
+  font-size:12px;
+}
+
+.day{
+  min-height:70px;
+  background:#faf7f1;
+  border:1px solid #eee5d9;
+  border-radius:8px;
+  padding:6px;
+  font-size:12px;
+}
+
+.day strong{
+  color:var(--marron);
+}
+
+.day.today{
+  border:2px solid var(--kaki);
+}
+
+.month-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+}
+
+.month{
+  padding:18px;
+  background:var(--beige-clair);
+  border:1px solid #e8dfd2;
+  border-radius:13px;
+  cursor:pointer;
+  text-align:center;
+}
+
+.month:hover{
+  background:#edf2e9;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+th,td{
+  border:1px solid #ddd3c5;
+  padding:9px;
+  text-align:left;
+}
+
+th{
+  background:var(--beige);
+  color:var(--marron);
+}
+
+.notice{
+  background:#edf2e9;
+  border-left:4px solid var(--kaki);
+  padding:13px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#887e73;
+}
+
+footer{
+  text-align:center;
+  color:#8b8176;
+  padding:20px;
+  font-size:12px;
+}
+
+@media(max-width:600px){
+  h1{font-size:25px}
+  nav button{font-size:12px;padding:8px}
+  main{padding:15px 10px 60px}
+  .card{padding:16px}
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Mes Présences</h1>
-    <p id="date"></p>
-  </header>
+<header>
+  <div class="logo-placeholder">AF</div>
+  <h1>Au fil des accueils</h1>
+  <div class="subtitle">Gestion simple de votre activité d'assistante maternelle</div>
+</header>
 
-  <main>
-    <h2 class="title">Aujourd'hui</h2>
+<nav>
+  <button class="nav-btn active" onclick="showPage('accueil',this)">🏠 Accueil</button>
+  <button class="nav-btn" onclick="showPage('enfants',this)">👶 Enfants</button>
+  <button class="nav-btn" onclick="showPage('calendrier',this)">📅 Calendrier</button>
+  <button class="nav-btn" onclick="showPage('presences',this)">📝 Présences</button>
+  <button class="nav-btn" onclick="showPage('fiches',this)">📄 Fiches</button>
+  <button class="nav-btn" onclick="showPage('indemnites',this)">💶 Indemnités</button>
+</nav>
 
-    <div id="children"></div>
-  </main>
+<main>
 
-  <nav>
-    <button onclick="showToday()">🏠<br>Accueil</button>
-    <button onclick="showChildren()">👶<br>Enfants</button>
-    <button onclick="showCalendar()">📅<br>Calendrier</button>
-    <button onclick="showSheets()">📄<br>Fiches</button>
-  </nav>
+<section id="accueil" class="page active">
 
-  <script>
+  <div class="card hero">
+    <h2>Bienvenue sur Au fil des accueils 🌿</h2>
+    <p>Votre espace de gestion pour suivre simplement les accueils, contrats, présences et indemnités.</p>
+    <div class="actions" style="justify-content:center">
+      <button class="button" onclick="showPage('enfants')">👶 Gérer mes enfants</button>
+      <button class="button secondary" onclick="showPage('calendrier')">📅 Voir le calendrier</button>
+    </div>
+  </div>
 
-    let children = [
-      {
-        name: "Enfant exemple",
-        schedule: "8h00 → 18h00",
-        arrival: null,
-        departure: null,
-        absent: false
-      }
-    ];
+  <div class="grid">
+    <div class="stat">
+      <strong id="stat-enfants">0</strong>
+      Enfants
+    </div>
+    <div class="stat">
+      <strong id="stat-mois">2026</strong>
+      Année en cours
+    </div>
+    <div class="stat">
+      <strong>∞</strong>
+      Années disponibles
+    </div>
+  </div>
 
-    function displayDate() {
-      const today = new Date();
+  <div class="card">
+    <h3>👩‍🍼 Assistante maternelle</h3>
+    <p><strong>Prénom :</strong> Mélissa</p>
+    <p>Les informations professionnelles pourront être complétées plus tard dans votre profil.</p>
+  </div>
 
-      const options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      };
+</section>
 
-      document.getElementById("date").textContent =
-        today.toLocaleDateString("fr-FR", options);
-    }
 
-    function displayChildren() {
-      const container = document.getElementById("children");
-      container.innerHTML = "";
+<section id="enfants" class="page">
 
-      children.forEach((child, index) => {
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <div>
+        <h2>👶 Mes enfants accueillis</h2>
+        <p>Ajoutez autant d'enfants que nécessaire.</p>
+      </div>
+      <button class="button" onclick="openChildModal()">＋ Ajouter un enfant</button>
+    </div>
+  </div>
 
-        const card = document.createElement("div");
-        card.className = "card";
+  <div id="children-list"></div>
 
-        let status = "";
+</section>
 
-        if (child.absent) {
-          status = "❌ Absent aujourd'hui";
-        } else if (child.arrival && child.departure) {
-          status = "✅ Présence enregistrée : " +
-            child.arrival + " → " + child.departure;
-        } else if (child.arrival) {
-          status = "🟢 Arrivé à " + child.arrival;
-        }
 
-        card.innerHTML = `
-          <div class="child-name">${child.name}</div>
-          <div class="schedule">Prévu : ${child.schedule}</div>
+<section id="calendrier" class="page">
 
-          <div class="buttons">
-            <button class="arrival"
-              onclick="arrival(${index})">
-              ARRIVÉE
-            </button>
+  <div class="card">
+    <h2>📅 Calendrier</h2>
+    <p>Le calendrier commence en 2026 et pourra continuer avec les années suivantes.</p>
 
-            <button class="departure"
-              onclick="departure(${index})">
-              DÉPART
-            </button>
+    <div class="calendar-head">
+      <button class="button secondary small" onclick="changeYear(-1)">← Année précédente</button>
+      <h2 id="calendar-year" style="margin:0">2026</h2>
+      <button class="button secondary small" onclick="changeYear(1)">Année suivante →</button>
+    </div>
 
-            <button class="absent"
-              onclick="absence(${index})">
-              ABSENT
-            </button>
-          </div>
+    <div class="month-grid" id="month-grid"></div>
+  </div>
 
-          ${status ? `<div class="status">${status}</div>` : ""}
-        `;
+  <div class="card">
+    <h3>🌿 Événements du calendrier</h3>
 
-        container.appendChild(card);
-      });
-    }
+    <div class="form-grid">
+      <div>
+        <label>Type</label>
+        <select id="event-type">
+          <option>Congé de l'assistante maternelle</option>
+          <option>Congé de l'enfant</option>
+          <option>Absence de l'enfant</option>
+          <option>Jour férié</option>
+          <option>Autre</option>
+        </select>
+      </div>
 
-    function currentTime() {
-      return new Date().toLocaleTimeString("fr-FR", {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-    }
+      <div>
+        <label>Date</label>
+        <input type="date" id="event-date">
+      </div>
+    </div>
 
-    function arrival(index) {
-      children[index].arrival = currentTime();
-      children[index].absent = false;
-      displayChildren();
-    }
+    <div class="actions">
+      <button class="button" onclick="addEvent()">Ajouter au calendrier</button>
+    </div>
 
-    function departure(index) {
-      children[index].departure = currentTime();
-      displayChildren();
-    }
+    <div id="events-list"></div>
+  </div>
 
-    function absence(index) {
-      children[index].absent = true;
-      children[index].arrival = null;
-      children[index].departure = null;
-      displayChildren();
-    }
+</section>
 
-    function showToday() {
-      document.querySelector("main").innerHTML = `
-        <h2 class="title">Aujourd'hui</h2>
-        <div id="children"></div>
-      `;
-      displayChildren();
-    }
 
-    function showChildren() {
-      document.querySelector("main").innerHTML = `
-        <h2 class="title">Mes enfants</h2>
-        <div class="card">
-          <div class="empty">
-            👶<br><br>
-            La gestion des enfants sera ajoutée ici.
-            <br><br>
-            Nous pourrons ensuite créer une fiche complète
-            pour chaque contrat.
-          </div>
+<section id="presences" class="page">
+
+  <div class="card">
+    <h2>📝 Présences</h2>
+    <p>Suivez les horaires prévus au contrat et les horaires réellement effectués.</p>
+
+    <div class="form-grid">
+      <div>
+        <label>Enfant</label>
+        <select id="presence-child"></select>
+      </div>
+
+      <div>
+        <label>Mois</label>
+        <input type="month" id="presence-month" value="2026-10">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="button" onclick="createPresenceSheet()">Créer la fiche du mois</button>
+    </div>
+  </div>
+
+  <div id="presence-area"></div>
+
+</section>
+
+
+<section id="fiches" class="page">
+
+  <div class="card">
+    <h2>📄 Fiches de présence</h2>
+    <p>Les fiches mensuelles seront préparées avec les informations de l'enfant, des parents et de l'assistante maternelle.</p>
+
+    <div id="sheets-list"></div>
+  </div>
+
+</section>
+
+
+<section id="indemnites" class="page">
+
+  <div class="card">
+    <h2>💶 Indemnités et rémunération</h2>
+
+    <div class="grid">
+      <div class="stat">
+        <strong>IE</strong>
+        Indemnités d'entretien
+      </div>
+      <div class="stat">
+        <strong>🍽️</strong>
+        Repas
+      </div>
+      <div class="stat">
+        <strong>🍪</strong>
+        Goûters
+      </div>
+      <div class="stat">
+        <strong>＋</strong>
+        Divers
+      </div>
+      <div class="stat">
+        <strong>⏱️</strong>
+        Heures complémentaires
+      </div>
+      <div class="stat">
+        <strong>⏱️</strong>
+        Heures supplémentaires
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Ajouter une ligne</h3>
+
+    <div class="form-grid">
+      <div>
+        <label>Enfant</label>
+        <select id="fee-child"></select>
+      </div>
+
+      <div>
+        <label>Mois</label>
+        <input type="month" id="fee-month" value="2026-10">
+      </div>
+
+      <div>
+        <label>Type</label>
+        <select id="fee-type">
+          <option>Indemnité d'entretien</option>
+          <option>Repas</option>
+          <option>Goûter</option>
+          <option>Divers</option>
+          <option>Heures complémentaires</option>
+          <option>Heures supplémentaires</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Montant (€)</label>
+        <input type="number" id="fee-amount" step="0.01" min="0">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="button" onclick="addFee()">Ajouter</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Enfant</th>
+            <th>Mois</th>
+            <th>Type</th>
+            <th>Montant</th>
+          </tr>
+        </thead>
+        <tbody id="fees-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  Au fil des accueils · Gestion d'activité pour assistantes maternelles
+</footer>
+
+
+<!-- MODALE AJOUT ENFANT -->
+
+<div class="modal" id="child-modal">
+
+  <div class="modal-content">
+
+    <h2>➕ Ajouter un enfant</h2>
+
+    <div class="form-grid">
+
+      <div>
+        <label>Prénom de l'enfant *</label>
+        <input id="child-firstname" placeholder="Ex. Léa">
+      </div>
+
+      <div>
+        <label>Nom de l'enfant</label>
+        <input id="child-lastname" placeholder="Ex. Dupont">
+      </div>
+
+      <div>
+        <label>Prénom du parent</label>
+        <input id="parent-firstname" placeholder="Ex. Julie">
+      </div>
+
+      <div>
+        <label>Nom du parent</label>
+        <input id="parent-lastname" placeholder="Ex. Dupont">
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="button" onclick="saveChild()">Enregistrer</button>
+      <button class="button secondary" onclick="closeChildModal()">Annuler</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- MODALE CONTRAT -->
+
+<div class="modal" id="contract-modal">
+
+  <div class="modal-content">
+
+    <h2>📄 Contrat de <span id="contract-child-name"></span></h2>
+
+    <input type="hidden" id="contract-child-id">
+
+    <label>Date de début du contrat</label>
+    <input type="date" id="contract-start">
+
+    <label>Date de fin du contrat</label>
+    <input type="date" id="contract-end">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Heures prévues / semaine</label>
+        <input type="number" id="contract-week-hours" step="0.01">
+      </div>
+
+      <div>
+        <label>Semaines travaillées / an</label>
+        <input type="number" id="contract-weeks">
+      </div>
+
+      <div>
+        <label>Taux horaire (€)</label>
+        <input type="number" id="contract-rate" step="0.01">
+      </div>
+
+      <div>
+        <label>Jours d'accueil / semaine</label>
+        <input type="number" id="contract-days">
+      </div>
+
+    </div>
+
+    <label>Horaires habituels</label>
+    <textarea id="contract-hours" rows="3" placeholder="Ex. Lundi, mardi, jeudi et vendredi : 8h00 - 17h30"></textarea>
+
+    <label>Informations complémentaires</label>
+    <textarea id="contract-notes" rows="4"></textarea>
+
+    <div class="actions">
+      <button class="button" onclick="saveContract()">Enregistrer le contrat</button>
+      <button class="button secondary" onclick="closeContractModal()">Fermer</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+let children = JSON.parse(localStorage.getItem("afa_children") || "[]");
+let events = JSON.parse(localStorage.getItem("afa_events") || "[]");
+let fees = JSON.parse(localStorage.getItem("afa_fees") || "[]");
+let sheets = JSON.parse(localStorage.getItem("afa_sheets") || "[]");
+
+let currentYear = new Date().getFullYear();
+if(currentYear < 2026) currentYear = 2026;
+
+
+function saveAll(){
+  localStorage.setItem("afa_children",JSON.stringify(children));
+  localStorage.setItem("afa_events",JSON.stringify(events));
+  localStorage.setItem("afa_fees",JSON.stringify(fees));
+  localStorage.setItem("afa_sheets",JSON.stringify(sheets));
+}
+
+
+function showPage(id,button){
+
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+
+  const page=document.getElementById(id);
+  if(page) page.classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+
+  if(button) button.classList.add("active");
+
+  if(id==="enfants") renderChildren();
+  if(id==="calendrier") renderCalendar();
+  if(id==="presences") refreshChildSelects();
+  if(id==="fiches") renderSheets();
+  if(id==="indemnites"){
+    refreshChildSelects();
+    renderFees();
+  }
+}
+
+
+function openChildModal(){
+  document.getElementById("child-modal").classList.add("show");
+}
+
+
+function closeChildModal(){
+  document.getElementById("child-modal").classList.remove("show");
+}
+
+
+function saveChild(){
+
+  const firstname=document.getElementById("child-firstname").value.trim();
+
+  if(!firstname){
+    alert("Merci d'indiquer au moins le prénom de l'enfant.");
+    return;
+  }
+
+  const child={
+    id:Date.now(),
+    firstname,
+    lastname:document.getElementById("child-lastname").value.trim(),
+    parentFirstname:document.getElementById("parent-firstname").value.trim(),
+    parentLastname:document.getElementById("parent-lastname").value.trim(),
+    contract:{}
+  };
+
+  children.push(child);
+  saveAll();
+
+  document.getElementById("child-firstname").value="";
+  document.getElementById("child-lastname").value="";
+  document.getElementById("parent-firstname").value="";
+  document.getElementById("parent-lastname").value="";
+
+  closeChildModal();
+  renderChildren();
+  refreshChildSelects();
+}
+
+
+function renderChildren(){
+
+  const area=document.getElementById("children-list");
+
+  document.getElementById("stat-enfants").textContent=children.length;
+
+  if(children.length===0){
+    area.innerHTML=`
+      <div class="card empty">
+        <div style="font-size:35px">👶</div>
+        <p>Aucun enfant n'est encore enregistré.</p>
+        <button class="button" onclick="openChildModal()">＋ Ajouter mon premier enfant</button>
+      </div>`;
+    return;
+  }
+
+  area.innerHTML=children.map(child=>`
+
+    <div class="card child-card">
+
+      <div>
+        <div class="child-name">${escapeHtml(child.firstname)} ${escapeHtml(child.lastname)}</div>
+        <div style="font-size:13px;color:#82786d;margin-top:5px">
+          Parent : ${escapeHtml(child.parentFirstname)} ${escapeHtml(child.parentLastname)}
         </div>
-      `;
-    }
+      </div>
 
-    function showCalendar() {
-      document.querySelector("main").innerHTML = `
-        <h2 class="title">Calendrier</h2>
-        <div class="card">
-          <div class="empty">
-            📅<br><br>
-            Le calendrier des présences sera ajouté ici.
-          </div>
+      <div class="actions">
+
+        <button class="button small" onclick="openContract(${child.id})">
+          📄 Contrat
+        </button>
+
+        <button class="button secondary small" onclick="goToPresence(${child.id})">
+          📝 Présences
+        </button>
+
+        <button class="button danger small" onclick="deleteChild(${child.id})">
+          Supprimer
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+}
+
+
+function deleteChild(id){
+
+  if(!confirm("Supprimer cet enfant ?")) return;
+
+  children=children.filter(c=>c.id!==id);
+
+  saveAll();
+  renderChildren();
+  refreshChildSelects();
+}
+
+
+function openContract(id){
+
+  const child=children.find(c=>c.id===id);
+  if(!child) return;
+
+  document.getElementById("contract-child-id").value=id;
+  document.getElementById("contract-child-name").textContent=child.firstname;
+
+  const c=child.contract || {};
+
+  document.getElementById("contract-start").value=c.start || "";
+  document.getElementById("contract-end").value=c.end || "";
+  document.getElementById("contract-week-hours").value=c.weekHours || "";
+  document.getElementById("contract-weeks").value=c.weeks || "";
+  document.getElementById("contract-rate").value=c.rate || "";
+  document.getElementById("contract-days").value=c.days || "";
+  document.getElementById("contract-hours").value=c.hours || "";
+  document.getElementById("contract-notes").value=c.notes || "";
+
+  document.getElementById("contract-modal").classList.add("show");
+}
+
+
+function closeContractModal(){
+  document.getElementById("contract-modal").classList.remove("show");
+}
+
+
+function saveContract(){
+
+  const id=Number(document.getElementById("contract-child-id").value);
+
+  const child=children.find(c=>c.id===id);
+
+  if(!child) return;
+
+  child.contract={
+    start:document.getElementById("contract-start").value,
+    end:document.getElementById("contract-end").value,
+    weekHours:document.getElementById("contract-week-hours").value,
+    weeks:document.getElementById("contract-weeks").value,
+    rate:document.getElementById("contract-rate").value,
+    days:document.getElementById("contract-days").value,
+    hours:document.getElementById("contract-hours").value,
+    notes:document.getElementById("contract-notes").value
+  };
+
+  saveAll();
+  closeContractModal();
+
+  alert("Contrat enregistré.");
+}
+
+
+function goToPresence(id){
+
+  showPage("presences");
+
+  setTimeout(()=>{
+    refreshChildSelects();
+    document.getElementById("presence-child").value=id;
+    createPresenceSheet();
+  },50);
+}
+
+
+function refreshChildSelects(){
+
+  const selects=[
+    document.getElementById("presence-child"),
+    document.getElementById("fee-child")
+  ];
+
+  selects.forEach(select=>{
+
+    if(!select) return;
+
+    select.innerHTML='<option value="">-- Choisir un enfant --</option>';
+
+    children.forEach(child=>{
+      const option=document.createElement("option");
+      option.value=child.id;
+      option.textContent=child.firstname+" "+child.lastname;
+      select.appendChild(option);
+    });
+
+  });
+}
+
+
+function changeYear(amount){
+
+  currentYear+=amount;
+
+  if(currentYear<2026) currentYear=2026;
+
+  renderCalendar();
+}
+
+
+function renderCalendar(){
+
+  document.getElementById("calendar-year").textContent=currentYear;
+
+  const months=[
+    "Janvier","Février","Mars","Avril","Mai","Juin",
+    "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
+  ];
+
+  const grid=document.getElementById("month-grid");
+
+  grid.innerHTML=months.map((month,index)=>`
+
+    <div class="month" onclick="openMonth(${index})">
+      <strong>${month}</strong>
+      <div style="font-size:12px;margin-top:5px;color:#85796d">
+        ${currentYear}
+      </div>
+    </div>
+
+  `).join("");
+
+  renderEvents();
+}
+
+
+function openMonth(monthIndex){
+
+  const month=String(monthIndex+1).padStart(2,"0");
+
+  document.getElementById("presence-month").value=
+    `${currentYear}-${month}`;
+
+  showPage("presences");
+
+  refreshChildSelects();
+}
+
+
+function addEvent(){
+
+  const type=document.getElementById("event-type").value;
+  const date=document.getElementById("event-date").value;
+
+  if(!date){
+    alert("Choisissez une date.");
+    return;
+  }
+
+  events.push({
+    id:Date.now(),
+    type,
+    date
+  });
+
+  saveAll();
+  renderEvents();
+
+  document.getElementById("event-date").value="";
+}
+
+
+function renderEvents(){
+
+  const area=document.getElementById("events-list");
+
+  const yearEvents=events
+    .filter(e=>e.date.startsWith(String(currentYear)))
+    .sort((a,b)=>a.date.localeCompare(b.date));
+
+  if(yearEvents.length===0){
+    area.innerHTML='<div class="empty">Aucun événement enregistré pour cette année.</div>';
+    return;
+  }
+
+  area.innerHTML=yearEvents.map(e=>`
+
+    <div class="notice" style="display:flex;justify-content:space-between;gap:10px">
+      <span><strong>${formatDate(e.date)}</strong> — ${escapeHtml(e.type)}</span>
+      <button class="button danger small" onclick="deleteEvent(${e.id})">×</button>
+    </div>
+
+  `).join("");
+}
+
+
+function deleteEvent(id){
+
+  events=events.filter(e=>e.id!==id);
+
+  saveAll();
+  renderEvents();
+}
+
+
+function createPresenceSheet(){
+
+  const childId=Number(document.getElementById("presence-child").value);
+  const month=document.getElementById("presence-month").value;
+
+  if(!childId || !month){
+    alert("Choisissez un enfant et un mois.");
+    return;
+  }
+
+  const child=children.find(c=>c.id===childId);
+
+  if(!child) return;
+
+  const [year,monthNumber]=month.split("-").map(Number);
+
+  const daysInMonth=new Date(year,monthNumber,0).getDate();
+
+  let rows="";
+
+  for(let day=1;day<=daysInMonth;day++){
+
+    const date=new Date(year,monthNumber-1,day);
+
+    const weekday=date.getDay();
+
+    if(weekday===0 || weekday===6) continue;
+
+    rows+=`
+
+      <tr>
+        <td>${String(day).padStart(2,"0")}/${String(monthNumber).padStart(2,"0")}/${year}</td>
+
+        <td>
+          <input type="time" class="contract-start">
+          -
+          <input type="time" class="contract-end">
+        </td>
+
+        <td>
+          <input type="time" class="real-start">
+          -
+          <input type="time" class="real-end">
+        </td>
+
+        <td>
+          <select class="absence">
+            <option>Présent</option>
+            <option>Absence enfant</option>
+            <option>Congé enfant</option>
+            <option>Congé assistante maternelle</option>
+            <option>Jour férié</option>
+          </select>
+        </td>
+
+      </tr>
+
+    `;
+  }
+
+  document.getElementById("presence-area").innerHTML=`
+
+    <div class="card">
+
+      <h2>Fiche de présence — ${escapeHtml(child.firstname)} ${escapeHtml(child.lastname)}</h2>
+
+      <div class="notice">
+        <strong>Assistante maternelle :</strong> Mélissa<br>
+        <strong>Parent :</strong> ${escapeHtml(child.parentFirstname)} ${escapeHtml(child.parentLastname)}<br>
+        <strong>Mois :</strong> ${formatMonth(month)}
+      </div>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Jour</th>
+              <th>Heures prévues au contrat</th>
+              <th>Heures réellement effectuées</th>
+              <th>Situation</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${rows}
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <div class="grid" style="margin-top:20px">
+
+        <div class="stat">
+          <strong>0 h</strong>
+          Total prévu au contrat
         </div>
-      `;
-    }
 
-    function showSheets() {
-      document.querySelector("main").innerHTML = `
-        <h2 class="title">Fiches de présence</h2>
-        <div class="card">
-          <div class="empty">
-            📄<br><br>
-            La génération des fiches mensuelles sera ajoutée ici.
-          </div>
+        <div class="stat">
+          <strong>0 h</strong>
+          Total réellement effectué
         </div>
-      `;
-    }
 
-    displayDate();
-    displayChildren();
+        <div class="stat">
+          <strong>0 h</strong>
+          Heures complémentaires
+        </div>
 
-  </script>
+        <div class="stat">
+          <strong>0 h</strong>
+          Heures supplémentaires
+        </div>
+
+      </div>
+
+      <div class="card" style="background:#fbf8f2;margin-top:20px">
+
+        <h3>✍️ Signatures</h3>
+
+        <div class="form-grid">
+
+          <div>
+            <label>Signature de l'assistante maternelle</label>
+            <textarea rows="3" placeholder="Signature à prévoir"></textarea>
+          </div>
+
+          <div>
+            <label>Signature du parent</label>
+            <textarea rows="3" placeholder="Signature à prévoir"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <button class="button" onclick="saveSheet('${child.id}','${month}')">
+          💾 Enregistrer la fiche
+        </button>
+
+        <button class="button secondary" onclick="window.print()">
+          🖨️ Imprimer
+        </button>
+      </div>
+
+    </div>
+
+  `;
+}
+
+
+function saveSheet(childId,month){
+
+  const child=children.find(c=>c.id===Number(childId));
+
+  if(!child) return;
+
+  sheets.push({
+    id:Date.now(),
+    childId:Number(childId),
+    month,
+    created:new Date().toISOString()
+  });
+
+  saveAll();
+  renderSheets();
+
+  alert("Fiche enregistrée.");
+}
+
+
+function renderSheets(){
+
+  const area=document.getElementById("sheets-list");
+
+  if(sheets.length===0){
+    area.innerHTML='<div class="empty">Aucune fiche de présence enregistrée.</div>';
+    return;
+  }
+
+  area.innerHTML=sheets.slice().reverse().map(sheet=>{
+
+    const child=children.find(c=>c.id===sheet.childId);
+
+    if(!child) return "";
+
+    return `
+
+      <div class="notice" style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+
+        <div>
+          <strong>${escapeHtml(child.firstname)} ${escapeHtml(child.lastname)}</strong><br>
+          <span>${formatMonth(sheet.month)}</span>
+        </div>
+
+        <button class="button small" onclick="reopenSheet(${sheet.childId},'${sheet.month}')">
+          Voir
+        </button>
+
+      </div>
+
+    `;
+
+  }).join("");
+}
+
+
+function reopenSheet(childId,month){
+
+  showPage("presences");
+
+  refreshChildSelects();
+
+  document.getElementById("presence-child").value=childId;
+  document.getElementById("presence-month").value=month;
+
+  createPresenceSheet();
+}
+
+
+function addFee(){
+
+  const childId=Number(document.getElementById("fee-child").value);
+  const month=document.getElementById("fee-month").value;
+  const type=document.getElementById("fee-type").value;
+  const amount=Number(document.getElementById("fee-amount").value);
+
+  if(!childId || !month || !amount){
+    alert("Merci de compléter les informations.");
+    return;
+  }
+
+  fees.push({
+    id:Date.now(),
+    childId,
+    month,
+    type,
+    amount
+  });
+
+  saveAll();
+  renderFees();
+
+  document.getElementById("fee-amount").value="";
+}
+
+
+function renderFees(){
+
+  const tbody=document.getElementById("fees-table");
+
+  if(!fees.length){
+    tbody.innerHTML=`
+      <tr>
+        <td colspan="4" style="text-align:center">Aucune indemnité enregistrée.</td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML=fees.slice().reverse().map(f=>{
+
+    const child=children.find(c=>c.id===f.childId);
+
+    return `
+      <tr>
+        <td>${child ? escapeHtml(child.firstname+" "+child.lastname) : ""}</td>
+        <td>${formatMonth(f.month)}</td>
+        <td>${escapeHtml(f.type)}</td>
+        <td>${Number(f.amount).toFixed(2)} €</td>
+      </tr>
+    `;
+
+  }).join("");
+}
+
+
+function formatDate(date){
+
+  const parts=date.split("-");
+
+  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+}
+
+
+function formatMonth(value){
+
+  const parts=value.split("-");
+
+  const names=[
+    "Janvier","Février","Mars","Avril","Mai","Juin",
+    "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
+  ];
+
+  return names[Number(parts[1])-1]+" "+parts[0];
+}
+
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+renderChildren();
+renderCalendar();
+refreshChildSelects();
+renderFees();
+renderSheets();
+
+</script>
 
 </body>
 </html>
