@@ -2311,8 +2311,24 @@ function recordPointage(childId,action){
 
   }
 
-  savePointages();
-  renderPointage();
+savePointages();
+renderPointage();
+
+// Si la feuille de présence affichée correspond à cet enfant
+// et à ce mois, on la rafraîchit immédiatement.
+if(document.getElementById("presences").classList.contains("active")){
+  const selectedChild = document.getElementById("presenceChild").value;
+  const selectedMonth = Number(document.getElementById("presenceMonth").value);
+  const selectedYear = Number(document.getElementById("presenceYear").value);
+  const today = new Date();
+
+  if(
+    selectedChild === childId &&
+    selectedMonth === today.getMonth() &&
+    selectedYear === today.getFullYear()
+  ){
+    generatePresence();
+  }
 }
 
 function manualPointageTime(childId,field,value){
@@ -2449,41 +2465,27 @@ function openPresenceForChild(id){
 
 function generatePresence(){
 
-  const childId =
-    document.getElementById("presenceChild").value;
-
-  const month =
-    Number(document.getElementById("presenceMonth").value);
-
-  const year =
-    Number(document.getElementById("presenceYear").value);
-
-  const documentContainer =
-    document.getElementById("presenceDocument");
+  const childId = document.getElementById("presenceChild").value;
+  const month = Number(document.getElementById("presenceMonth").value);
+  const year = Number(document.getElementById("presenceYear").value);
+  const documentContainer = document.getElementById("presenceDocument");
 
   if(!childId){
-
     document.getElementById("presenceStatus").textContent =
       "Sélectionne un enfant et un mois pour commencer.";
-
     documentContainer.innerHTML = "";
-
     return;
   }
 
-  const child =
-    children.find(c => c.id === childId);
-
+  const child = children.find(c => c.id === childId);
   if(!child) return;
 
   document.getElementById("presenceStatus").textContent =
     "Feuille de présence en cours d'édition. Les modifications sont enregistrées automatiquement.";
 
-  const key =
-    sheetKey(childId,year,month);
+  const key = sheetKey(childId, year, month);
 
   if(!sheets[key]){
-
     sheets[key] = {
       days:{},
       observations:"",
@@ -2492,21 +2494,15 @@ function generatePresence(){
       validated:false,
       parentValidated:false
     };
-
-    saveSheets();
   }
 
-  const sheet =
-    sheets[key];
+  const sheet = sheets[key];
+  if(!sheet.days) sheet.days = {};
 
-  const daysInMonth =
-    new Date(year,month+1,0).getDate();
-
-  const contract =
-    child.contract || {};
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const contract = child.contract || {};
 
   let rows = "";
-
   let totalPlanned = 0;
   let totalActual = 0;
   let totalIE = 0;
@@ -2515,44 +2511,60 @@ function generatePresence(){
   let totalDivers = 0;
   let totalOvertime = 0;
 
-  for(let day=1;day<=daysInMonth;day++){
+  for(let day = 1; day <= daysInMonth; day++){
 
-    const date =
-      new Date(year,month,day);
-
-    const weekday =
-      date.getDay();
-
+    const date = new Date(year, month, day);
+    const weekday = date.getDay();
     const dateString =
       year + "-" +
-      String(month+1).padStart(2,"0") + "-" +
+      String(month + 1).padStart(2,"0") + "-" +
       String(day).padStart(2,"0");
 
-    const saved =
-      sheet.days[dateString] || {};
+    const saved = sheet.days[dateString] || {};
+    const pointage = pointages[dateString]?.[childId];
 
-    const isPlanned =
-      (contract.workdays || []).includes(weekday);
+    const isPlanned = (contract.workdays || []).includes(weekday);
 
     const plannedSchedule =
       saved.plannedSchedule ??
       (isPlanned ? (contract.usualHours || "") : "");
 
-    const actualSchedule =
-      saved.actualSchedule || "";
-
     const plannedHours =
       saved.plannedHours ??
       (isPlanned ? inferHoursFromSchedule(plannedSchedule) : 0);
 
-    const actualHours =
-      saved.actualHours ?? 0;
+    let actualSchedule = saved.actualSchedule || "";
+    let actualHours = Number(saved.actualHours) || 0;
 
-    const overtime =
-      Math.max(0, Number(actualHours) - Number(plannedHours));
+    // Report du pointage tant que la ligne n'a pas été corrigée manuellement.
+    if(pointage && !saved.manualActualOverride){
+
+      if(pointage.status === "absent"){
+        actualSchedule = "Absent";
+        actualHours = 0;
+      }else if(pointage.arrival && pointage.departure){
+        actualSchedule = pointage.arrival + " - " + pointage.departure;
+        actualHours = calculateElapsedHours(
+          pointage.arrival,
+          pointage.departure
+        );
+      }else if(pointage.arrival){
+        actualSchedule = pointage.arrival + " - …";
+        actualHours = 0;
+      }else{
+        actualSchedule = "";
+        actualHours = 0;
+      }
+
+      saved.actualSchedule = actualSchedule;
+      saved.actualHours = actualHours;
+      sheet.days[dateString] = saved;
+    }
+
+    const overtime = Math.max(0, actualHours - Number(plannedHours || 0));
 
     totalPlanned += Number(plannedHours) || 0;
-    totalActual += Number(actualHours) || 0;
+    totalActual += actualHours;
     totalOvertime += overtime;
 
     if(saved.ie) totalIE++;
@@ -2560,144 +2572,96 @@ function generatePresence(){
     if(saved.snack) totalSnacks++;
     if(saved.divers) totalDivers++;
 
-    const dayLabel =
-      date.toLocaleDateString("fr-FR",{
-        weekday:"short"
-      });
+    const dayLabel = date.toLocaleDateString("fr-FR", {
+      weekday:"short"
+    });
 
     rows += `
       <tr>
-
         <td>
           ${dayLabel}<br>
           ${String(day).padStart(2,"0")}/${String(month+1).padStart(2,"0")}
         </td>
 
         <td>
-          <input
-            type="text"
+          <input type="text"
             value="${escapeAttribute(plannedSchedule)}"
             onchange="updatePresenceDay('${key}','${dateString}','plannedSchedule',this.value)"
             placeholder="8h-17h">
         </td>
 
         <td>
-          <input
-            type="number"
-            step="0.25"
-            min="0"
+          <input type="number" step="0.25" min="0"
             value="${Number(plannedHours).toFixed(2)}"
-            onchange="updatePresenceDay('${key}','${dateString}','plannedHours',this.value)"
-          >
+            onchange="updatePresenceDay('${key}','${dateString}','plannedHours',this.value)">
         </td>
 
         <td>
-          <input
-            type="text"
+          <input type="text"
             value="${escapeAttribute(actualSchedule)}"
             onchange="updatePresenceDay('${key}','${dateString}','actualSchedule',this.value)"
             placeholder="8h-17h">
         </td>
 
         <td>
-          <input
-            type="number"
-            step="0.25"
-            min="0"
+          <input type="number" step="0.01" min="0"
             value="${Number(actualHours).toFixed(2)}"
-            onchange="updatePresenceDay('${key}','${dateString}','actualHours',this.value)"
-          >
+            onchange="updatePresenceDay('${key}','${dateString}','actualHours',this.value)">
+        </td>
+
+        <td>${overtime.toFixed(2)}</td>
+
+        <td>
+          <input type="checkbox" ${saved.ie ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','ie',this.checked)">
         </td>
 
         <td>
-          ${overtime.toFixed(2)}
+          <input type="checkbox" ${saved.meal ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','meal',this.checked)">
         </td>
 
         <td>
-          <input
-            type="checkbox"
-            ${saved.ie ? "checked" : ""}
-            onchange="updatePresenceDay('${key}','${dateString}','ie',this.checked)"
-          >
+          <input type="checkbox" ${saved.snack ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','snack',this.checked)">
         </td>
 
         <td>
-          <input
-            type="checkbox"
-            ${saved.meal ? "checked" : ""}
-            onchange="updatePresenceDay('${key}','${dateString}','meal',this.checked)"
-          >
+          <input type="checkbox" ${saved.divers ? "checked" : ""}
+            onchange="updatePresenceDay('${key}','${dateString}','divers',this.checked)">
         </td>
-
-        <td>
-          <input
-            type="checkbox"
-            ${saved.snack ? "checked" : ""}
-            onchange="updatePresenceDay('${key}','${dateString}','snack',this.checked)"
-          >
-        </td>
-
-        <td>
-          <input
-            type="checkbox"
-            ${saved.divers ? "checked" : ""}
-            onchange="updatePresenceDay('${key}','${dateString}','divers',this.checked)"
-          >
-        </td>
-
       </tr>
     `;
   }
 
+  saveSheets();
+
   documentContainer.innerHTML = `
-
     <div class="card">
-
       <div style="text-align:center;margin-bottom:20px;">
-
         <div class="logo" style="width:60px;height:60px;font-size:20px;">AF</div>
-
-        <h2 style="margin:5px 0;color:var(--brown-dark);">
-          FEUILLE DE PRÉSENCE
-        </h2>
-
+        <h2 style="margin:5px 0;color:var(--brown-dark);">FEUILLE DE PRÉSENCE</h2>
         <h3 style="margin:5px 0;">
           ${escapeHtml(child.firstName)} ${escapeHtml(child.lastName)}
         </h3>
-
-        <p>
-          Parent :
-          <strong>
-            ${escapeHtml(child.parent?.firstName || "")}
-            ${escapeHtml(child.parent?.lastName || "")}
-          </strong>
+        <p>Parent : <strong>
+          ${escapeHtml(child.parent?.firstName || "")}
+          ${escapeHtml(child.parent?.lastName || "")}
+        </strong></p>
+        <p>${monthNames[month]} ${year}</p>
+        <p>Assistante maternelle :
+          <strong>${escapeHtml(profile.firstName || "Mélissa")}
+          ${escapeHtml(profile.lastName || "")}</strong>
         </p>
-
-        <p>
-          ${monthNames[month]} ${year}
-        </p>
-
-        <p>
-          Assistante maternelle :
-          <strong>
-            ${escapeHtml(profile.firstName || "Mélissa")}
-            ${escapeHtml(profile.lastName || "")}
-          </strong>
-        </p>
-
       </div>
 
       <div class="notice no-print">
-        💡 Tu peux remplir les horaires au fur et à mesure.
-        Les données sont enregistrées automatiquement dans ce prototype.
+        💡 Les horaires réels sont repris du pointage. Tu peux toujours les corriger manuellement.
       </div>
 
       <div class="presence-wrap">
-
         <table class="presence-table">
-
           <thead>
-
             <tr>
               <th rowspan="2">Jour</th>
               <th colspan="2">Horaires prévus au contrat</th>
@@ -2708,120 +2672,56 @@ function generatePresence(){
               <th rowspan="2">Goûter</th>
               <th rowspan="2">Divers</th>
             </tr>
-
             <tr>
               <th>Horaires</th>
               <th>Heures</th>
               <th>Horaires</th>
               <th>Heures</th>
             </tr>
-
           </thead>
-
-          <tbody>
-
-            ${rows}
-
-          </tbody>
-
+          <tbody>${rows}</tbody>
         </table>
-
       </div>
 
       <h3 class="section-title">📊 Récapitulatif du mois</h3>
-
       <div class="month-summary">
-
-        <div class="summary-box">
-          Heures prévues
-          <strong>${totalPlanned.toFixed(2)} h</strong>
-        </div>
-
-        <div class="summary-box">
-          Heures réelles
-          <strong>${totalActual.toFixed(2)} h</strong>
-        </div>
-
-        <div class="summary-box">
-          Heures supplémentaires
-          <strong>${totalOvertime.toFixed(2)} h</strong>
-        </div>
-
-        <div class="summary-box">
-          IE
-          <strong>${totalIE}</strong>
-        </div>
-
-        <div class="summary-box">
-          Repas
-          <strong>${totalMeals}</strong>
-        </div>
-
-        <div class="summary-box">
-          Goûters
-          <strong>${totalSnacks}</strong>
-        </div>
-
-        <div class="summary-box">
-          Divers
-          <strong>${totalDivers}</strong>
-        </div>
-
-        <div class="summary-box">
-          Jours prévus
-          <strong>${countPlannedDays(child,year,month)}</strong>
-        </div>
-
+        <div class="summary-box">Heures prévues<strong>${totalPlanned.toFixed(2)} h</strong></div>
+        <div class="summary-box">Heures réelles<strong>${totalActual.toFixed(2)} h</strong></div>
+        <div class="summary-box">Heures supplémentaires<strong>${totalOvertime.toFixed(2)} h</strong></div>
+        <div class="summary-box">IE<strong>${totalIE}</strong></div>
+        <div class="summary-box">Repas<strong>${totalMeals}</strong></div>
+        <div class="summary-box">Goûters<strong>${totalSnacks}</strong></div>
+        <div class="summary-box">Divers<strong>${totalDivers}</strong></div>
+        <div class="summary-box">Jours prévus<strong>${countPlannedDays(child,year,month)}</strong></div>
       </div>
 
       <h3 class="section-title">📝 Observations</h3>
-
-      <textarea
-        id="presenceObservations"
+      <textarea id="presenceObservations"
         onchange="updateSheetText('${key}','observations',this.value)"
-        placeholder="Observations éventuelles..."
-      >${escapeHtml(sheet.observations || "")}</textarea>
+        placeholder="Observations éventuelles...">${escapeHtml(sheet.observations || "")}</textarea>
 
       <h3 class="section-title">✍️ Validation</h3>
-
       <div class="grid">
-
         <div>
           <label>Signature de l'assistante maternelle</label>
-          <div class="signature-box">
-            ${escapeHtml(sheet.assistantSignature || "")}
-          </div>
+          <div class="signature-box">${escapeHtml(sheet.assistantSignature || "")}</div>
         </div>
-
         <div>
           <label>Signature du parent</label>
-          <div class="signature-box">
-            ${escapeHtml(sheet.parentSignature || "")}
-          </div>
+          <div class="signature-box">${escapeHtml(sheet.parentSignature || "")}</div>
         </div>
-
       </div>
 
       <div class="notice" style="margin-top:20px;">
         Statut :
-        <strong>
-          ${sheet.parentValidated ? "Parent validé" : "En attente de validation"}
-        </strong>
+        <strong>${sheet.parentValidated ? "Parent validé" : "En attente de validation"}</strong>
         ${sheet.validated ? " — Feuille finalisée par l'assistante maternelle." : ""}
       </div>
 
       <div class="actions no-print">
-
-        <button class="btn" onclick="printPresence()">
-          📄 Imprimer / Enregistrer en PDF
-        </button>
-
-        <button class="btn light" onclick="validatePresence('${key}')">
-          ✅ Valider la feuille
-        </button>
-
+        <button class="btn" onclick="printPresence()">📄 Imprimer / Enregistrer en PDF</button>
+        <button class="btn light" onclick="validatePresence('${key}')">✅ Valider la feuille</button>
       </div>
-
     </div>
   `;
 }
@@ -2850,8 +2750,13 @@ function updatePresenceDay(key,dateString,field,value){
 
   sheets[key].days[dateString][field] = value;
 
-  saveSheets();
+  // Une correction des horaires réels devient prioritaire
+  // sur les données automatiques du pointage.
+  if(field === "actualSchedule" || field === "actualHours"){
+    sheets[key].days[dateString].manualActualOverride = true;
+  }
 
+  saveSheets();
   generatePresence();
 }
 
