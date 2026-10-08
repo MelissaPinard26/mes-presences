@@ -2801,8 +2801,80 @@ function printPresence(){
    CALCULS PRESENCE
 ========================= */
 
+function calculateElapsedHours(arrival, departure){
+
+  if(!arrival || !departure){
+    return 0;
+  }
+
+  const [arrivalHour, arrivalMinute] =
+    arrival.split(":").map(Number);
+
+  const [departureHour, departureMinute] =
+    departure.split(":").map(Number);
+
+  let start =
+    arrivalHour * 60 + arrivalMinute;
+
+  let end =
+    departureHour * 60 + departureMinute;
+
+  if(end < start){
+    end += 24 * 60;
+  }
+
+  return Math.round(((end - start) / 60) * 100) / 100;
+}
+
 function inferHoursFromSchedule(schedule){
 
+  if(!schedule) return 0;
+
+  const matches =
+    schedule.match(/(\d{1,2})\s*h?\s*(\d{0,2})?\s*[-–]\s*(\d{1,2})\s*h?\s*(\d{0,2})?/i);
+
+  if(!matches) return 0;
+
+  const h1 =
+    Number(matches[1]) +
+    ((Number(matches[2]) || 0) / 60);
+
+  const h2 =
+    Number(matches[3]) +
+    ((Number(matches[4]) || 0) / 60);
+
+  let result = h2 - h1;
+
+  if(result < 0){
+    result += 24;
+  }
+
+  return Math.round(result * 100) / 100;
+}
+
+function countPlannedDays(child,year,month){
+
+  const contract =
+    child.contract || {};
+
+  let count = 0;
+
+  const daysInMonth =
+    new Date(year,month+1,0).getDate();
+
+  for(let d=1;d<=daysInMonth;d++){
+
+    const weekday =
+      new Date(year,month,d).getDay();
+
+    if((contract.workdays || []).includes(weekday)){
+      count++;
+    }
+  }
+
+  return count;
+}
+  {
   if(!schedule) return 0;
 
   const matches =
