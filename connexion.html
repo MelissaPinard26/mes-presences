@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ec">
+  <title>Au fil des accueils — Connexion</title>
+  <style>
+    :root {
+      --cream: #f7f3ec;
+      --beige: #e8ddcc;
+      --brown: #725744;
+      --dark: #45372d;
+      --sage: #87977b;
+      --white: #fffdf9;
+      --muted: #82776d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      background:
+        radial-gradient(ellipse at 8% 8%, #e4e8dc 0, transparent 30%),
+        radial-gradient(ellipse at 95% 95%, #eadbca 0, transparent 32%),
+        var(--cream);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .leaf {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--brown);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(29px, 7vw, 38px);
+      font-weight: normal;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .card {
+      background: rgba(255, 253, 249, 0.94);
+      border: 1px solid #e6ddcf;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 16px 45px rgba(89, 67, 45, 0.09);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: normal;
+    }
+
+    .intro {
+      margin: 0 0 25px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin: 17px 0 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #ded3c3;
+      border-radius: 11px;
+      padding: 12px 14px;
+      background: white;
+      color: var(--dark);
+      font: inherit;
+    }
+
+    input:focus {
+      outline: 2px solid var(--sage);
+      outline-offset: 2px;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      margin: 12px 0 22px;
+      font-size: 13px;
+      color: var(--brown);
+      text-decoration: none;
+    }
+
+    .primary {
+      width: 100%;
+      min-height: 49px;
+      border: 0;
+      border-radius: 12px;
+      padding: 13px;
+      background: var(--brown);
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .primary:hover { background: #5f4635; }
+
+    .separator {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0;
+      color: #a0968b;
+      font-size: 12px;
+    }
+
+    .separator::before,
+    .separator::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: #e8dfd3;
+    }
+
+    .secondary {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
+      border: 1px solid #d9cbbb;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--brown);
+      text-align: center;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .secondary:hover { background: #f4eee5; }
+
+    .notice {
+      display: none;
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #f2eee4;
+      color: var(--dark);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 420px) {
+      body { padding: 16px; }
+      .card { padding: 23px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <div class="leaf" aria-hidden="true">🌿</div>
+      <h1>Au fil des accueils</h1>
+      <p class="subtitle">
+        Votre espace professionnel et familial,<br>
+        en toute simplicité.
+      </p>
+    </header>
+
+    <section class="card" aria-labelledby="welcome">
+      <h2 id="welcome">Bienvenue</h2>
+      <p class="intro">
+        Retrouvez votre espace et les informations
+        de votre accueil en quelques instants.
+      </p>
+
+      <form id="login-form">
+        <label for="email">Adresse e-mail</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="vous@exemple.fr"
+          required
+        >
+
+        <label for="password">Mot de passe</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Votre mot de passe"
+          required
+        >
+
+        <a class="forgot" href="#" id="forgot-link">
+          Mot de passe oublié ?
+        </a>
+
+        <button class="primary" type="submit">
+          Se connecter
+        </button>
+      </form>
+
+      <div class="notice" id="notice" role="status"></div>
+
+      <div class="separator">Vous découvrez la plateforme ?</div>
+
+      <button class="secondary" id="professional" type="button">
+        Créer un compte professionnel
+      </button>
+
+      <button class="secondary" id="parent" type="button">
+        Activer mon accès parent
+      </button>
+    </section>
+
+    <footer>
+      Un espace pensé avec soin pour les professionnelles
+      de la petite enfance et les familles.<br>
+      <span>© Au fil des accueils</span>
+    </footer>
+  </main>
+
+  <script>
+    const notice = document.getElementById("notice");
+
+    function showNotice(message) {
+      notice.textContent = message;
+      notice.style.display = "block";
+    }
+
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      showNotice(
+        "La page de connexion est en préparation. La connexion sécurisée sera activée lors du raccordement à Supabase."
+      );
+    });
+
+    document.getElementById("forgot-link").addEventListener("click", function(event) {
+      event.preventDefault();
+      showNotice(
+        "La récupération du mot de passe sera disponible lorsque les comptes seront connectés à Supabase."
+      );
+    });
+
+    document.getElementById("professional").addEventListener("click", function() {
+      showNotice(
+        "L'inscription professionnelle sera bientôt disponible, avec dépôt de l'agrément et validation avant activation du compte."
+      );
+    });
+
+    document.getElementById("parent").addEventListener("click", function() {
+      showNotice(
+        "L'activation parent sera bientôt disponible. Chaque parent aura accès uniquement aux enfants qui lui sont associés."
+      );
+    });
+  </script>
+</body>
+</html>
