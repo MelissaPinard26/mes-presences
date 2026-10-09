@@ -199,9 +199,11 @@
     const message = document.getElementById("message");
 
     function showMessage(text, type) {
-      message.textContent = text;
-      message.className = type;
-    }
+  message.textContent = text;
+  message.className = type;
+  message.style.display = "block";
+  message.style.whiteSpace = "pre-wrap";
+}
 
     form.addEventListener("submit", async function(event) {
       event.preventDefault();
