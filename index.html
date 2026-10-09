@@ -3348,11 +3348,15 @@ function initialize(){
     document.body.style.visibility = "visible";
     initialize();
 
-  } catch (erreur) {
+} catch (erreur) {
     console.error("Erreur de vérification :", erreur);
 
+    document.body.style.visibility = "visible";
+
     afficherErreur(
-      "La vérification de connexion a échoué. Réessaie ou retourne à la connexion."
+      "La vérification de connexion a échoué : " +
+      (erreur?.message || "erreur inconnue") +
+      ". Retourne à la connexion pour réessayer."
     );
   }
 })();
