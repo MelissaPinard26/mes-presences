@@ -222,13 +222,12 @@
             password
           });
 
-        if (error) {
-          showMessage(
-            "Connexion impossible : " + error.message,
-            "error"
-          );
-          return;
-        }
+      showMessage(
+  "Connexion réussie, mais le profil n'a pas pu être vérifié. " +
+  "Aucun espace ne sera ouvert pour le moment.",
+  "error"
+);
+return;
 
         showMessage(
           "Connexion réussie pour " + data.user.email +
