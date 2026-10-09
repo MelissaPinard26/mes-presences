@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Supabase</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <h1>Test de connexion Supabase</h1>
+
+  <button id="tester">Tester la connexion</button>
+  <p id="resultat">En attente du test.</p>
+
+  <script>
+    const SUPABASE_URL = "https://xbdrgjzfflvmgelnkapv.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_dUTbL15GMqZ-ZRE6KLAcyA_6WYacWpY";
+
+    const client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    document.getElementById("tester").addEventListener("click", async () => {
+      const resultat = document.getElementById("resultat");
+      resultat.textContent = "Test en cours...";
+
+      const { data, error } = await client.auth.getSession();
+
+      if (error) {
+        resultat.textContent = "Erreur : " + error.message;
+        return;
+      }
+
+      resultat.textContent = data.session
+        ? "La bibliothèque fonctionne. Une session est ouverte."
+        : "La bibliothèque fonctionne. Aucune session n'est ouverte.";
+    });
+  </script>
+</body>
+</html>
