@@ -3303,7 +3303,9 @@ function initialize(){
     }
 
     const utilisateur = sessionData.session.user;
+    
 console.log("Vérification du profil pour :", utilisateur.id);
+    
     const { data: profil, error: profilError } = await client
       .from("profiles")
       .select("role, full_name")
