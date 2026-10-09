@@ -3309,11 +3309,15 @@ function initialize(){
       .eq("id", utilisateur.id)
       .single();
 
-    if (profilError || !profil) {
-      afficherErreur(
-        "Ton profil n’a pas pu être vérifié. Vérifie le compte Supabase."
-      );
-      return;
+   if (profilError || !profil) {
+  console.error("Erreur de lecture du profil :", profilError);
+
+  afficherErreur(
+    "Profil non vérifié : " +
+    (profilError?.message || "aucun profil retourné")
+  );
+  return;
+}
     }
 
     if (profil.role !== "admin") {
