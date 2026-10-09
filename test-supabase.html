@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Test de connexion Supabase</title>
+  <title>Vérification administrateur</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 450px;
-      margin: 40px auto;
+      max-width: 500px;
+      margin: 35px auto;
       padding: 20px;
       color: #333;
     }
@@ -47,6 +47,10 @@
       cursor: pointer;
     }
 
+    button:disabled {
+      opacity: 0.6;
+    }
+
     #deconnexion {
       background: #777;
       margin-left: 6px;
@@ -54,20 +58,21 @@
 
     #resultat {
       margin-top: 24px;
-      padding: 12px;
+      padding: 14px;
       background: #f2f4ef;
       border-radius: 6px;
       overflow-wrap: anywhere;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 
 <body>
-  <h1>Test de connexion Supabase</h1>
+  <h1>Vérification du compte administrateur</h1>
 
   <p>
-    Cette page sert uniquement à tester la connexion.
-    Elle ne modifie pas les données des enfants.
+    Cette page vérifie la connexion et le profil du compte.
+    Elle ne modifie aucune donnée des enfants.
   </p>
 
   <form id="login-form">
@@ -88,7 +93,7 @@
     >
 
     <button id="connexion" type="submit">
-      Se connecter
+      Se connecter et vérifier
     </button>
 
     <button id="deconnexion" type="button">
@@ -104,8 +109,8 @@
     const SUPABASE_URL =
       "https://xbdrgjzfflvmgelnkapv.supabase.co";
 
-    // Utilise ici ta clé publique sb_publishable_ déjà créée.
-    // Ne mets surtout pas une clé secrète ou service_role.
+    // Garde ici la même clé PUBLIQUE sb_publishable_ que précédemment.
+    // N'utilise jamais une clé secrète ou service_role dans cette page.
     const SUPABASE_KEY =
       "sb_publishable_dUTbL15GMqZ-ZRE6KLAcyA_6WYacWpY";
 
@@ -121,23 +126,41 @@
     const boutonConnexion = document.getElementById("connexion");
     const boutonDeconnexion = document.getElementById("deconnexion");
 
-    async function verifierSession() {
-      resultat.textContent = "Vérification en cours...";
+    async function verifierProfil(utilisateur) {
+      resultat.textContent =
+        "Connexion reconnue. Vérification du profil en cours...";
 
-      const { data, error } = await client.auth.getSession();
+      const { data, error } = await client
+        .from("profiles")
+        .select("id, full_name, role")
+        .eq("id", utilisateur.id)
+        .maybeSingle();
 
       if (error) {
         resultat.textContent =
-          "Erreur de vérification : " + error.message;
+          "Connexion réussie, mais impossible de vérifier le profil.\n" +
+          "Détail : " + error.message;
         return;
       }
 
-      if (data.session) {
+      if (!data) {
         resultat.textContent =
-          "Une session est ouverte pour " +
-          (data.session.user.email || "cet utilisateur") + ".";
+          "Connexion réussie, mais aucun profil accessible n'a été trouvé.\n" +
+          "Il faut vérifier le profil et les règles de sécurité.";
+        return;
+      }
+
+      if (data.role === "admin") {
+        resultat.textContent =
+          "CONNEXION RÉUSSIE\n\n" +
+          "Profil trouvé : " + (data.full_name || "Nom non renseigné") +
+          "\nRôle détecté : administrateur\n\n" +
+          "Le profil est accessible. Il reste à tester les autorisations réelles.";
       } else {
-        resultat.textContent = "Aucune session ouverte. Tu peux te connecter.";
+        resultat.textContent =
+          "Connexion réussie.\n\n" +
+          "Rôle détecté : " + (data.role || "non renseigné") +
+          "\nCe compte n'est pas reconnu comme administrateur.";
       }
     }
 
@@ -147,41 +170,63 @@
       boutonConnexion.disabled = true;
       resultat.textContent = "Connexion en cours...";
 
-      const { data, error } = await client.auth.signInWithPassword({
-        email: champEmail.value.trim(),
-        password: champMotDePasse.value
-      });
+      try {
+        const { data, error } = await client.auth.signInWithPassword({
+          email: champEmail.value.trim(),
+          password: champMotDePasse.value
+        });
 
-      champMotDePasse.value = "";
-      boutonConnexion.disabled = false;
+        champMotDePasse.value = "";
 
-      if (error) {
+        if (error) {
+          resultat.textContent =
+            "Échec de connexion : " + error.message;
+          return;
+        }
+
+        await verifierProfil(data.user);
+      } catch (error) {
         resultat.textContent =
-          "Échec de connexion : " + error.message;
-        return;
+          "Une erreur inattendue est survenue : " + error.message;
+      } finally {
+        boutonConnexion.disabled = false;
       }
-
-      resultat.textContent =
-        "Connexion réussie pour " +
-        (data.user.email || "cet utilisateur") + ".";
     });
 
     boutonDeconnexion.addEventListener("click", async function() {
       boutonDeconnexion.disabled = true;
-      resultat.textContent = "Déconnexion en cours...";
 
-      const { error } = await client.auth.signOut();
+      try {
+        const { error } = await client.auth.signOut();
 
-      boutonDeconnexion.disabled = false;
+        if (error) {
+          resultat.textContent =
+            "Erreur de déconnexion : " + error.message;
+          return;
+        }
+
+        resultat.textContent = "Déconnexion réussie.";
+      } finally {
+        boutonDeconnexion.disabled = false;
+      }
+    });
+
+    async function verifierSession() {
+      const { data, error } = await client.auth.getSession();
 
       if (error) {
         resultat.textContent =
-          "Erreur de déconnexion : " + error.message;
+          "Erreur de vérification : " + error.message;
         return;
       }
 
-      resultat.textContent = "Déconnexion réussie.";
-    });
+      if (data.session) {
+        await verifierProfil(data.session.user);
+      } else {
+        resultat.textContent =
+          "Aucune session ouverte. Connecte-toi pour vérifier le profil.";
+      }
+    }
 
     verifierSession();
   </script>
