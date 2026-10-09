@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>body { visibility: hidden; }</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Au fil des accueils</title>
@@ -3260,8 +3262,96 @@ function initialize(){
     String(now.getMonth()+1).padStart(2,"0");
 }
 
-initialize();
+(async function verifierAccesApplication() {
+  const SUPABASE_URL = "https://xbdrgjzfflvmgelnkapv.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_dUTbL15GMqZ-QE6KLAcyA_6WYacWpY";
 
+  const client = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  function afficherErreur(message) {
+    document.body.innerHTML = "";
+    document.body.style.visibility = "visible";
+
+    const titre = document.createElement("h2");
+    titre.textContent = "Accès à l’application";
+
+    const texte = document.createElement("p");
+    texte.textContent = message;
+
+    const lien = document.createElement("a");
+    lien.href = "./connexion.html";
+    lien.textContent = "Retour à la connexion";
+
+    document.body.append(titre, texte, lien);
+  }
+
+  try {
+    const { data: sessionData, error: sessionError } =
+      await client.auth.getSession();
+
+    if (sessionError) {
+      throw sessionError;
+    }
+
+    if (!sessionData.session) {
+      window.location.replace("./connexion.html");
+      return;
+    }
+
+    const utilisateur = sessionData.session.user;
+
+    const { data: profil, error: profilError } = await client
+      .from("profiles")
+      .select("role, full_name")
+      .eq("id", utilisateur.id)
+      .single();
+
+    if (profilError || !profil) {
+      afficherErreur(
+        "Ton profil n’a pas pu être vérifié. Vérifie le compte Supabase."
+      );
+      return;
+    }
+
+    if (profil.role !== "admin") {
+      afficherErreur(
+        "Cette version de l’application est réservée au compte administrateur."
+      );
+      return;
+    }
+
+    const { data: espace, error: espaceError } = await client
+      .from("professional_workspaces")
+      .select("id, display_name")
+      .eq("owner_user_id", utilisateur.id)
+      .maybeSingle();
+
+    if (espaceError || !espace) {
+      afficherErreur(
+        "Ton espace professionnel n’a pas pu être retrouvé. Aucune donnée n’a été chargée."
+      );
+      return;
+    }
+
+    window.supabaseClient = client;
+    window.utilisateurConnecte = utilisateur;
+    window.profilConnecte = profil;
+    window.espaceConnecte = espace;
+
+    document.body.style.visibility = "visible";
+    initialize();
+
+  } catch (erreur) {
+    console.error("Erreur de vérification :", erreur);
+
+    afficherErreur(
+      "La vérification de connexion a échoué. Réessaie ou retourne à la connexion."
+    );
+  }
+})();
 </script>
 
 </body>
