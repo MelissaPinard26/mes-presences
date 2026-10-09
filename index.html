@@ -2331,6 +2331,8 @@ if(document.getElementById("presences").classList.contains("active")){
   }
 }
 
+} // Fin de recordPointage
+
 function manualPointageTime(childId,field,value){
 
   const today =
@@ -2873,30 +2875,6 @@ function countPlannedDays(child,year,month){
   }
 
   return count;
-}
-  {
-  if(!schedule) return 0;
-
-  const matches =
-    schedule.match(/(\d{1,2})\s*h?\s*(\d{0,2})?\s*[-–]\s*(\d{1,2})\s*h?\s*(\d{0,2})?/i);
-
-  if(!matches) return 0;
-
-  const h1 =
-    Number(matches[1]) +
-    ((Number(matches[2]) || 0) / 60);
-
-  const h2 =
-    Number(matches[3]) +
-    ((Number(matches[4]) || 0) / 60);
-
-  let result = h2 - h1;
-
-  if(result < 0){
-    result += 24;
-  }
-
-  return Math.round(result * 100) / 100;
 }
 
 function countPlannedDays(child,year,month){
