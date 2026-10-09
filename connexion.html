@@ -222,12 +222,30 @@
             password
           });
 
-      showMessage(
-  "Connexion réussie, mais le profil n'a pas pu être vérifié. " +
-  "Aucun espace ne sera ouvert pour le moment.",
-  "error"
-);
-return;
+     if (error) {
+        showMessage("Connexion impossible : " + error.message, "error");
+        return;
+      }
+
+      const { data: profile, error: profileError } =
+        await supabaseClient
+          .from("profiles")
+          .select("role, full_name")
+          .eq("id", data.user.id)
+          .maybeSingle();
+
+      if (profileError) {
+        showMessage(
+          "Erreur de lecture du profil : " + profileError.message,
+          "error"
+        );
+        return;
+      }
+
+      if (!profile) {
+        showMessage("Aucun profil trouvé pour cet utilisateur.", "error");
+        return;
+      }
 
         showMessage(
           "Connexion réussie pour " + data.user.email +
