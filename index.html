@@ -3266,7 +3266,7 @@ function initialize(){
   const SUPABASE_URL = "https://xbdrgjzfflvmgelnkapv.supabase.co";
   const SUPABASE_KEY = "sb_publishable_dUTbL15GMqZ-QE6KLAcyA_6WYacWpY";
 
-  const client = supabase.createClient(
+  const client = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
   );
