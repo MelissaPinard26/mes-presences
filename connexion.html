@@ -247,12 +247,47 @@
         return;
       }
 
-        showMessage(
-          "Connexion réussie pour " + data.user.email +
-          ". La vérification de votre rôle et l'accès à votre espace " +
-          "seront ajoutés avant l'ouverture de l'application.",
-          "success"
-        );
+        if (profile.role === "admin") {
+          const { data: workspace, error: workspaceError } =
+            await supabaseClient
+              .from("professional_workspaces")
+              .select("display_name")
+              .eq("owner_user_id", data.user.id)
+              .maybeSingle();
+
+          if (workspaceError || !workspace) {
+            showMessage(
+              "Votre compte est reconnu, mais votre espace professionnel n'a pas pu être vérifié.",
+              "error"
+            );
+            return;
+          }
+
+          showMessage(
+            "Bonjour " + (profile.full_name || "Mélissa") +
+            " ! Votre rôle administrateur est confirmé et votre espace " +
+            workspace.display_name + " est retrouvé.",
+            "success"
+          );
+
+        } else if (profile.role === "professional") {
+          showMessage(
+            "Votre compte professionnel est reconnu.",
+            "success"
+          );
+
+        } else if (profile.role === "parent") {
+          showMessage(
+            "Votre compte parent est reconnu.",
+            "success"
+          );
+
+        } else {
+          showMessage(
+            "Votre rôle n'est pas reconnu. Aucun espace ne sera ouvert.",
+            "error"
+          );
+        }
       } catch (error) {
         showMessage(
           "Une erreur est survenue. Vérifiez votre connexion Internet.",
