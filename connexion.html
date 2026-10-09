@@ -263,12 +263,16 @@
             return;
           }
 
-          showMessage(
-            "Bonjour " + (profile.full_name || "Mélissa") +
-            " ! Votre rôle administrateur est confirmé et votre espace " +
-            workspace.display_name + " est retrouvé.",
-            "success"
-          );
+showMessage(
+  "Bonjour " + (profile.full_name || "Mélissa") +
+  " ! Votre rôle administrateur est confirmé et votre espace " +
+  workspace.display_name + " est retrouvé. Ouverture de l’application…",
+  "success"
+);
+
+setTimeout(() => {
+  window.location.href = "./index.html";
+}, 1500);
 
         } else if (profile.role === "professional") {
           showMessage(
