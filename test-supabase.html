@@ -126,42 +126,57 @@
     const boutonConnexion = document.getElementById("connexion");
     const boutonDeconnexion = document.getElementById("deconnexion");
 
-    async function verifierProfil(utilisateur) {
-      resultat.textContent =
-        "Connexion reconnue. Vérification du profil en cours...";
+async function verifierProfil(utilisateur) {
+  resultat.textContent =
+    "Connexion réussie. Vérification des autorisations...";
 
-      const { data, error } = await client
-        .from("profiles")
-        .select("id, full_name, role")
-        .eq("id", utilisateur.id)
-        .maybeSingle();
+  const { data: profil, error: erreurProfil } = await client
+    .from("profiles")
+    .select("id, full_name, role")
+    .eq("id", utilisateur.id)
+    .maybeSingle();
 
-      if (error) {
-        resultat.textContent =
-          "Connexion réussie, mais impossible de vérifier le profil.\n" +
-          "Détail : " + error.message;
-        return;
-      }
+  if (erreurProfil) {
+    resultat.textContent =
+      "Connexion réussie, mais lecture du profil refusée.\n" +
+      "Détail : " + erreurProfil.message;
+    return;
+  }
 
-      if (!data) {
-        resultat.textContent =
-          "Connexion réussie, mais aucun profil accessible n'a été trouvé.\n" +
-          "Il faut vérifier le profil et les règles de sécurité.";
-        return;
-      }
+  if (!profil) {
+    resultat.textContent =
+      "Connexion réussie, mais aucun profil accessible n'a été trouvé.";
+    return;
+  }
 
-      if (data.role === "admin") {
-        resultat.textContent =
-          "CONNEXION RÉUSSIE\n\n" +
-          "Profil trouvé : " + (data.full_name || "Nom non renseigné") +
-          "\nRôle détecté : administrateur\n\n" +
-          "Le profil est accessible. Il reste à tester les autorisations réelles.";
-      } else {
-        resultat.textContent =
-          "Connexion réussie.\n\n" +
-          "Rôle détecté : " + (data.role || "non renseigné") +
-          "\nCe compte n'est pas reconnu comme administrateur.";
-      }
+  const { data: enfants, error: erreurEnfants } = await client
+    .from("children")
+    .select("id")
+    .limit(5);
+
+  let message =
+    "CONNEXION RÉUSSIE\n\n" +
+    "Rôle détecté : " + (profil.role || "non renseigné") + "\n";
+
+  if (profil.role === "admin") {
+    message += "Compte administrateur détecté.\n";
+  } else {
+    message += "Ce compte n'est pas administrateur.\n";
+  }
+
+  message += "\nTEST DE LECTURE DES ENFANTS\n";
+
+  if (erreurEnfants) {
+    message +=
+      "Erreur lors de la lecture : " + erreurEnfants.message;
+  } else {
+    message +=
+      "Requête autorisée. Nombre de lignes visibles : " +
+      enfants.length + ".";
+  }
+
+  resultat.textContent = message;
+}
     }
 
     formulaire.addEventListener("submit", async function(event) {
