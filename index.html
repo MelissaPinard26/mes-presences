@@ -3362,6 +3362,23 @@ console.log("Vérification du profil pour :", utilisateur.id);
     );
   }
 })();
+  async function deconnecter() {
+  const client = window.supabaseClient;
+
+  if (!client) {
+    alert("La connexion n’a pas pu être vérifiée.");
+    return;
+  }
+
+  const { error } = await client.auth.signOut();
+
+  if (error) {
+    alert("La déconnexion a échoué : " + error.message);
+    return;
+  }
+
+  window.location.replace("./connexion.html");
+}
 </script>
 
 </body>
